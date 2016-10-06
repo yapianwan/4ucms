@@ -1,9 +1,9 @@
 <?php
-// 时差
-@define('SITE_TOKEN', 'mcmswx');
-@define('SITE_DIR', '/mcmswx/');
+// 如果在根目录请保留"/",如果在子目录内运行请直接修改名称即可。
+@define('SITE_DIR', '/4ucms/');
+// 是否开启管理员操作日志
 @define('ADMIN_LOG', false);
-// 初始化
+// 时差
 $GLOBALS['timezone'] = 8;
 
 // 初始化页面
