@@ -313,28 +313,3 @@ CREATE TABLE `cms_vote_option` (
   UNIQUE KEY `vote_id` (`v_id`) USING BTREE
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 -- ----------
-CREATE TABLE `qq_session` (
-  `session_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
-  `session_expires` int(10) unsigned NOT NULL DEFAULT '0',
-  `session_data` text,
-  PRIMARY KEY (`session_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
--- ----------
-CREATE TABLE `wx_user` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `u_subscribe` tinyint(1) DEFAULT NULL,
-  `u_openid` varchar(100) DEFAULT NULL,
-  `u_nickname` varchar(100) DEFAULT NULL,
-  `u_sex` tinyint(1) DEFAULT NULL,
-  `u_language` varchar(50) DEFAULT NULL,
-  `u_city` varchar(100) DEFAULT NULL,
-  `u_province` varchar(100) DEFAULT NULL,
-  `u_country` varchar(100) DEFAULT NULL,
-  `u_headimgurl` varchar(1000) DEFAULT NULL,
-  `u_subscribe_time` int(10) DEFAULT NULL,
-  `u_unionid` varchar(100) DEFAULT NULL,
-  `u_remark` varchar(50) DEFAULT NULL,
-  `u_groupid` varchar(10) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
--- ----------
