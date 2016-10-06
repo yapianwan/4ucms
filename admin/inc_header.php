@@ -48,7 +48,7 @@
           <li><a href="cms_template.php"><span class="am-icon-laptop"></span> 模板管理 </a></li>
           <li><a href="cms_database.php"><span class="am-icon-database"></span> 数据库管理 </a></li>
           <li><a href="cms_rewrite.php"><span class="am-icon-exchange"></span> 伪静态 </a></li>
-          <li><a href="javascript:if(confirm('是否进行sitemap文件生成?')) window.open('../sitemap.php?act=xml');"><span class="am-icon-cubes"></span> sitemap生成 </a></li>
+          <li><a href="javascript:if(confirm('是否进行sitemap文件生成?')) window.open('../sitemap.php?act=xml');"><span class="am-icon-cubes"></span> sitemap </a></li>
           <!--<li><a href="javascript:if(confirm('是否进行百度主动推送?')) window.location.href='index.php?act=baiduSend';"><span class="am-icon-exchange"></span> 百度主动推送 </a></li>-->
           </ul>
       </li>
