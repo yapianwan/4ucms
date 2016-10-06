@@ -3,7 +3,7 @@
 * MYSQL
 
 #系统预览
-[http://mcmswx.foru.net.cn/view/](http://mcmswx.foru.net.cn/)
+[http://mcmswx.foru.net.cn/](http://mcmswx.foru.net.cn/view/)
 
 #系统搭建
 1. 创建数据库并指定utf-8编码（CREATE DATABASE 数据库名称 DEFAULT CHARSET utf8 COLLATE utf8_general_ci;）
