@@ -2,6 +2,9 @@
 * PHP
 * MYSQL
 
+#系统预览
+[http://mcmswx.foru.net.cn/view/](http://mcmswx.foru.net.cn/)
+
 #系统搭建
 1. 创建数据库并指定utf-8编码（CREATE DATABASE 数据库名称 DEFAULT CHARSET utf8 COLLATE utf8_general_ci;）
 2. 打开install/index.php进行数据导入；当然您也可以直接导入install/data.sql文件来替代前面的步骤
@@ -22,7 +25,7 @@
  /ui 共用自适应系统，目前为妹子UI
  /uploadfile 上传文件
  /view 模板切换查看
- 
+
 #功能介绍
 * [内容]菜单：频道管理，详情管理，幻灯管理，碎片管理
 * [交互]菜单：会员管理，留言管理，在线客服，投票调查，友情链接
