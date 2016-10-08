@@ -3,7 +3,9 @@ include './library/inc.php';
 include './language/common.php';
 
 non_numeric_back($_GET['id'], $_lang['illegal']);
-if(get_field('cms_detail','id',$id)==false) alert_href($_lang['illegal'], './');
+if (get_field('cms_detail','id',$id) === false) {
+	alert_href($_lang['illegal'], './');
+}
 setcookie('cms[url_back]', get_url());// 返回网址
 
 //获取上级频道字段

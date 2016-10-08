@@ -33,18 +33,26 @@ function url_back($t0 = ''){
 }
 //空值返回
 function null_back($t0, $t1){
-  if (empty($t0)) { alert_back($t1); }
+  if (empty($t0)) {
+    alert_back($t1);
+  }
 }
 function n_back($t0, $t1){
-  if ($t0 == '' || $t0 === null) { alert_back($t1); }
+  if ($t0 == '' || $t0 === null) {
+    alert_back($t1);
+  }
 }
 //比较返回
 function compare_back($t0,$t1,$t2){
-  if ($t0 != $t1) { alert_back($t2); }
+  if ($t0 != $t1) {
+    alert_back($t2);
+  }
 }
 //非数字返回
 function non_numeric_back($t0, $t1){
-  if (!is_numeric($t0)) { alert_back($t1); }
+  if (!is_numeric($t0)) {
+    alert_back($t1);
+  }
 }
 //判断非空数组
 function check_array($arr){
@@ -77,7 +85,9 @@ function page_handle($t0, $t1, $t2){
   } else {
     $page_sum = ceil($t2 / $t1);
   }
-  if ($page_num > $page_sum) { $page_num = $page_sum; }
+  if ($page_num > $page_sum) {
+    $page_num = $page_sum;
+  }
   $FROM_num = ($page_num - 1) * $t1;
   $tmp = array();
   $tmp[0] = $FROM_num;
@@ -104,7 +114,9 @@ function page_ajax($t0, $t1, $t2){
   } else {
     $page_sum = ceil($t2 / $t1);
   }
-  if ($page_num > $page_sum) { $page_num = $page_sum; }
+  if ($page_num > $page_sum) {
+    $page_num = $page_sum;
+  }
   $FROM_num = ($page_num - 1) * $t1;
   $tmp = array();
   $tmp[0] = $FROM_num; //每页的起始从本条开始
@@ -163,7 +175,9 @@ function page_show($t0, $t1, $t2, $t3){
   $page_next = '';
   $tmp = '';
   if (REWRITE) {
-    if ($page_current > $page_len + 1) { $page_home = LIB_LIA . $page_link . '1.html" title="首页">1...' . LIB_ALI; }
+    if ($page_current > ($page_len + 1)) {
+      $page_home = LIB_LIA . $page_link . '1.html" title="首页">1...' . LIB_ALI;
+    }
     if ($page_current == 1) {
       $page_back = LIB_LICLS.PAGE_DISABLED.'"><a href="javascript:;" title="上一页"><<' . LIB_ALI;
     } else {
@@ -176,14 +190,18 @@ function page_show($t0, $t1, $t2, $t3){
         $page_list = $page_list . LIB_LIA . $page_link . $i . '.html" title="第' . $i . '页">' . $i . '' . LIB_ALI;
       }
     }
-    if ($page_current < $page_sum - $page_len) { $page_last = LIB_LIA . $page_link . $page_sum . '.html" title="尾页">...' . $page_sum . '' . LIB_ALI; }
+    if ($page_current < ($page_sum - $page_len)) {
+      $page_last = LIB_LIA . $page_link . $page_sum . '.html" title="尾页">...' . $page_sum . '' . LIB_ALI;
+    }
     if ($page_current == $page_sum) {
       $page_next = LIB_LICLS.PAGE_DISABLED.'"><a href="javascript:;" title="下一页">>>' . LIB_ALI;
     } else {
       $page_next = LIB_LIA . $page_link . ($page_current + 1) . '.html" title="下一页">>>' . LIB_ALI;
     }
   } else {
-    if ($page_current > $page_len + 1) { $page_home = LIB_LIA . $page_link . $page_parameter . '=1" title="首页">1...' . LIB_ALI; }
+    if ($page_current > ($page_len + 1)) {
+      $page_home = LIB_LIA . $page_link . $page_parameter . '=1" title="首页">1...' . LIB_ALI;
+    }
     if ($page_current == 1) {
       $page_back = LIB_LICLS.PAGE_DISABLED.'"><a href="javascript:;" title="上一页"><<' . LIB_ALI;
     } else {
@@ -196,15 +214,16 @@ function page_show($t0, $t1, $t2, $t3){
         $page_list = $page_list . LIB_LIA . $page_link . $page_parameter . '=' . $i . '" title="第' . $i . '页">' . $i . '' . LIB_ALI;
       }
     }
-    if ($page_current < $page_sum - $page_len) { $page_last = LIB_LIA . $page_link . $page_parameter . '=' . $page_sum . '" title="尾页">...' . $page_sum . '' . LIB_ALI; }
+    if ($page_current < ($page_sum - $page_len)) {
+      $page_last = LIB_LIA . $page_link . $page_parameter . '=' . $page_sum . '" title="尾页">...' . $page_sum . '' . LIB_ALI;
+    }
     if ($page_current == $page_sum) {
       $page_next = LIB_LICLS.PAGE_DISABLED.'"><a href="javascript:;" title="下一页">>>' . LIB_ALI;
     } else {
       $page_next = LIB_LIA . $page_link . $page_parameter . '=' . ($page_current + 1) . '" title="下一页">>>' . LIB_ALI;
     }
   }
-  $tmp = $tmp . $page_back . $page_home . $page_list . $page_last . $page_next . '<input type="hidden" value="' . $page_current . '" class="page_current">';
-  return $tmp;
+  return $tmp . $page_back . $page_home . $page_list . $page_last . $page_next . '<input type="hidden" value="' . $page_current . '" class="page_current">';
 }
 //翻页条后台
 function page_show_admin($t0, $t1, $t2, $t3, $c_sub = 0){
@@ -220,7 +239,9 @@ function page_show_admin($t0, $t1, $t2, $t3, $c_sub = 0){
     $page_end = $page_start + $page_end;
   }
   $page_end = $page_current + $page_len;
-  if ($page_end > $page_sum) { $page_end = $page_sum; }
+  if ($page_end > $page_sum) {
+    $page_end = $page_sum;
+  }
   $page_link = $_SERVER[LIB_RQURI];
   $tmp_arr = parse_url($page_link);
   if (isset($tmp_arr[LIB_QRY])) {
@@ -242,7 +263,9 @@ function page_show_admin($t0, $t1, $t2, $t3, $c_sub = 0){
   $page_last = '';
   $page_next = '';
   $tmp = '<ul class="am-pagination am-pagination-centered">';
-  if ($page_current > $page_len + 1) { $page_home = LIB_LIA . $page_link . $page_parameter . '=1" title="首页">1...' . LIB_ALI; }
+  if ($page_current > ($page_len + 1)) {
+    $page_home = LIB_LIA . $page_link . $page_parameter . '=1" title="首页">1...' . LIB_ALI;
+  }
   if ($page_current == 1) {
     $page_back = '<li class="am-disabled"><a href="javascript:;" title="上一页"><<' . LIB_ALI;
   } else {
@@ -255,14 +278,18 @@ function page_show_admin($t0, $t1, $t2, $t3, $c_sub = 0){
       $page_list = $page_list . LIB_LIA . $page_link . $page_parameter . '=' . $i . '" title="第' . $i . '页">' . $i . '' . LIB_ALI;
     }
   }
-  if ($page_current < $page_sum - $page_len) { $page_last = LIB_LIA . $page_link . $page_parameter . '=' . $page_sum . '" title="尾页">...' . $page_sum . '' . LIB_ALI; }
+  if ($page_current < ($page_sum - $page_len)) {
+    $page_last = LIB_LIA . $page_link . $page_parameter . '=' . $page_sum . '" title="尾页">...' . $page_sum . '' . LIB_ALI;
+  }
   if ($page_current == $page_sum) {
     $page_next = '<li class="am-disabled"><a href="javascript:;" title="下一页">>>' . LIB_ALI;
   } else {
     $page_next = LIB_LIA . $page_link . $page_parameter . '=' . ($page_current + 1) . '" title="下一页">>>' . LIB_ALI;
   }
   $tmp = $tmp . $page_back . $page_home . $page_list . $page_last . $page_next . '</ul><input type="hidden" value="' . $page_current . '" class="page_current">';
-  if ($c_sub) { $tmp .= '<input type="hidden" value="' . $c_sub . '" class="c_sub">'; }
+  if ($c_sub) {
+    $tmp .= '<input type="hidden" value="' . $c_sub . '" class="c_sub">';
+  }
   return $tmp;
 }
 //截断字符串
@@ -382,7 +409,7 @@ function get_ip(){
 // 获取当前完整URL
 function get_Url(){
   $url_str = $_SERVER['SERVER_NAME'] . $_SERVER[LIB_RQURI];
-  return 'http://' . $url_str;
+  return LIB_HTTP . $url_str;
 }
 // 判断移动端
 function is_mobile(){
@@ -447,7 +474,9 @@ function stripslashes_deep($value){
 // 获取中文首字母
 function get_first_letter($str){
   $fchar = ord($str[0]);
-  if ($fchar >= ord('A') and $fchar <= ord('z')) return strtoupper($str[0]);
+  if ($fchar >= ord('A') && $fchar <= ord('z')) {
+    return strtoupper($str[0]);
+  }
   $s1 = iconv(LIB_UTF8, 'gb2312', $str);
   $s2 = iconv('gb2312', LIB_UTF8, $s1);
   if ($s2 == $str) {
@@ -456,29 +485,53 @@ function get_first_letter($str){
     $s = $str;
   }
   $asc = ord($s[0]) * 256 + ord($s[1]) - 65536;
-  if ($asc >= -20319 && $asc <= -20284) { return 'A'; }
-  if ($asc >= -20283 && $asc <= -19776) { return 'B'; }
-  if ($asc >= -19775 && $asc <= -19219) { return 'C'; }
-  if ($asc >= -19218 && $asc <= -18711) { return 'D'; }
-  if ($asc >= -18710 && $asc <= -18527) { return 'E'; }
-  if ($asc >= -18526 && $asc <= -18240) { return 'F'; }
-  if ($asc >= -18239 && $asc <= -17923) { return 'G'; }
-  if ($asc >= -17922 && $asc <= -17418) { return 'I'; }
-  if ($asc >= -17417 && $asc <= -16475) { return 'J'; }
-  if ($asc >= -16474 && $asc <= -16213) { return 'K'; }
-  if ($asc >= -16212 && $asc <= -15641) { return 'L'; }
-  if ($asc >= -15640 && $asc <= -15166) { return 'M'; }
-  if ($asc >= -15165 && $asc <= -14923) { return 'N'; }
-  if ($asc >= -14922 && $asc <= -14915) { return 'O'; }
-  if ($asc >= -14914 && $asc <= -14631) { return 'P'; }
-  if ($asc >= -14630 && $asc <= -14150) { return 'Q'; }
-  if ($asc >= -14149 && $asc <= -14091) { return 'R'; }
-  if ($asc >= -14090 && $asc <= -13319) { return 'S'; }
-  if ($asc >= -13318 && $asc <= -12839) { return 'T'; }
-  if ($asc >= -12838 && $asc <= -12557) { return 'W'; }
-  if ($asc >= -12556 && $asc <= -11848) { return 'X'; }
-  if ($asc >= -11847 && $asc <= -11056) { return 'Y'; }
-  if ($asc >= -11055 && $asc <= -10247) { return 'Z'; }
+  if ($asc >= -20319 && $asc <= -20284) {
+    return 'A';
+  } elseif ($asc >= -20283 && $asc <= -19776) {
+    return 'B';
+  } elseif ($asc >= -19775 && $asc <= -19219) {
+    return 'C';
+  } elseif ($asc >= -19218 && $asc <= -18711) {
+    return 'D';
+  } elseif ($asc >= -18710 && $asc <= -18527) {
+    return 'E';
+  } elseif ($asc >= -18526 && $asc <= -18240) {
+    return 'F';
+  } elseif ($asc >= -18239 && $asc <= -17923) {
+    return 'G';
+  } elseif ($asc >= -17922 && $asc <= -17418) {
+    return 'I';
+  } elseif ($asc >= -17417 && $asc <= -16475) {
+    return 'J';
+  } elseif ($asc >= -16474 && $asc <= -16213) {
+    return 'K';
+  } elseif ($asc >= -16212 && $asc <= -15641) {
+    return 'L';
+  } elseif ($asc >= -15640 && $asc <= -15166) {
+    return 'M';
+  } elseif ($asc >= -15165 && $asc <= -14923) {
+    return 'N';
+  } elseif ($asc >= -14922 && $asc <= -14915) {
+    return 'O';
+  } elseif ($asc >= -14914 && $asc <= -14631) {
+    return 'P';
+  } elseif ($asc >= -14630 && $asc <= -14150) {
+    return 'Q';
+  } elseif ($asc >= -14149 && $asc <= -14091) {
+    return 'R';
+  } elseif ($asc >= -14090 && $asc <= -13319) {
+    return 'S';
+  } elseif ($asc >= -13318 && $asc <= -12839) {
+    return 'T';
+  } elseif ($asc >= -12838 && $asc <= -12557) {
+    return 'W';
+  } elseif ($asc >= -12556 && $asc <= -11848) {
+    return 'X';
+  } elseif ($asc >= -11847 && $asc <= -11056) {
+    return 'Y';
+  } else ($asc >= -11055 && $asc <= -10247) {
+    return 'Z';
+  }
   return null;
 }
 // 获取碎片内容
@@ -560,7 +613,9 @@ function http_get($url){
   curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 2);
   curl_setopt($curl, CURLOPT_URL, $url);
   $output = curl_exec($curl);
-  if (curl_errno($curl)) { echo 'Error: ' . curl_error($curl); }
+  if (curl_errno($curl)) {
+    echo LIB_ERR . curl_error($curl);
+  }
   curl_close($curl);
   return $output;
 }
@@ -573,13 +628,17 @@ function http_post($url, $data){
   if (class_exists('\\CURLFile')) {
     curl_setopt($curl, CURLOPT_SAFE_UPLOAD, true);
   } else {
-    if (defined('CURLOPT_SAFE_UPLOAD')) { curl_setopt($curl, CURLOPT_SAFE_UPLOAD, false); }
+    if (defined('CURLOPT_SAFE_UPLOAD')) {
+      curl_setopt($curl, CURLOPT_SAFE_UPLOAD, false);
+    }
   }
   curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
   curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
   curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 2);
   $output = curl_exec($curl);
-  if (curl_errno($curl)) { echo 'Error: ' . curl_error($curl); }
+  if (curl_errno($curl)) {
+    echo LIB_ERR . curl_error($curl);
+  }
   curl_close($curl);
   return $output;
 }
@@ -607,7 +666,9 @@ function https_get($url){
   // 获取的信息以文件流的形式返回
   $output = curl_exec($curl);
   // 执行操作
-  if (curl_errno($curl)) { echo 'Error: ' . curl_error($curl); }
+  if (curl_errno($curl)) {
+    echo LIB_ERR . curl_error($curl);
+  }
   curl_close($curl);
   // 关闭CURL会话
   return $output;
@@ -640,7 +701,9 @@ function https_post($url, $data){
   // 获取的信息以文件流的形式返回
   $output = curl_exec($curl);
   // 执行操作
-  if (curl_errno($curl)) { echo 'Error: ' . curl_error($curl); }
+  if (curl_errno($curl)) {
+    echo LIB_ERR . curl_error($curl);
+  }
   curl_close($curl);
   // 关闭CURL会话
   return $output;
@@ -659,16 +722,14 @@ function clear_expire($tbl, $col, $limit, $sql, $id = 'id'){
   $ids = '';
   $res = $GLOBALS['db']->getAll("SELECT {$id},{$col},{$limit} FROM {$tbl} WHERE {$sql}");
   foreach ($res as $val) {
-    if (gmtime() > $val[$col] + $val[$limit]) { $ids .= $val[$id] . ','; }
+    if (gmtime() > $val[$col] + $val[$limit]) {
+      $ids .= $val[$id] . ',';
+    }
   }
   if (!empty($ids)) {
     $idstr = rtrim($ids, ',');
     $sql = "DELETE FROM {$tbl} WHERE {$id} IN ({$idstr})";
-    if ($GLOBALS['db']->query($sql)) {
-      return true;
-    } else {
-      return false;
-    }
+    return $GLOBALS['db']->query($sql);
   } else {
     return false;
   }
@@ -687,22 +748,16 @@ function implode_ex($w, $arr){
 }
 // 获取后缀名
 function get_file_ext($t0){
-  $ext = substr($t0, strrpos($t0, '.') + 1);
-  return $ext;
+  return substr($t0, strrpos($t0, '.') + 1);
 }
 // 从绝对本地地址获取文件名
 function get_file_name($str){
   $arr = explode('/', $str);
   $totalcount = count($arr) - 1;
-  $res = $arr[$totalcount];
-  return $res;
+  return $arr[$totalcount];
 }
 function check_browser(){
-  if (strpos($_SERVER[LIB_HTTPAGT], 'MSIE 8.0') || strpos($_SERVER[LIB_HTTPAGT], 'MSIE 7.0') || strpos($_SERVER[LIB_HTTPAGT], 'MSIE 6.0')) {
-    return false;
-  } else {
-    return true;
-  }
+  return strpos($_SERVER[LIB_HTTPAGT], 'MSIE 8.0') || strpos($_SERVER[LIB_HTTPAGT], 'MSIE 7.0') || strpos($_SERVER[LIB_HTTPAGT], 'MSIE 6.0');
 }
 // 地址码解析
 // type [1:state,2:city,3:district,4:location]
@@ -728,10 +783,14 @@ function get_region($loc,$type = 1){
         $district_name = $GLOBALS['db']->getOne("SELECT d_name FROM cms_region_district WHERE d_code = '".intval($loc)."'");
         $name = $state_name . $city_name . $district_name;
         break;
+      default:
+        $p = substr($loc,0,2);
+        $name = $GLOBALS['db']->getOne("SELECT p_name FROM cms_region_state WHERE p_code = '".intval($p)."'");
+        break;
     }
     return $name;
   }else{
-    return '线上活动';
+    return FALSE;
   }  
 }
 // 多维数组转单维
@@ -749,7 +808,9 @@ function get_easy_array($many_arr,$many_key){
 // $type ['png','text','raw']
 // $size 3:99;4:132
 function get_qrcode($url,$size = 3,$margin = 2,$type = 'png',$level = 'L'){
-  if (!strpos($url, 'http://')) { $url = 'http://'.$url; }
+  if (!strpos($url, LIB_HTTP)) {
+    $url = LIB_HTTP.$url;
+  }
   switch ($type) {
     case 'jpg':
       $output = QRCODE_DIR.microtime_float(1).'.jpg';
@@ -766,6 +827,10 @@ function get_qrcode($url,$size = 3,$margin = 2,$type = 'png',$level = 'L'){
     case 'raw':
       $output = QRCODE_DIR.microtime_float(1).'.raw';
       QRcode::raw($url, $output, $level, $size, $margin);
+      break;
+    default:
+      $output = QRCODE_DIR.microtime_float(1).'.png';
+      QRcode::png($url, $output, $level, $size, $margin);
       break;
   }
   return $output;
@@ -785,7 +850,6 @@ function alph_num($char){
 function num_alph($n) {
   $n++;
   $array = array(1=>'a',2=>'b',3=>'c',4=>'d',5=>'e',6=>'f',7=>'g',8=>'h',9=>'i',10=>'j',11=>'k',12=>'l',13=>'m',14=>'n',15=>'o',16=>'p',17=>'q',18=>'r',19=>'s',20=>'t',21=>'u',22=>'v',23=>'w',24=>'x',25=>'y',26=>'z');
-  // $array=array('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
   if ($n<=26) {
     return strtoupper($array[$n]);
   }else{
@@ -798,44 +862,7 @@ function num_alph($n) {
 }
 
 function is_phonenum($num){
-  if (preg_match("/^1[34578]{1}\d{9}$/",$num)) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
-// $ip = get_ip();
-// $arr = geo_direction('上海飞墨','微导航',$ip,'121.670651','31.146484','上海迪斯尼','上海');
-// echo '<a href="'.$arr['url'].'">导航</a>';
-function geo_direction($corp_name = '',$app_name = '',$ip = '',$des_x = '',$des_y = '',$des_name = '',$des_city = '',$loc_x = '',$loc_y = '',$loc_name = '',$loc_city = '',$type = 0) {
-  switch ($type) {
-    case 0:
-      $arr_loc = json_decode(file_get_contents('http://api.map.baidu.com/location/ip?ip='.$ip.'&ak=9bzUMKrujCLbFc5hr99QI22c&coor=bd09ll'),true);
-      $loc_x = $arr_loc['content']['point']['x'];
-      $loc_y = $arr_loc['content']['point']['y'];
-      $loc_name = !empty($loc_name) ? $loc_name : '我的位置';
-      $loc_city = $arr_loc['content']['address_detail']['city'];
-      $arr_loc['url'] = 'http://api.map.baidu.com/direction?origin=latlng:'.$loc_y.','.$loc_x.'|name:'.$loc_name.'&destination=latlng:'.$des_y.','.$des_x.'|name:'.$des_name.'&mode=driving&origin_region='.$loc_city.'&destination_region='.$des_city.'&output=html&src='.$corp_name.'|'.$app_name;
-      break;
-    case 1:
-      $arr_loc = json_decode(file_get_contents('http://api.map.baidu.com/location/ip?ip='.$ip.'&ak=9bzUMKrujCLbFc5hr99QI22c&coor=bd09ll'),true);
-      $des_x = $arr_loc['content']['point']['x'];
-      $des_y = $arr_loc['content']['point']['y'];
-      $des_name = !empty($des_name) ? $des_name : '我的位置';
-      $des_city = $arr_loc['content']['address_detail']['city'];
-
-      $arr_loc['url'] = 'http://api.map.baidu.com/direction?origin=latlng:'.$loc_y.','.$loc_x.'|name:'.$loc_name.'&destination=latlng:'.$des_y.','.$des_x.'|name:'.$des_name.'&mode=driving&origin_region='.$loc_city.'&destination_region='.$des_city.'&output=html&src='.$corp_name.'|'.$app_name;
-      break;
-    case 2:
-      $arr_loc['url'] = 'http://api.map.baidu.com/direction?origin=latlng:'.$loc_y.','.$loc_x.'|name:'.$loc_name.'&destination=latlng:'.$des_y.','.$des_x.'|name:'.$des_name.'&mode=driving&origin_region='.$loc_city.'&destination_region='.$des_city.'&output=html&src='.$corp_name.'|'.$app_name;
-      break;
-  }
-  return $arr_loc;
-}
-
-function geo_location($ip = ''){
-  return json_decode(file_get_contents('http://api.map.baidu.com/location/ip?ip='.$ip.'&ak=9bzUMKrujCLbFc5hr99QI22c&coor=bd09ll'),true);
+  return preg_match("/^1[34578]{1}\d{9}$/",$num);
 }
 
 /**
@@ -845,23 +872,13 @@ function geo_location($ip = ''){
  * @param int $number 数组索引
  * @return string 返回截取的内容
  */
- 
-function str_part($str,$sign,$number = 0){
+function str_part($str,$sign,$number){
   $array = explode($sign, $str);
   $length = count($array);
-  if ($number<0) {
-    $new_array = array_reverse($array);
-    $abs_number = abs($number);
-    if ($abs_number>$length) {
-      return 'error';
-    } else {
-      return $new_array[$abs_number-1];
-    }
+  $number = isset($number) ? $number : 2;
+  if ($number >= $length) {
+    return 'error';
   } else {
-    if ($number >= $length) {
-      return 'error';
-    } else {
-      return $array[$number];
-    }
+    return $array[$number];
   }
 }

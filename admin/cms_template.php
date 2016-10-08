@@ -14,7 +14,9 @@ if(isset($_GET['del'])){
 if($act == 'add'){
   $t_name = $_POST['t_name'];
   $t_path = $_POST[LIB_TPATH];
-  if (empty($t_name) || empty($t_path)) {alert_back('名称或路径不能为空!');}
+  if (empty($t_name) || empty($t_path)) {
+    alert_back('名称或路径不能为空!');
+  }
   $sql = "INSERT INTO cms_template (t_name,t_path) VALUES ('".$t_name."','".$t_path."')";
   if($db->query($sql)){
     admin_log('模板新增',$_COOKIE['admin_id']);

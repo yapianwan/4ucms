@@ -16,7 +16,6 @@ function addPoint($point){
   $user_point = intval($point) + intval($point_o);
   //计算总积分
   if ($GLOBALS['db']->query('UPDATE cms_user SET u_point = \'' . $user_point . '\' WHERE id = \'' . $_COOKIE['cms'][LIB_USERID] . '\'')) {
-    // url_back('本次积分：'.$point);
     url_back();
   }
 }

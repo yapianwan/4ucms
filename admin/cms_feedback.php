@@ -56,14 +56,15 @@ if (isset($_POST['execute'])) {
                 $pager = page_handle('page',10,$db->getOne("SELECT COUNT(*) FROM cms_feedback"));
                 $res = $db->getAll("SELECT * FROM cms_feedback ORDER BY id DESC LIMIT " . $pager[0] . "," . $pager[1]);
                 if (check_array($res)) {
-                foreach($res as $row){
-                  if ($row['f_ok'] == 0) {
-                    $temp_str = '<span style="color:red">未审</span>';
-                  } else {
-                    $temp_str = '已审';
+                  foreach($res as $row){
+                    if ($row['f_ok'] == 0) {
+                      $temp_str = '<span style="color:red">未审</span>';
+                    } else {
+                      $temp_str = '已审';
+                    }
+                    echo '<tr><td><input class="form_checkbox" type="checkbox" name="id[]" value="' . $row['id'] . '" /></td><td>' . $temp_str . LIB_TDEB . $row['f_name'] . LIB_TDHEB . $row['f_tel'] . LIB_TDHEB . $row['f_cname'] . LIB_TDHEB . $row['f_address'] . LIB_TDEB . local_date('Y-m-d H:i:s',$row['f_date']) . '</td><td><a href="cms_feedback_answer.php?id=' . $row['id'] . '">回复</a></td></tr>';
                   }
-                  echo '<tr><td><input class="form_checkbox" type="checkbox" name="id[]" value="' . $row['id'] . '" /></td><td>' . $temp_str . LIB_TDEB . $row['f_name'] . LIB_TDHEB . $row['f_tel'] . LIB_TDHEB . $row['f_cname'] . LIB_TDHEB . $row['f_address'] . LIB_TDEB . local_date('Y-m-d H:i:s',$row['f_date']) . '</td><td><a href="cms_feedback_answer.php?id=' . $row['id'] . '">回复</a></td></tr>';
-                }}
+                }
                 ?>
                 <tr>
                   <td colspan="8">

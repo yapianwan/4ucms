@@ -6,11 +6,17 @@ if ($act == 'adminLogin') {
   $a_password = str_safe($_POST['a_password']);
   // 次数限制
   $time = time();
-  if (!isset($_SESSION['loginCount'])) {$_SESSION['loginCount'] = 0;}
-  if (!isset($_SESSION['time_admin'])) {$_SESSION['time_admin'] = $time;}
+  if (!isset($_SESSION['loginCount'])) {
+    $_SESSION['loginCount'] = 0;
+  }
+  if (!isset($_SESSION['time_admin'])) {
+    $_SESSION['time_admin'] = $time;
+  }
   $_SESSION['loginCount']++;
 
-  if (strtolower($_POST['vercode']) != $_SESSION["verifycode_admin"]) {alert_href('验证码错误','cms_login.php');}
+  if (strtolower($_POST['vercode']) != $_SESSION["verifycode_admin"]) {
+    alert_href('验证码错误','cms_login.php');
+  }
 
   if ($_SESSION['loginCount']>5 && $time - $_SESSION['time_admin'] <= TIME_OUT ) {
     $_SESSION['time_admin'] = $time;
@@ -25,7 +31,9 @@ if ($act == 'adminLogin') {
   if (check_array($res)) {
     setcookie('admin_name',$res['u_name']);
     setcookie(LIB_SAID,$res['id']);
-    if (!empty($_COOKIE[LIB_SAID])) {admin_log('管理员登陆',$_COOKIE[LIB_SAID]);}
+    if (!empty($_COOKIE[LIB_SAID])) {
+      admin_log('管理员登陆',$_COOKIE[LIB_SAID]);
+    }
     href('index.php?act=welcome');
   } else {
     alert_href('用户名或密码错误','cms_login.php');

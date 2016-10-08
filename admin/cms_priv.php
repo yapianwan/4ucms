@@ -12,7 +12,9 @@ $priv = explode(',',$res);
 // 更新权限至数据库
 if ($act == 'update') {
   foreach ($_POST as $key=>$val) {
-    if ($val!='' && $key!='rid' && $key!='act') {$arr[$key] = $val;}
+    if ($val!='' && $key!='rid' && $key!='act') {
+      $arr[$key] = $val;
+    }
   }
   $priv = implode(',',$arr); //转为priv字串
   $sql=("UPDATE cms_role SET r_priv='$priv' WHERE id = ".$_POST['rid']);
@@ -150,13 +152,15 @@ function getChannelPriv($pid,$rid,$priv) {
   $str = '';
   $res = $GLOBALS['db']->getAll("SELECT * FROM cms_channel WHERE c_parent=".$pid." ORDER BY c_order ASC, id ASC");
   foreach ($res as $val) {
-    if ($val['c_ifsub'] || $val['c_parent']==0)
-      if ($val['c_ifsub']==0 && $val['c_parent']==0)
+    if ($val['c_ifsub'] || $val['c_parent']==0) {
+      if ($val['c_ifsub']==0 && $val['c_parent']==0) {
         $str .= '<table class="am-table am-table-bordered"><tr><th><label for="c'.$val['id'].'"><input type="checkbox" name="c'.$val['id'].'" id="c'.$val['id'].'" value="c'.$val['id'].'" '.(in_array("c".$val['id'],$priv) ? LIB_CHECKED : '').'>'.$val['c_name'].'</label></th><td class="gray">无子频道</td></tr></table>';
-      else
+      } else {
         $str .= '<table class="am-table am-table-bordered"><tr><th><label for="c'.$val['id'].'"><input type="checkbox" name="c'.$val['id'].'" id="c'.$val['id'].'" value="c'.$val['id'].'" '.(in_array("c".$val['id'],$priv) ? LIB_CHECKED : '').'>'.$val['c_name'].'</label></th><td>'.getChannelPriv($val['id'],$rid,$priv).'</td></tr></table>';
-    else
+      }
+    } else {
       $str .= '<label for="c'.$val['id'].'"><input type="checkbox" name="c'.$val['id'].'" id="c'.$val['id'].'" value="c'.$val['id'].'" '.(in_array("c".$val['id'],$priv) ? LIB_CHECKED : '').'>'.$val['c_name'].'</label>';
+    }
   }
   return $str;
 }

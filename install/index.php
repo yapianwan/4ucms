@@ -32,7 +32,9 @@ if (isset($_POST['save'])) {
     $sqlstr="";
     foreach($lines as $line){
       $line = trim($line);
-      if ($line != "" && !($line{0}.$line{1} == "--")) { $sqlstr .= $line; }
+      if ($line != "" && !($line{0}.$line{1} == "--")) {
+        $sqlstr .= $line;
+      }
     }
     $sqlstr = rtrim($sqlstr,";");
     $sqls = explode(";",$sqlstr);

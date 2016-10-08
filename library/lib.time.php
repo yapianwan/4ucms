@@ -216,7 +216,9 @@ function time_hex($mt=0) {
 // @$timestamp ，某个星期的某一个时间戳，默认为当前时间 
 // @is_return_timestamp ,是否返回时间戳，否则返回时间格式 
 function this_monday($timestamp=0,$is_return_timestamp=true){ 
-  if (!$timestamp) {$timestamp = time();} 
+  if (!$timestamp) {
+    $timestamp = time();
+  } 
   $monday_date = date('Y-m-d', $timestamp-86400*date('w',$timestamp)+(date('w',$timestamp)>0?86400:-/*6*86400*/518400)); 
   if ($is_return_timestamp) { 
     return strtotime($monday_date); 
@@ -225,7 +227,9 @@ function this_monday($timestamp=0,$is_return_timestamp=true){
   }
 } 
 function this_sunday($timestamp=0,$is_return_timestamp=true){ 
-  if (!$timestamp) {$timestamp = time();}
+  if (!$timestamp) {
+    $timestamp = time();
+  }
   $sunday = this_monday($timestamp) + /*6*86400*/518400; 
   if ($is_return_timestamp) { 
     return $sunday; 

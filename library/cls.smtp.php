@@ -34,9 +34,7 @@ class Smtp {
     $this->sock = FALSE; 
   } 
 
-  /* Main Function 
-  function sendmail($to, $from, $subject = "", $body = "", $mailtype, $cc = "", $bcc = "", $additional_headers = "") {
-  */
+  /* Main Function */
   function sendmail($to, $from, $subject, $body) {
     $this->mail_from = $this->get_address($this->strip_comment($from)); 
     $body = preg_replace("/(^|(\r\n))(\.)/", "\1.\3", $body); 
@@ -53,7 +51,7 @@ class Smtp {
     $header .= "Date: ".date("r")."\r\n"; 
     $header .= "X-Mailer:By Redhat (PHP/".phpversion().")\r\n"; 
     list($msec, $sec) = explode(" ", microtime()); 
-    $header .= "Message-ID: <".date("YmdHis", $sec).".".($msec*1000000).".".$mail_from.">\r\n"; 
+    $header .= "Message-ID: <".date("YmdHis", $sec).".".($msec*1000000).".".$this->mail_from.">\r\n"; 
     $TO = explode(",", $this->strip_comment($to)); 
 
     if (!empty($cc)) {

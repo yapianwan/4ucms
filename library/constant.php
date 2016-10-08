@@ -1,24 +1,43 @@
 <?php
 // common
-define('LIB_PHPSELF','PHP_SELF');
-define('COM_SUC','success');
-define('COM_FLD','failed');
-define('COM_EM_SUBJ','email_subject');
-define('COM_LGIN','login');
-define('COM_RST_PSD','reset_pasword');
-define('COM_ILL','illegal');
+define('LIB_PHPSELF', 'PHP_SELF');
+define('COM_SUC', 'success');
+define('COM_FLD', 'failed');
+define('COM_MSGFLD', 'msg_failed');
+define('COM_MSGSUC', 'msg_success');
+define('COM_EM_SUBJ', 'email_subject');
+define('COM_EM_BODY', 'email_body');
+define('COM_LGIN', 'login');
+define('COM_RST_PSD', 'reset_pasword');
+define('COM_ILL', 'illegal');
 define('LIB_TIMEZONE', 'timezone');
 define('LIB_TRYM', 'tryagain');
+define('LIB_FBACK', 'feedback');
+define('LIB_EMAIL', 'email');
+define('LIB_VRFC', 'verifycode');
+define('LIB_VRFCFLD', 'vrfcode_faild');
+define('LIB_KEY', 'keyword');
+define('LIB_INDEX', 'index.php');
+define('LIB_ERRMSGCN', '\n\r错误信息:');
+define('LIB_NOTMATCH', 'not_match');
+define('LIB_RSTPSW', 'reset_password');
+define('LIB_RSTRES', 'reset_result');
+// mail
+define('MAIL_SYSNAME', '[system_name]');
 // priv
 define('PRIV_ITRC','interaction');
 define('PRIV_WX','weixin');
 define('PRIV_SYS','system');
 // sql
-define('LIB_CSELECT', 'SELECT * FROM cms_channel WHERE c_navigation = 1 AND c_parent = ');
-define('LIB_CSELECTF', 'SELECT * FROM cms_channel WHERE c_parent = ');
-define('LIB_CORDER', ' ORDER BY c_order ASC, id ASC');
-define('LIB_CORDERS', 'c_order ASC, id ASC');
-define('LIB_INST', 'INSERT');
+define('LIB_CSELECT', "SELECT * FROM cms_channel WHERE c_navigation = 1 AND c_parent = ");
+define('LIB_CSELECTF', "SELECT * FROM cms_channel WHERE c_parent = ");
+define('LIB_CORDER', " ORDER BY c_order ASC, id ASC");
+define('LIB_CORDERS', "c_order ASC, id ASC");
+define('LIB_INST', "INSERT");
+define('LIB_ANDUPSWEQ', "' AND u_psw = '");
+define('LIB_SLCTUSERWHRUEMAILEQ', "SELECT * FROM cms_user WHERE u_email = '");
+// cookie
+define('CMS_USERID', 'cms[user_id]');
 // col
 define('LIB_SAID', 'admin_id');
 define('LIB_ANEWSID', 'a_news_id');
@@ -39,7 +58,12 @@ define('LIB_DHOT', 'd_hot');
 define('LIB_DPARENT', 'd_parent');
 define('LIB_DDESC', 'd_description');
 define('LIB_USERID', 'user_id');
+define('LIB_FBNAME', 'f_name');
 define('LIB_FBASR', 'f_answer');
+define('LIB_FBMAIL', 'f_email');
+define('LIB_FBTEL', 'f_tel');
+define('LIB_FBTTL', 'f_title');
+define('LIB_FBCONT', 'f_content');
 define('LIB_LNAME', 'l_name');
 define('LIB_LURL', 'l_url');
 define('LIB_LORDER', 'l_order');
@@ -84,6 +108,16 @@ define('LIB_SMESSTT', 's_message_title');
 define('LIB_SMESSCVR', 's_message_cover');
 define('LIB_SMESSLNK', 's_message_link');
 define('LIB_URID', 'u_rid');
+define('LIB_UNAME', 'u_name');
+define('LIB_UPSW', 'u_psw');
+define('LIB_UTNAME', 'u_tname');
+define('LIB_UMAIL', 'u_email');
+define('LIB_UMOBI', 'u_mobile');
+define('LIB_UPROV', 'u_province');
+define('LIB_UCITY', 'u_city');
+define('LIB_UCOUNTY', 'u_county');
+define('LIB_UADDR', 'u_addr');
+define('LIB_UPOST', 'u_post');
 define('LIB_VNAME', 'v_name');
 define('LIB_VIFM', 'v_ifmulti');
 define('LIB_VSTIME', 'v_stime');
@@ -110,6 +144,8 @@ define('LIB_CLSACTIVE', 'class="am-active"');
 define('LIB_CLSACT', 'am-active');
 define('LIB_SELECTED', 'selected="selected"');
 define('LIB_CHECKED', 'checked="checked"');
+define('LIB_HTTP', 'http://');
+define('LIB_ERR', 'Error: ');
 // wx
 define('LIB_APPID', 'appid');
 define('LIB_APPSCRT', 'appsecret');
@@ -146,5 +182,3 @@ define('LIB_VIDEO', 'video');
 define('LIB_EXPIS', 'expire_seconds');
 define('LIB_WXQRCP', 'wx_qrcode.php');
 define('LIB_WXMENUP', 'wx_menu.php');
-// lang
-define('LIB_ERRMSGCN', '\n\r错误信息:');

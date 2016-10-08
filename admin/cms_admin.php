@@ -19,7 +19,9 @@ if (isset($_POST['submit'])) {
   $a_role = $_POST['a_role'];
   $a_name = $_POST['a_name'];
   $res = $db->getRow("SELECT * FROM cms_user WHERE u_name = '" . $a_name . "'");
-  if (is_array($res)) {alert_back('登录帐号重名');}
+  if (is_array($res)) {
+    alert_back('登录帐号重名');
+  }
   $a_tname = !empty($_POST['a_tname']) ? $_POST['a_tname'] : '';
   $a_password = $_POST['a_password'];
   $a_cpassword = $_POST['a_cassword'];

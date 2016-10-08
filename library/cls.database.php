@@ -35,7 +35,9 @@ class Database {
           }
         }
       }
-      if (!empty($rs)) {$mysql .= ";\n-- ----------\n";}
+      if (!empty($rs)) {
+        $mysql .= ";\n-- ----------\n";
+      }
     }
     $this->unlock();
     $filename = $this->file_path . DATA_NAME .'.'. date('Ymjgi') . ".sql"; //存放路径，默认存放到项目最外层
@@ -51,8 +53,7 @@ class Database {
     $fp = @fopen($this->file_path . $file_name, "r") || die("不能打开SQL文件 $file_name");//打开文件
     echo "正在清空数据库,请稍等....<br>"; 
     $arr_tbl = $this->tables();
-    foreach ($arr_tbl as $val)
-    {
+    foreach ($arr_tbl as $val) {
       $this->db->query("DROP TABLE IF EXISTS $val"); 
     }
     echo "数据库清理成功<br>"; 

@@ -8,7 +8,9 @@ if (isset($_GET['del'])) {
   if ($res['c_ifsub'] == 0 && $res['c_safe'] == 0) {
     // 频道相关清理
     $c_picture = $db->getOne("SELECT c_picture FROM cms_channel WHERE id = ".$_GET['del']);
-    if (!empty($c_picture)) {@unlink(substr(ROOT_PATH,0,strlen(ROOT_PATH)-1).$c_picture);}
+    if (!empty($c_picture)) {
+      @unlink(substr(ROOT_PATH,0,strlen(ROOT_PATH)-1).$c_picture);
+    }
     $c_content = $db->getOne("SELECT c_content FROM cms_channel WHERE id = ".$_GET['del']);
     preg_match_all('/<[img|IMG].*?src=[\'|\"](.*?(?:[\.gif|\.jpg]))[\'|\"].*?[\/]?>/', $c_content, $tmparr);
     foreach ($tmparr[1] as $val) {

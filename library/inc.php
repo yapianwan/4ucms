@@ -1,6 +1,4 @@
 <?php
-//error_reporting(E_ALL^E_WARNING^E_NOTICE);
-// ob_start();
 @session_start();
 @header('Content-type: text/html;charset=UTF-8');
 @define('SQL_DIR', 'sql');
@@ -49,15 +47,25 @@ $GLOBALS['rewrite'] = $cms['s_rewrite'] ? $cms['s_rewrite'] : 0;
 $GLOBALS['t_path'] = $t_path = 'templates/' . (!empty($_COOKIE['cms']['template_id']) ? $_COOKIE['cms']['template_id'] : $cms['s_template']) . '/';
 // 对用户传入的变量进行转义操作
 if (!get_magic_quotes_gpc()) {
-  if (!empty($_GET)) {$_GET = addslashes_deep($_GET);}
-  if (!empty($_POST)) {$_POST = addslashes_deep($_POST);}
+  if (!empty($_GET)) {
+    $_GET = addslashes_deep($_GET);
+  }
+  if (!empty($_POST)) {
+    $_POST = addslashes_deep($_POST);
+  }
   $_COOKIE = addslashes_deep($_COOKIE);
   $_REQUEST = addslashes_deep($_REQUEST);
 }
 // common
-if (!isset($_COOKIE['cms']['user_id'])) {$_COOKIE['cms']['user_id'] = 0;}
-if (!isset($_COOKIE['cms']['user_name'])) {$_COOKIE['cms']['user_name'] = '';}
-if (!isset($_COOKIE['cms']['remember'])) {$_COOKIE['cms']['remember'] = 0;}
+if (!isset($_COOKIE['cms']['user_id'])) {
+  $_COOKIE['cms']['user_id'] = 0;
+}
+if (!isset($_COOKIE['cms']['user_name'])) {
+  $_COOKIE['cms']['user_name'] = '';
+}
+if (!isset($_COOKIE['cms']['remember'])) {
+  $_COOKIE['cms']['remember'] = 0;
+}
 // id
 $id = isset($_GET['id']) && $_GET['id'] > 0 ? str_safe($_GET['id']) : 0;
 // act
