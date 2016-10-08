@@ -16,13 +16,13 @@
  /admin 管理后台
  /config 配置项
  /editor 编辑器
+ /fonts 验证码调用字体
  /install 数据安装
  /js 前后台共用js
  /language 语言文件
  /library 公用库
  /sql 数据存储
  /templates 模板目录
- /ui 共用自适应系统，目前为妹子UI
  /uploadfile 上传文件
  /view 模板切换查看
 
