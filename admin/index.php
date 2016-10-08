@@ -36,7 +36,7 @@ function getDetailBaiduSend($s,$e) {
   if (check_array($res)) {
     $urls = array();
     foreach ($res as $val) {
-      $urls[] = $cms['s_domain'].'/'.d_url($val['id']).',';
+      $urls[] = $GLOBALS['cms']['s_domain'] . '/' . d_url($val['id']) . ',';
     }  
     // 百度推送
     $api = BAIDU_API;

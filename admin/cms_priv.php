@@ -4,6 +4,14 @@ include '../library/inc.php';
 include 'cms_check.php';
 include '../language/priv.php';
 
+$ipt_id = '" id="';
+$ipt_value = '" value="';
+$ipt_chkb = '"><input type="checkbox" name="';
+$ipt_lblb = '<label for="';
+$ipt_idb = '" id="c';
+$ipt_valb = '" value="c';
+$ipt_chkbnameb = '"><input type="checkbox" name="c';
+
 // 获取管理员权限
 $rid = $_GET['id'];
 $res = $GLOBALS['db']->getOne("SELECT r_priv FROM cms_role WHERE id = ".$rid);
@@ -61,7 +69,7 @@ if ($act == 'update') {
                     <?php
                     $cms = $_lang['priv']['cms'];
                     foreach ($cms as $key=>$val) {
-                      echo '<label for="'.$key.'"><input type="checkbox" name="'.$key.'" id="'.$key.'" value="'.$key.'" '.(in_array($key,$priv) ? LIB_CHECKED : '').'>'.$val.'</label>';
+                      echo $ipt_lblb.$key.$ipt_chkb.$key.$ipt_id.$key.$ipt_value.$key.'" '.(in_array($key,$priv) ? LIB_CHECKED : '').'>'.$val.LIB_LBLE;
                     }
                     ?>
                   </td>
@@ -72,7 +80,7 @@ if ($act == 'update') {
                     <?php
                     $int = $_lang['priv']['interaction'];
                     foreach ($int as $key=>$val) {
-                      echo '<label for="'.$key.'"><input type="checkbox" name="'.$key.'" id="'.$key.'" value="'.$key.'" '.(in_array($key,$priv) ? LIB_CHECKED : '').'>'.$val.'</label>';
+                      echo $ipt_lblb.$key.$ipt_chkb.$key.$ipt_id.$key.$ipt_value.$key.'" '.(in_array($key,$priv) ? LIB_CHECKED : '').'>'.$val.LIB_LBLE;
                     }
                     ?>
                   </td>
@@ -83,7 +91,7 @@ if ($act == 'update') {
                     <?php
                     $int = $_lang['priv']['weixin'];
                     foreach ($int as $key=>$val) {
-                      echo '<label for="'.$key.'"><input type="checkbox" name="'.$key.'" id="'.$key.'" value="'.$key.'" '.(in_array($key,$priv) ? LIB_CHECKED : '').'>'.$val.'</label>';
+                      echo $ipt_lblb.$key.$ipt_chkb.$key.$ipt_id.$key.$ipt_value.$key.'" '.(in_array($key,$priv) ? LIB_CHECKED : '').'>'.$val.LIB_LBLE;
                     }
                     ?>
                   </td>
@@ -94,7 +102,7 @@ if ($act == 'update') {
                     <?php
                     $sys = $_lang['priv']['system'];
                     foreach ($sys as $key=>$val) {
-                      echo '<label for="'.$key.'"><input type="checkbox" name="'.$key.'" id="'.$key.'" value="'.$key.'" '.(in_array($key,$priv) ? LIB_CHECKED : '').'>'.$val.'</label>';
+                      echo $ipt_lblb.$key.$ipt_chkb.$key.$ipt_id.$key.$ipt_value.$key.'" '.(in_array($key,$priv) ? LIB_CHECKED : '').'>'.$val.LIB_LBLE;
                     }
                     ?>
                   </td>
@@ -154,12 +162,12 @@ function getChannelPriv($pid,$rid,$priv) {
   foreach ($res as $val) {
     if ($val['c_ifsub'] || $val['c_parent']==0) {
       if ($val['c_ifsub']==0 && $val['c_parent']==0) {
-        $str .= '<table class="am-table am-table-bordered"><tr><th><label for="c'.$val['id'].'"><input type="checkbox" name="c'.$val['id'].'" id="c'.$val['id'].'" value="c'.$val['id'].'" '.(in_array("c".$val['id'],$priv) ? LIB_CHECKED : '').'>'.$val['c_name'].'</label></th><td class="gray">无子频道</td></tr></table>';
+        $str .= '<table class="am-table am-table-bordered"><tr><th><label for="c'.$val['id'].'"><input type="checkbox" name="c'.$val['id'].$ipt_idb.$val['id'].$ipt_valb.$val['id'].'" '.(in_array("c".$val['id'],$priv) ? LIB_CHECKED : '').'>'.$val[LIB_CNAME].'</label></th><td class="gray">无子频道</td></tr></table>';
       } else {
-        $str .= '<table class="am-table am-table-bordered"><tr><th><label for="c'.$val['id'].'"><input type="checkbox" name="c'.$val['id'].'" id="c'.$val['id'].'" value="c'.$val['id'].'" '.(in_array("c".$val['id'],$priv) ? LIB_CHECKED : '').'>'.$val['c_name'].'</label></th><td>'.getChannelPriv($val['id'],$rid,$priv).'</td></tr></table>';
+        $str .= '<table class="am-table am-table-bordered"><tr><th><label for="c'.$val['id'].'"><input type="checkbox" name="c'.$val['id'].$ipt_idb.$val['id'].$ipt_valb.$val['id'].'" '.(in_array("c".$val['id'],$priv) ? LIB_CHECKED : '').'>'.$val[LIB_CNAME].'</label></th><td>'.getChannelPriv($val['id'],$rid,$priv).'</td></tr></table>';
       }
     } else {
-      $str .= '<label for="c'.$val['id'].'"><input type="checkbox" name="c'.$val['id'].'" id="c'.$val['id'].'" value="c'.$val['id'].'" '.(in_array("c".$val['id'],$priv) ? LIB_CHECKED : '').'>'.$val['c_name'].'</label>';
+      $str .= '<label for="c'.$val['id'].'"><input type="checkbox" name="c'.$val['id'].$ipt_idb.$val['id'].$ipt_valb.$val['id'].'" '.(in_array("c".$val['id'],$priv) ? LIB_CHECKED : '').'>'.$val[LIB_CNAME].LIB_LBLE;
     }
   }
   return $str;

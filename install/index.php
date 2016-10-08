@@ -38,7 +38,9 @@ if (isset($_POST['save'])) {
     }
     $sqlstr = rtrim($sqlstr,";");
     $sqls = explode(";",$sqlstr);
-    foreach( $sqls as $sql){ mysql_query($sql); }
+    foreach( $sqls as $sql) {
+      mysql_query($sql);
+    }
     rename('index.php','index.lock');
     alert_href('安装成功,为了确保安全，请尽量删除install目录','../index.php');
   }

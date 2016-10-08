@@ -14,6 +14,9 @@ class Mysql {
   //返回错误信息
   private $_db;
   //连接的数据库名
+  private $value = ') VALUES (';
+  private $insertinto = 'INSERT INTO ';
+  private $eqdyh = ' = \'';
   /**
    * 构造方法
    * @return Connect
@@ -60,10 +63,7 @@ class Mysql {
     }
   }
   public function query($sql) {
-    if (empty($sql) || $sql == NULL) {
-      $this->_err = '没有输入SQL语句';
-      return false;
-    }
+    $this->checkSql($sql);
     $query = @mysql_query($sql, $this->_conn);
     if (!$query) {
       $this->_err = '请合查数据表前缀是否有误！';
@@ -143,13 +143,13 @@ class Mysql {
         }
       }
       if (!empty($fields)) {
-        $sql = 'INSERT INTO ' . $table . ' (' . implode(', ', $fields) . ') VALUES (' . implode(', ', $values) . ')';
+        $sql = $insertinto . $table . ' (' . implode(', ', $fields) . $value . implode(', ', $values) . ')';
       }
     } else {
       $sets = array();
       foreach ($field_names as $value) {
         if (array_key_exists($value, $field_values)) {
-          $sets[] = $value . ' = \'' . $field_values[$value] . '\'';
+          $sets[] = $value . $eqdyh . $field_values[$value] . '\'';
         }
       }
       if (!empty($sets)) {
@@ -184,26 +184,26 @@ class Mysql {
         if (is_int($value) || is_float($value)) {
           $sets[] = $key . ' = ' . $key . ' + ' . $value;
         } else {
-          $sets[] = $key . ' = \'' . $value . '\'';
+          $sets[] = $key . $eqdyh . $value . '\'';
         }
       }
     }
     $sql = '';
     if (empty($primary_keys)) {
       if (!empty($fields)) {
-        $sql = 'INSERT INTO ' . $table . ' (' . implode(', ', $fields) . ') VALUES (' . implode(', ', $values) . ')';
+        $sql = $insertinto . $table . ' (' . implode(', ', $fields) . $value . implode(', ', $values) . ')';
       }
     } else {
       if ($this->version() >= '4.1') {
         if (!empty($fields)) {
-          $sql = 'INSERT INTO ' . $table . ' (' . implode(', ', $fields) . ') VALUES (' . implode(', ', $values) . ')';
+          $sql = $insertinto . $table . ' (' . implode(', ', $fields) . $value . implode(', ', $values) . ')';
           $sql .= !empty($sets) ? 'ON DUPLICATE KEY UPDATE ' . implode(', ', $sets) : '';
         }
       } else {
         if (empty($where)) {
           $where = array();
           foreach ($primary_keys as $value) {
-            $where[] = is_numeric($value) ? $value . ' = ' . $field_values[$value] : $value . ' = \'' . $field_values[$value] . '\'';
+            $where[] = is_numeric($value) ? $value . ' = ' . $field_values[$value] : $value . $eqdyh . $field_values[$value] . '\'';
           }
           $where = implode(' AND ', $where);
         }
@@ -211,7 +211,7 @@ class Mysql {
           if (intval($this->getOne("SELECT COUNT(*) FROM {$table} WHERE {$where}")) > 0) {
             $sql = !empty($sets) ? 'UPDATE ' . $table . ' SET ' . implode(', ', $sets) . ' WHERE ' . $where : '';
           } else {
-            $sql = !empty($fields) ? 'REPLACE INTO ' . $table . ' (' . implode(', ', $fields) . ') VALUES (' . implode(', ', $values) . ')' : '';
+            $sql = !empty($fields) ? 'REPLACE INTO ' . $table . ' (' . implode(', ', $fields) . $value . implode(', ', $values) . ')' : '';
           }
         }
       }
@@ -219,6 +219,12 @@ class Mysql {
     if ($sql) {
       return $this->query($sql, $querymode);
     } else {
+      return false;
+    }
+  }
+  public function checkSql($sql) {
+    if (empty($sql) || $sql == NULL) {
+      $this->_err = '没有输入SQL语句';
       return false;
     }
   }

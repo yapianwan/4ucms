@@ -142,7 +142,9 @@ function page_show($t0, $t1, $t2, $t3){
     $page_end = $page_start + $page_end;
   }
   $page_end = $page_current + $page_len;
-  if ($page_end > $page_sum) { $page_end = $page_sum; }
+  if ($page_end > $page_sum) {
+    $page_end = $page_sum;
+  }
   $page_link = $_SERVER[LIB_RQURI];
   $tmp_arr = parse_url($page_link);
   if (REWRITE) {
@@ -471,69 +473,6 @@ function stripslashes_deep($value){
     return is_array($value) ? array_map('stripslashes_deep', $value) : stripslashes($value);
   }
 }
-// 获取中文首字母
-function get_first_letter($str){
-  $fchar = ord($str[0]);
-  if ($fchar >= ord('A') && $fchar <= ord('z')) {
-    return strtoupper($str[0]);
-  }
-  $s1 = iconv(LIB_UTF8, 'gb2312', $str);
-  $s2 = iconv('gb2312', LIB_UTF8, $s1);
-  if ($s2 == $str) {
-    $s = $s1;
-  } else {
-    $s = $str;
-  }
-  $asc = ord($s[0]) * 256 + ord($s[1]) - 65536;
-  if ($asc >= -20319 && $asc <= -20284) {
-    return 'A';
-  } elseif ($asc >= -20283 && $asc <= -19776) {
-    return 'B';
-  } elseif ($asc >= -19775 && $asc <= -19219) {
-    return 'C';
-  } elseif ($asc >= -19218 && $asc <= -18711) {
-    return 'D';
-  } elseif ($asc >= -18710 && $asc <= -18527) {
-    return 'E';
-  } elseif ($asc >= -18526 && $asc <= -18240) {
-    return 'F';
-  } elseif ($asc >= -18239 && $asc <= -17923) {
-    return 'G';
-  } elseif ($asc >= -17922 && $asc <= -17418) {
-    return 'I';
-  } elseif ($asc >= -17417 && $asc <= -16475) {
-    return 'J';
-  } elseif ($asc >= -16474 && $asc <= -16213) {
-    return 'K';
-  } elseif ($asc >= -16212 && $asc <= -15641) {
-    return 'L';
-  } elseif ($asc >= -15640 && $asc <= -15166) {
-    return 'M';
-  } elseif ($asc >= -15165 && $asc <= -14923) {
-    return 'N';
-  } elseif ($asc >= -14922 && $asc <= -14915) {
-    return 'O';
-  } elseif ($asc >= -14914 && $asc <= -14631) {
-    return 'P';
-  } elseif ($asc >= -14630 && $asc <= -14150) {
-    return 'Q';
-  } elseif ($asc >= -14149 && $asc <= -14091) {
-    return 'R';
-  } elseif ($asc >= -14090 && $asc <= -13319) {
-    return 'S';
-  } elseif ($asc >= -13318 && $asc <= -12839) {
-    return 'T';
-  } elseif ($asc >= -12838 && $asc <= -12557) {
-    return 'W';
-  } elseif ($asc >= -12556 && $asc <= -11848) {
-    return 'X';
-  } elseif ($asc >= -11847 && $asc <= -11056) {
-    return 'Y';
-  } elseif ($asc >= -11055 && $asc <= -10247) {
-    return 'Z';
-  }
-  return null;
-}
 // 获取碎片内容
 function get_chip($t0){
   $res = '';
@@ -762,11 +701,12 @@ function check_browser(){
 // 地址码解析
 // type [1:state,2:city,3:district,4:location]
 function get_region($loc,$type = 1){
+  $sql = "SELECT p_name FROM cms_region_state WHERE p_code = '";
   if (!empty($loc)) {
     switch ($type) {
       case 1:
         $p = substr($loc,0,2);
-        $name = $GLOBALS['db']->getOne("SELECT p_name FROM cms_region_state WHERE p_code = '".intval($p)."'");
+        $name = $GLOBALS['db']->getOne($sql.intval($p)."'");
         break;
       case 2:
         $p = substr($loc,0,4);
@@ -777,7 +717,7 @@ function get_region($loc,$type = 1){
         break;
       case 4:
         $state = substr($loc,0,2);
-        $state_name = $GLOBALS['db']->getOne("SELECT p_name FROM cms_region_state WHERE p_code = '".intval($state)."'");
+        $state_name = $GLOBALS['db']->getOne($sql.intval($state)."'");
         $city = substr($loc,0,4);
         $city_name = $GLOBALS['db']->getOne("SELECT c_name FROM cms_region_city WHERE c_code = '".intval($city)."'");
         $district_name = $GLOBALS['db']->getOne("SELECT d_name FROM cms_region_district WHERE d_code = '".intval($loc)."'");
@@ -785,7 +725,7 @@ function get_region($loc,$type = 1){
         break;
       default:
         $p = substr($loc,0,2);
-        $name = $GLOBALS['db']->getOne("SELECT p_name FROM cms_region_state WHERE p_code = '".intval($p)."'");
+        $name = $GLOBALS['db']->getOne($sql.intval($p)."'");
         break;
     }
     return $name;

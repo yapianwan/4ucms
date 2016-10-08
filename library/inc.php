@@ -41,7 +41,7 @@ include_once ROOT_PATH.'/library/cls.smtp.php';
 include_once ROOT_PATH.'/library/lib.base.php';
 //cms_system
 $sql = 'SELECT * FROM cms_system WHERE id = 1';
-$cms = $db->getRow($sql);
+$GLOBALS['cms'] = $cms = $db->getRow($sql);
 $system_sidenav = '导航菜单';
 $GLOBALS['rewrite'] = $cms['s_rewrite'] ? $cms['s_rewrite'] : 0;
 $GLOBALS['t_path'] = $t_path = 'templates/' . (!empty($_COOKIE['cms']['template_id']) ? $_COOKIE['cms']['template_id'] : $cms['s_template']) . '/';

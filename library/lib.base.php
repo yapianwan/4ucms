@@ -85,10 +85,9 @@ function navigation($t0,$t1,$t2,$t3=2,$t4="nav am-hide-md-down",$t5="sub"){
   }
 }
 //无限级导航（移动端）
-function navigation_m($t0,$t1,$t2,$t3){
+function navigation_m($t0,$t1,$t2,$t3=2){
   $tmp = '';
   $t2 = !empty($t2) ? $t2 : 0;
-  $t3 = isset($t3) ? $t3 : 2;
   if ($t3>0) {
     $res = $GLOBALS['db']->getAll(LIB_CSELECT.$t0.LIB_CORDER);
     $t3--;
