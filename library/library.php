@@ -529,7 +529,7 @@ function get_first_letter($str){
     return 'X';
   } elseif ($asc >= -11847 && $asc <= -11056) {
     return 'Y';
-  } else ($asc >= -11055 && $asc <= -10247) {
+  } elseif ($asc >= -11055 && $asc <= -10247) {
     return 'Z';
   }
   return null;
