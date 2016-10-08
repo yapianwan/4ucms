@@ -1,6 +1,7 @@
 <?php
 include './library/inc.php';
 include './language/common.php';
+
 switch (PATH_SEPARATOR) {
   case ';':
     $spt = "\r\n";
@@ -33,7 +34,7 @@ if ($act == 'subscribe') {
 // feedback ajax
 elseif ($act == LIB_FBACK) {
   $arr[LIB_FBNAME] = !empty($_POST['name']) ? str_safe($_POST['name']) : '';
-  $arr[LIB_FBCONT] = !empty($_POST['message']) ? str_safe($_POST['message']) : '';
+  $arr[LIB_FBCONT] = !empty($_POST[AJAX_MSG]) ? str_safe($_POST[AJAX_MSG]) : '';
   foreach ($arr as $val) {
     if ($val == '') {
       $res['err'] = 'y';
@@ -43,7 +44,7 @@ elseif ($act == LIB_FBACK) {
   }
   $arr[LIB_FBTEL] = !empty($_POST['tel']) ? str_safe($_POST['tel']) : '';
   $arr[LIB_FBMAIL] = !empty($_POST[LIB_EMAIL]) ? str_safe($_POST[LIB_EMAIL]) : '';
-  $arr[LIB_FBTTL] = !empty($_POST['subject']) ? str_safe($_POST['subject']) : '';
+  $arr[LIB_FBTTL] = !empty($_POST[AJAX_SUBJ]) ? str_safe($_POST[AJAX_SUBJ]) : '';
   if ($db->autoExecute('cms_feedback',$arr,LIB_INST)) {
     $res['err'] = 'n';
     $res['msg'] = $_lang[LIB_FBACK][COM_SUC];
@@ -55,14 +56,14 @@ elseif ($act == LIB_FBACK) {
 }
 elseif ($act == 'feedback_post') {
   $arr[LIB_FBNAME] = !empty($_POST['name']) ? str_safe($_POST['name']) : '';
-  $arr[LIB_FBCONT] = !empty($_POST['message']) ? str_safe($_POST['message']) : '';
+  $arr[LIB_FBCONT] = !empty($_POST[AJAX_MSG]) ? str_safe($_POST[AJAX_MSG]) : '';
   foreach ($arr as $val) {
     if ($val == '') {
       alert_back($_lang[COM_MSGFLD]);
     }
   }
   $arr[LIB_FBTEL] = !empty($_POST['tel']) ? str_safe($_POST['tel']) : '';
-  $arr[LIB_FBTTL] = !empty($_POST['subject']) ? str_safe($_POST['subject']) : '';
+  $arr[LIB_FBTTL] = !empty($_POST[AJAX_SUBJ]) ? str_safe($_POST[AJAX_SUBJ]) : '';
   $arr[LIB_FBMAIL] = !empty($_POST[LIB_EMAIL]) ? str_safe($_POST[LIB_EMAIL]) : '';
 
   if ($db->autoExecute('cms_feedback',$arr,LIB_INST)) {

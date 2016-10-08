@@ -92,9 +92,27 @@ class Smtp {
       if (!$this->smtp_putcmd("", base64_encode($this->pass))) {
         return $this->smtp_error($this->helo); 
       } 
-    }
-    return TRUE;
-  }
+    } 
+    if (!$this->smtp_putcmd("MAIL", "FROM:<".$this->mail_form.">")) {
+      return $this->smtp_error("sending MAIL FROM command"); 
+    } 
+    if (!$this->smtp_putcmd("RCPT", "TO:<".$to.">")) {
+      return $this->smtp_error("sending RCPT TO command"); 
+    } 
+    if (!$this->smtp_putcmd("DATA")) {
+      return $this->smtp_error("sending DATA command"); 
+    } 
+    if (!$this->smtp_message($header, $body)) {
+      return $this->smtp_error("sending message"); 
+    } 
+    if (!$this->smtp_eom()) {
+      return $this->smtp_error("sending <CR><LF>.<CR><LF> [EOM]"); 
+    } 
+    if (!$this->smtp_putcmd("QUIT")) {
+      return $this->smtp_error("sending QUIT command"); 
+    } 
+    return TRUE; 
+  } 
 
   function smtp_sockopen($address) {
     if ($this->relay_host == "") {

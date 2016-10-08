@@ -9,7 +9,7 @@ if ($act == COM_LGIN) {
 }
 
 elseif ($act == 'proc_login') {
-  compare_back(strtolower($_POST[LIB_VRFC]),$_SESSION[LIB_VRFC],'验证码有误！');
+  compare_back(strtolower($_POST[LIB_VRFC]),$_SESSION[LIB_VRFC],$_lang['vrfcode_faild']);
   $u_email = isset($_POST[LIB_UMAIL]) ? str_safe($_POST[LIB_UMAIL]) : '';
   $u_psw = isset($_POST[LIB_UPSW]) ? md5(trim($_POST[LIB_UPSW])) : '';
   $rem_id = isset($_POST['rem_id']) ? str_safe($_POST['rem_id']) : 1;
@@ -24,7 +24,6 @@ elseif ($act == 'proc_login') {
     setcookie('cms[remember]', $rem_id, gmtime()+COOKIE_EXPIRE);
     // 更新登录时间
     $db->query("UPDATE cms_user SET last_login = '" . gmtime() . "' WHERE id = '" . $res['id'] . "'");
-    // url_back();
     href('./');
   } else {
     alert_back($_lang[COM_LGIN][LIB_NOTMATCH]);
@@ -70,7 +69,7 @@ elseif ($act == 'proc_reg') {
     }
   }
   // POST验证
-  compare_back(strtolower($_POST[LIB_VRFC]),$_SESSION[LIB_VRFC],'验证码有误！');
+  compare_back(strtolower($_POST[LIB_VRFC]),$_SESSION[LIB_VRFC],$_lang['vrfcode_faild']);
   null_back($_POST[LIB_UNAME], '请填写手机号码！');
   null_back($_POST[LIB_UPSW], '请填写密码！');
   null_back($_POST[LIB_UMAIL], '请填写电子邮箱！');
@@ -101,7 +100,7 @@ elseif ($act == 'proc_reg') {
 elseif ($act == 'ajax_reg') {
   // 注册限制
   if (isset($_SESSION['time'])) {
-    if ($time - $_SESSION['time'] <= TIME_OUT) {
+    if (($time - $_SESSION['time']) <= TIME_OUT) {
       $_SESSION['time'] = $time;
       $res['err'] = 'y';
       $res['msg'] = $_lang['time_limit'];
@@ -123,7 +122,6 @@ elseif ($act == 'ajax_reg') {
   $arr[LIB_UNAME] = str_safe($_POST[LIB_UNAME]);
   $arr[LIB_UPSW] = md5(str_safe($_POST[LIB_UPSW]));
   $arr[LIB_UMAIL] = str_safe($_POST[LIB_UMAIL]);
-  // $arr['u_mobile'] = str_safe($_POST['u_mobile']);
   foreach ($arr as $val) {
     if (empty($val)) {
       $res['err'] = 'y';
@@ -161,7 +159,7 @@ elseif ($act == 'psw_find') {
 }
 
 elseif ($act == 'proc_psw_find') {
-  compare_back(strtolower($_POST[LIB_VRFC]),$_SESSION[LIB_VRFC],'验证码有误！');
+  compare_back(strtolower($_POST[LIB_VRFC]),$_SESSION[LIB_VRFC],$_lang['vrfcode_faild']);
   $u_email = str_safe($_POST[LIB_UMAIL]);
 
   $res = $db->getRow(LIB_SLCTUSERWHRUEMAILEQ . $u_email . "'");

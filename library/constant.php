@@ -160,3 +160,14 @@ define('LIB_CLSM', '" class="btn-del am-btn am-btn-default am-btn-xs am-fr" titl
 define('LIB_LBLEDIVELIE', '</label></div></li>');
 define('LIB_LIBAB', '<li><a href="javascript:;" data="act=materials_del&ids=');
 define('LIB_VALUE', '" value="');
+// ajax
+define('AJAX_MSG', 'message');
+define('AJAX_SUBJ', 'subject');
+// cms_priv
+define('PRIV_ID', '" id="');
+define('PRIV_VAL', '" value="');
+define('PRIV_CHKB', '"><input type="checkbox" name="');
+define('PRIV_LBLB', '<label for="');
+define('PRIV_IDB', '" id="c');
+define('PRIV_VALB', '" value="c');
+define('PRIV_CHKBNAMEB', '"><input type="checkbox" name="c');
