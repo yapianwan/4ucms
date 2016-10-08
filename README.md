@@ -2,6 +2,9 @@
 * PHP
 * MYSQL
 
+#程序大小
+5.14M (不含前台模板大小)
+
 #系统预览
 [http://mcmswx.foru.net.cn/](http://mcmswx.foru.net.cn/view/)
 
@@ -22,7 +25,7 @@
  /language 语言文件
  /library 公用库
  /sql 数据存储
- /templates 模板目录
+ /templates 前台模板目录
  /uploadfile 上传文件
  /view 模板切换查看
 
