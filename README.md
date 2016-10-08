@@ -13,7 +13,7 @@
 5. 如果需要使用smtp功能，请修改config/smtp.php内的对应信息
 
 #目录结构
- /admin 管理后台
+ /admin 管理后台,默认账户密码为admin
  /config 配置项
  /editor 编辑器
  /fonts 验证码调用字体
