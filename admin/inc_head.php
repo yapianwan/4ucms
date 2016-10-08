@@ -12,7 +12,7 @@
 <meta http-equiv="Cache-Control" content="no-siteapp"/>
 
 <!-- Amaze UI CSS -->
-<link rel="stylesheet" href="<?php echo SITE_DIR;?>ui/css/amazeui.flat.min.css">
+<link rel="stylesheet" href="//cdn.amazeui.org/amazeui/2.7.2/css/amazeui.flat.min.css">
 <link rel="stylesheet" href="css/admin.css">
 <link rel="stylesheet" href="../editor/themes/default/default.css" />
 
@@ -26,14 +26,12 @@
 <!--[if lt IE 9]>
 <script src="//libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
 <script src="//cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
-<script src="<?php echo ROOT_PATH;?>ui/js/amazeui.ie8polyfill.min.js"></script>
+<script src="//cdn.amazeui.org/amazeui/2.7.2/js/amazeui.ie8polyfill.min.js"></script>
 <![endif]-->
 
 <!--[if (gte IE 9)|!(IE)]><!-->
-<script src="<?php echo SITE_DIR;?>ui/js/jquery.min.js"></script>
+<script src="<?php echo SITE_DIR;?>/js/jquery-2.1.4.min.js"></script>
 <!--<![endif]-->
-<script src="<?php echo SITE_DIR;?>ui/js/amazeui.min.js"></script>
-
-<script src="<?php echo SITE_DIR;?>ui/js/app.js"></script>
+<script src="//cdn.amazeui.org/amazeui/2.7.2/js/amazeui.min.js"></script>
 <script charset="utf-8" type="text/javascript" src="../editor/kindeditor.js"></script>
 <script src="../editor/lang/zh_CN.js"></script>

@@ -77,7 +77,7 @@ if ($act == 'adminLogin') {
       </div>
     </form>
     <!-- <hr>
-    <p>© 2014 shadowwing, Inc. Licensed under MIT license.</p> -->
+    <p>© 2014 FORU Inc. Licensed under MIT license.</p> -->
   </div>
 </div>
 

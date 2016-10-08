@@ -229,7 +229,7 @@ CREATE TABLE `cms_system` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 -- ----------
-INSERT INTO `cms_system` (`id`,`s_template`,`s_domain`,`s_name`,`s_seoname`,`s_keywords`,`s_description`,`s_copyright`,`s_code`,`s_im`,`s_feedback`,`s_smarty`,`s_user`,`s_rewrite`) VALUES ('1','15','http://www.domain.com','网站','优化标题','关键字','关键描述','&copy; 2005-2015 MCMS信息科技有限公司 版权所有，并保留所有权利。','','0','0','0','0','0');
+INSERT INTO `cms_system` (`id`,`s_template`,`s_domain`,`s_name`,`s_seoname`,`s_keywords`,`s_description`,`s_copyright`,`s_code`,`s_im`,`s_feedback`,`s_smarty`,`s_user`,`s_rewrite`) VALUES ('1','13','http://www.domain.com','网站','优化标题','关键字','关键描述','&copy; 2005-2015 MCMS信息科技有限公司 版权所有，并保留所有权利。','','0','0','0','0','0');
 -- ----------
 CREATE TABLE `cms_template` (
   `id` int(11) NOT NULL AUTO_INCREMENT,

@@ -8,7 +8,6 @@ $GLOBALS['timezone'] = 8;
 
 // 初始化页面
 define('REWRITE', false);
-define('PREFIX', 'cms_');
 define('TIME_OUT', 5 * 60);
 // 定义重复操作最短的允许时间，单位秒
 define('COOKIE_EXPIRE', 30 * 24 * 3600);

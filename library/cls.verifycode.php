@@ -25,7 +25,7 @@ class ValidateCode {
     $this->height = $h;
     $this->fontsize = $fs;
     $this->codelen = $cl;
-    $this->font = ROOT_PATH . '/ui/fonts/elephant.ttf';
+    $this->font = ROOT_PATH . '/fonts/elephant.ttf';
   }
   //生成随机码
   private function createCode() {
@@ -37,7 +37,7 @@ class ValidateCode {
   //生成背景
   private function createBg() {
     $this->img = imagecreatetruecolor($this->width, $this->height);
-    $color = imagecolorallocate($this->img, mt_rand(157,255), mt_rand(157,255), mt_rand(157,255));
+    $color = imagecolorallocate($this->img, 240, 240, 240);
     imagefilledrectangle($this->img, 0, $this->height, $this->width, 0, $color);
   }
   //生成文字
