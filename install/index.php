@@ -17,7 +17,7 @@ if (isset($_POST['save'])) {
   $str .= 'define(\'DATA_NAME\', \''.$db_name.'\');';
   $str .= "\n";    
   $str .= '?>';
-  $files = '../library/data.php';
+  $files = '../config/data.php';
   $ff = fopen($files,'w+');
   fwrite($ff,$str);
   if (!@$link = mysql_connect($_POST['db_host'],$_POST['db_username'],$_POST['db_password'])) {
