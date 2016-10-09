@@ -1,4 +1,4 @@
-![4ucms](http://mcmswx.foru.pw/favicon.png)
+![4ucms](http://mcmswx.foru.net.cn/favicon.png)
 
 ####开发环境
 * PHP
