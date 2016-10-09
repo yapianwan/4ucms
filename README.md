@@ -10,6 +10,9 @@
 ####系统预览
 [http://mcmswx.foru.net.cn/](http://mcmswx.foru.net.cn/view/)
 
+####git.oschina
+[http://git.oschina.net/sw1981/FORU-CMS](http://git.oschina.net/sw1981/FORU-CMS)
+
 ####系统搭建
 1. 创建数据库并指定utf-8编码（CREATE DATABASE 数据库名称 DEFAULT CHARSET utf8 COLLATE utf8_general_ci;）
 2. 打开install/index.php进行数据导入；当然您也可以直接导入install/data.sql文件来替代前面的步骤
