@@ -11,8 +11,8 @@
 [http://mcmswx.foru.net.cn/](http://mcmswx.foru.net.cn/view/)
 
 ####Git
-		[https://github.com/zhaodifangsi/4ucms](https://github.com/zhaodifangsi/4ucms)
-		[http://git.oschina.net/sw1981/FORU-CMS](http://git.oschina.net/sw1981/FORU-CMS)
+[https://github.com/zhaodifangsi/4ucms](https://github.com/zhaodifangsi/4ucms)
+[http://git.oschina.net/sw1981/FORU-CMS](http://git.oschina.net/sw1981/FORU-CMS)
 
 ####系统搭建
 1. 创建数据库并指定utf-8编码（CREATE DATABASE 数据库名称 DEFAULT CHARSET utf8 COLLATE utf8_general_ci;）
