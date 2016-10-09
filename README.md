@@ -11,8 +11,8 @@
 [http://mcmswx.foru.net.cn/](http://mcmswx.foru.net.cn/view/)
 
 ####Git
-[https://github.com/zhaodifangsi/4ucms](https://github.com/zhaodifangsi/4ucms)
-[http://git.oschina.net/sw1981/FORU-CMS](http://git.oschina.net/sw1981/FORU-CMS)
+*[https://github.com/zhaodifangsi/4ucms](https://github.com/zhaodifangsi/4ucms)
+*[http://git.oschina.net/sw1981/FORU-CMS](http://git.oschina.net/sw1981/FORU-CMS)
 
 ####系统搭建
 1. 创建数据库并指定utf-8编码（CREATE DATABASE 数据库名称 DEFAULT CHARSET utf8 COLLATE utf8_general_ci;）
@@ -22,18 +22,18 @@
 5. 如果需要使用smtp功能，请修改config/smtp.php内的对应信息
 
 ####目录结构
-		>/admin          管理后台,默认账户密码为admin
-		>/config         配置项(data.php文件需要读写权限)
-		>/editor         编辑器
-		>/fonts          字体
-		>/install        数据安装
-		>/js             前后台共用js
-		>/language       语言文件
-		>/library        函数库
-		>/sql            数据存储(需要读写权限)
-		>/templates      前台模板
-		>/uploadfile     上传文件(需要读写权限)
-		>/view           模板切换查看
+>		/admin          管理后台,默认账户密码为admin
+>		/config         配置项(data.php文件需要读写权限)
+>		/editor         编辑器
+>		/fonts          字体
+>		/install        数据安装
+>		/js             前后台共用js
+>		/language       语言文件
+>		/library        函数库
+>		/sql            数据存储(需要读写权限)
+>		/templates      前台模板
+>		/uploadfile     上传文件(需要读写权限)
+>		/view           模板切换查看
 
 ####功能介绍
 * [内容]菜单：频道管理，详情管理，幻灯管理，碎片管理
