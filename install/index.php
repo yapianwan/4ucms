@@ -1,8 +1,9 @@
 <?php
 header('Content-type:text/html; charset=utf-8');//设置编码
-include('../library/library.php');
-$db_name = $_POST['db_name'];
+include '../library/constant.php';
+include '../library/library.php';
 if (isset($_POST['save'])) {
+  $db_name = $_POST['db_name'];
   $str = '';
   $str .= '<?php';
   $str .= "\n";
