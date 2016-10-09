@@ -239,7 +239,7 @@ CREATE TABLE `cms_template` (
   UNIQUE KEY `id` (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 -- ----------
-INSERT INTO `cms_template` (`id`,`t_name`,`t_path`) VALUES ('1','网站1','1'),('2','网站14','2');
+INSERT INTO `cms_template` (`id`,`t_name`,`t_path`) VALUES ('1','网站1','1'),('2','网站2','2');
 -- ----------
 CREATE TABLE `cms_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,

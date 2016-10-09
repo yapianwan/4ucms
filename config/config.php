@@ -1,6 +1,6 @@
 <?php
 // 网站路径信息，如果在根目录请保留"/"，如果在子目录内运行请将“4ucms”修改为您的网站目录名称。
-@define('SITE_DIR', '/cms/');
+@define('SITE_DIR', '/4ucms/');
 // 是否开启管理员操作日志
 @define('ADMIN_LOG', false);
 // 时差
