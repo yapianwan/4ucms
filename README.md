@@ -10,7 +10,8 @@
 ####系统预览
 [http://mcmswx.foru.net.cn/](http://mcmswx.foru.net.cn/view/)
 
-####git.oschina
+####Git
+[https://github.com/zhaodifangsi/4ucms](https://github.com/zhaodifangsi/4ucms)<br>
 [http://git.oschina.net/sw1981/FORU-CMS](http://git.oschina.net/sw1981/FORU-CMS)
 
 ####系统搭建
