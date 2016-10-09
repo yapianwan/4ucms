@@ -36,6 +36,10 @@ define('LIB_CORDERS', "c_order ASC, id ASC");
 define('LIB_INST', "INSERT");
 define('LIB_ANDUPSWEQ', "' AND u_psw = '");
 define('LIB_SLCTUSERWHRUEMAILEQ', "SELECT * FROM cms_user WHERE u_email = '");
+// cls_mysql
+define('MYSQL_VALUE', ') VALUES (');
+define('MYSQL_INSRTINTO', 'INSERT INTO ');
+define('MYSQL_EQDYH', ' = \'');
 // cookie
 define('CMS_USERID', 'cms[user_id]');
 define('CMS_LOGINCONT', 'loginCount');
