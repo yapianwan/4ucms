@@ -20,7 +20,7 @@
       <div class="row">
         <div class="col-lg-12"><!-- Room Gallery Slider -->
           <div class="room-gallery">
-            <div class="margint40 marginb20"><h4>客房照片</h4></div>
+            <div class="margint40 marginb20"><h4>房间照片</h4></div>
             <div class="flexslider-thumb falsenav">
               <ul class="slides">
                 <?php

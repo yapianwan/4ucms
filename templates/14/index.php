@@ -171,7 +171,7 @@
           $res = $db->getAll("SELECT * FROM cms_detail WHERE d_parent IN ($csub) ORDER BY d_order ASC,id DESC LIMIT 0,3");
           if (!empty($res)) {
             foreach ($res as $val) {
-              echo '<div class="col-lg-4 col-sm-4"> <div class="home-room-box"> <a href="'.d_url($val['id'],$val['d_link']).'"><div class="room-image"> '.($val['d_rec']?'<div class="room-features">推荐</div>':'').' <img alt="'.$val['d_name'].'" class="img-responsive" src="'.img_always($val['d_picture']).'"> <div class="home-room-details"> <h5>'.$val['d_name'].'</h5> </div></a> </div> <div class="room-details"> <p>'.str_cut(str_text($val['d_content']),48).'</p> </div> <div class="room-bottom"> <div class="pull-left"><h4>￥'.str_part($val['d_price'],'.').'<span class="room-bottom-time">/ 天</span></h4></div> <div class="pull-right"> <div class="button-style-1"> <a href="reservation.php?id='.$val['id'].'">立即预订</a> </div> </div> </div> </div> </div>';
+              echo '<div class="col-lg-4 col-sm-4"> <div class="home-room-box"> <a href="'.d_url($val['id'],$val['d_link']).'"><div class="room-image"> '.($val['d_rec']?'<div class="room-features">推荐</div>':'').' <img alt="'.$val['d_name'].'" class="img-responsive" src="'.img_always($val['d_picture']).'"> <div class="home-room-details"> <h5>'.$val['d_name'].'</h5> </div></a> </div> <div class="room-details"> <p>'.str_cut(str_text($val['d_content']),48).'</p> </div> <div class="room-bottom"> <div class="pull-left"><h4>￥'.str_part($val['d_price'],'.').'<span class="room-bottom-time"> / 天</span></h4></div> <div class="pull-right"> <div class="button-style-1"> <a href="reservation.php?id='.$val['id'].'">立即预订</a> </div> </div> </div> </div> </div>';
             }
           }
           ?>

@@ -812,13 +812,22 @@ function is_phonenum($num){
  * @param int $number 数组索引
  * @return string 返回截取的内容
  */
-function str_part($str,$sign,$number){
+function str_part($str,$sign,$number=0){
   $array = explode($sign, $str);
   $length = count($array);
-  $number = isset($number) ? $number : 2;
-  if ($number >= $length) {
-    return 'error';
+  if ($number<0) {
+    $new_array=array_reverse($array);
+    $abs_number=abs($number);
+    if ($abs_number>$length) {
+      return 'error';
+    } else {
+      return $new_array[$abs_number-1];
+    }
   } else {
-    return $array[$number];
+    if ($number>=$length) {
+      return 'error';
+    } else {
+      return $array[$number];
+    }
   }
 }
