@@ -181,17 +181,6 @@ CREATE TABLE `cms_role` (
 -- ----------
 INSERT INTO `cms_role` (`id`,`r_name`,`r_priv`) VALUES ('1','超级管理员','all'),('2','内容管理员','c1,c7,c8,c2,c9,c10,c3,c11,c12,c13,c14,c4,c5,c6,c15,c16,c17,channel,detail,slideshow,chip'),('3','系统管理员','base,wx_base,priv,theme,database');
 -- ----------
-CREATE TABLE `cms_service` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `s_order` int(11) NOT NULL DEFAULT '100',
-  `s_name` varchar(255) DEFAULT NULL,
-  `s_type` varchar(11) DEFAULT NULL,
-  `s_account` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
--- ----------
-INSERT INTO `cms_service` (`id`,`s_order`,`s_name`,`s_type`,`s_account`) VALUES ('1','100','在线客服-1','qq','710034989');
--- ----------
 CREATE TABLE `cms_slideshow` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `s_name` varchar(255) DEFAULT NULL,
