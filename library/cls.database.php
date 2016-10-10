@@ -50,13 +50,19 @@ class Database {
     $file_name .= !strpos($file_name, '.sql') ? '.sql' : '';
     //设置超时时间为0，表示一直执行。当php在safe mode模式下无效，此时可能会导致导入超时，此时需要分段导入
     set_time_limit(0);
-    $fp = @fopen($this->file_path . $file_name, "r") || die("不能打开SQL文件 $file_name");//打开文件
-    echo "正在清空数据库,请稍等....<br>"; 
-    $arr_tbl = $this->tables();
-    foreach ($arr_tbl as $val) {
-      $this->db->query("DROP TABLE IF EXISTS $val"); 
+    $fp = @fopen($this->file_path . $file_name, "r");
+    if ($fp === false) {
+      die("不能打开SQL文件 $file_name");
     }
-    echo "数据库清理成功<br>"; 
+    
+    $arr_tbl = $this->tables();
+    if ($arr_tbl) {
+      echo "正在清空数据库,请稍等....<br>"; 
+      foreach ($arr_tbl as $val) {
+        $this->db->query("DROP TABLE IF EXISTS $val"); 
+      }
+      echo "数据库清理成功<br>";
+    }
 
     echo "正在执行导入数据库操作<br>";
     // 导入数据库的MySQL命令

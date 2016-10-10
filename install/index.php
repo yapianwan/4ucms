@@ -21,30 +21,34 @@ if (isset($_POST['save'])) {
   $files = '../config/data.php';
   $ff = fopen($files,'w+');
   fwrite($ff,$str);
-  if (!@$link = mysql_connect($_POST['db_host'],$_POST['db_username'],$_POST['db_password'])) {
-    alert_href('数据库连接失败！请重新输入连接参数。','index.php');
-  }else{
-    if (!mysql_select_db($db_name) && !mysql_query('CREATE DATABASE IF NOT EXISTS '.$db_name.' DEFAULT CHARSET utf8 COLLATE utf8_general_ci')) {
-      alert_back('创建失败，请联系空间商确认是否有数据库创建权限！');
+
+  set_time_limit(0);
+  $fp = @fopen($file_name, "r");
+    if ($fp === false) {
+      die("不能打开SQL文件");
     }
-    mysql_select_db($db_name);
-    mysql_query('set names utf8');
-    $lines=file("data.sql");
-    $sqlstr="";
-    foreach($lines as $line){
-      $line = trim($line);
-      if ($line != "" && !($line{0}.$line{1} == "--")) {
-        $sqlstr .= $line;
+    
+    $arr_tbl = $this->tables();
+    if ($arr_tbl) {
+      echo "正在清空数据库,请稍等....<br>"; 
+      foreach ($arr_tbl as $val) {
+        $this->db->query("DROP TABLE IF EXISTS $val"); 
       }
+      echo "数据库清理成功<br>";
     }
-    $sqlstr = rtrim($sqlstr,";");
-    $sqls = explode(";",$sqlstr);
-    foreach( $sqls as $sql) {
-      mysql_query($sql);
-    }
-    rename('index.php','index.lock');
-    alert_href('安装成功,为了确保安全，请尽量删除install目录','../index.php');
+
+  echo "正在执行导入数据库操作<br>";
+  // 导入数据库的MySQL命令
+  $sql=fread($fp,filesize($this->file_path.$file_name));
+  fclose($fp);
+  $sql=explode("-- ----------",$sql);
+  foreach($sql as $val){
+    $this->db->query($val);
   }
+  echo "数据库文件导入完成！";
+
+  rename('index.php','index.lock');
+  alert_href('安装成功,为了确保安全，请尽量删除install目录','../index.php');
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
