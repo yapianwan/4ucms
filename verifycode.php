@@ -1,6 +1,6 @@
 <?php
-require '../library/inc.php';
-require './library/cls.verifycode.php';
-$_vc = new ValidateCode(150, 50);
+include_once './library/inc.php';
+include_once './library/cls.verifycode.php';
+$_vc = new ValidateCode(VERIFYCODE_WIDTH, VERIFYCODE_HEIGHT);
 $_vc->doimg();
 $_SESSION['verifycode'] = $_vc->getCode();

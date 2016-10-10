@@ -5,7 +5,9 @@
 @define('ADMIN_LOG', false);
 // 时差
 $GLOBALS['timezone'] = 8;
-
+// 验证码
+define('VERIFYCODE_WIDTH', 150);
+define('VERIFYCODE_HEIGHT', 50);
 // 初始化页面
 define('REWRITE', false);
 define('TIME_OUT', 5 * 60);

@@ -29,7 +29,6 @@ include_once ROOT_PATH.'/library/constant.php';
 include_once ROOT_PATH.'/config/config.php';
 include_once ROOT_PATH.'/config/data.php';
 include_once ROOT_PATH.'/library/cls.mysql.php';
-$GLOBALS['db'] = $db = new Mysql(DATA_HOST, DATA_USERNAME, DATA_PASSWORD, DATA_NAME);
 include_once ROOT_PATH.'/library/library.php';
 // 公共函数库
 include_once ROOT_PATH.'/library/function.php';
@@ -39,6 +38,8 @@ include_once ROOT_PATH.'/library/lib.time.php';
 include ROOT_PATH.'/config/smtp.php';
 include_once ROOT_PATH.'/library/cls.smtp.php';
 include_once ROOT_PATH.'/library/lib.base.php';
+
+$GLOBALS['db'] = $db = new Mysql(DATA_HOST, DATA_USERNAME, DATA_PASSWORD, DATA_NAME);
 //cms_system
 $sql = 'SELECT * FROM cms_system WHERE id = 1';
 $GLOBALS['cms'] = $cms = $db->getRow($sql);
