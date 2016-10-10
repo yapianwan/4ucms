@@ -1,7 +1,6 @@
 <?php
 header('Content-type:text/html; charset=utf-8');//设置编码
-include '../library/constant.php';
-include '../library/library.php';
+include '../library/inc.php';
 if (isset($_POST['save'])) {
   $db_name = $_POST['db_name'];
   $str = '';
@@ -18,7 +17,8 @@ if (isset($_POST['save'])) {
   $str .= 'define(\'DATA_NAME\', \''.$db_name.'\');';
   $str .= "\n";    
   $str .= '?>';
-  $files = '../config/data.php';
+  $files = ROOT_PATH.'/config/data.php';
+  $file_name = ROOT_PATH.INSTALL_DIR.'/data.sql';
   $ff = fopen($files,'w+');
   fwrite($ff,$str);
 
@@ -27,27 +27,27 @@ if (isset($_POST['save'])) {
     if ($fp === false) {
       die("不能打开SQL文件");
     }
-    
-    $arr_tbl = $this->tables();
+
+    $tbl = $db->getAll("SHOW TABLES");
+    $arr_tbl = get_easy_array($tbl,'Tables_in_'.DATA_NAME);
     if ($arr_tbl) {
       echo "正在清空数据库,请稍等....<br>"; 
       foreach ($arr_tbl as $val) {
-        $this->db->query("DROP TABLE IF EXISTS $val"); 
+        $db->query("DROP TABLE IF EXISTS $val"); 
       }
       echo "数据库清理成功<br>";
     }
 
   echo "正在执行导入数据库操作<br>";
   // 导入数据库的MySQL命令
-  $sql=fread($fp,filesize($this->file_path.$file_name));
+  $sql=fread($fp,filesize($file_name));
   fclose($fp);
   $sql=explode("-- ----------",$sql);
   foreach($sql as $val){
-    $this->db->query($val);
+    $db->query($val);
   }
   echo "数据库文件导入完成！";
 
-  rename('index.php','index.lock');
   alert_href('安装成功,为了确保安全，请尽量删除install目录','../index.php');
 }
 ?>

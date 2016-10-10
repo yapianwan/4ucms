@@ -4,6 +4,7 @@
 @define('SQL_DIR', 'sql');
 @define('ADMIN_DIR', 'admin');
 @define('EDITOR_DIR', 'editor/php/');
+@define('INSTALL_DIR', 'install');
 @define('TEMP_DIR', 'temp');
 @define('TEXT_ROOT', 'ROOT_PATH');
 // root
@@ -16,6 +17,10 @@ if (strpos(getcwd(), ADMIN_DIR)) {
   $arr_editor = array('/'.EDITOR_DIR=>'');
   @define(TEXT_ROOT, strtr(strtr(getcwd(),$arr_url).'/',$arr_editor));
   unset($arr_editor);
+} elseif (strpos(getcwd(), INSTALL_DIR)) {
+  $arr_install = array('/'.INSTALL_DIR=>'');
+  @define(TEXT_ROOT, strtr(strtr(getcwd(),$arr_url).'/',$arr_install));
+  unset($arr_install);
 } elseif (strpos(getcwd(), TEMP_DIR)) {
   $arr_temp = array('/'.TEMP_DIR=>'');
   @define(TEXT_ROOT, strtr(strtr(getcwd(),$arr_url).'/',$arr_temp));
