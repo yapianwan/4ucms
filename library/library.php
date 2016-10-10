@@ -819,15 +819,16 @@ function str_part($str,$sign,$number=0){
     $new_array=array_reverse($array);
     $abs_number=abs($number);
     if ($abs_number>$length) {
-      return 'error';
+      $res = 'error';
     } else {
-      return $new_array[$abs_number-1];
+      $res = $new_array[$abs_number-1];
     }
   } else {
     if ($number>=$length) {
-      return 'error';
+      $res = 'error';
     } else {
-      return $array[$number];
+      $res = $array[$number];
     }
   }
+  return $res;
 }
