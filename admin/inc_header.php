@@ -30,7 +30,6 @@
         <ul class="am-dropdown-content">
           <li><a href="cms_member.php"><span class="am-icon-users"></span> 会员管理 </a></li>
           <li><a href="cms_feedback.php"><span class="am-icon-comment"></span> 留言管理 </a></li>
-          <li><a href="cms_service.php"><span class="am-icon-comments-o"></span> 在线客服 </a></li>
           <li><a href="cms_vote.php"><span class="am-icon-check-circle"></span> 投票调查 </a></li>
           <li><a href="cms_link.php"><span class="am-icon-link"></span> 友情链接 </a></li>
           <li><a href="cms_mail.php"><span class="am-icon-envelope"></span> 邮件订阅 </a></li>

@@ -40,11 +40,10 @@ $adm = $db->getOne("SELECT COUNT(id) FROM cms_user WHERE u_isadmin=1");
     <ul class="am-avg-sm-1 am-avg-md-4 am-margin am-padding am-text-center admin-content-list ">
       <li><a href="cms_member.php"><span class="am-icon-btn am-icon-users"></span><br/>会员: <?php echo $usr;?></a></li>
       <li><a href="cms_feedback.php"><span class="am-icon-btn am-icon-comment"></span><br/>在线留言: <?php echo $fdb;?></a></li>
-      <li><a href="cms_service.php"><span class="am-icon-btn am-icon-comments-o"></span><br/>在线客服: <?php echo $serv;?></a></li>
       <li><a href="cms_link.php"><span class="am-icon-btn am-icon-link"></span><br/>友情连接: <?php echo $link;?></a></li>
+      <li><a href="cms_admin.php"><span class="am-icon-btn am-icon-user"></span><br/>管理员: <?php echo $adm;?></a></li>
     </ul>
     <ul class="am-avg-sm-1 am-avg-md-4 am-margin am-padding am-text-center admin-content-list ">
-      <li><a href="cms_admin.php"><span class="am-icon-btn am-icon-user"></span><br/>管理员: <?php echo $adm;?></a></li>
       <li><a href="cms_template.php"><span class="am-icon-btn am-icon-laptop"></span><br/>站点模版: <?php echo $tpl;?></a></li>
     </ul>
     

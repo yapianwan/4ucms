@@ -85,8 +85,8 @@ if(isset($_POST['submit'])){
                 </div>
               </div>
               <div class="am-form-group">
-                <label for="l_url">链接地址</label>
-                 <input id="l_url" type="text" name="l_url" value="http://">
+                <label for="l_link">链接地址</label>
+                 <input id="l_link" type="text" name="l_link" value="http://">
               </div>
               <div class="am-form-group">
                 <label for="l_order">排序</label>

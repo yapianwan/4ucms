@@ -54,8 +54,8 @@ if(isset($_POST['submit'])){
                 </div>
               </div>
               <div class="am-form-group">
-                <label for="l_url">链接地址</label>
-                 <input id="l_url" type="text" name="l_url" value="<?php echo $row[LIB_LURL]?>">
+                <label for="l_link">链接地址</label>
+                 <input id="l_link" type="text" name="l_link" value="<?php echo $row[LIB_LURL]?>">
               </div>
               <div class="am-form-group">
                 <label for="l_order">排序</label>

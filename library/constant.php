@@ -71,7 +71,7 @@ define('LIB_FBTEL', 'f_tel');
 define('LIB_FBTTL', 'f_title');
 define('LIB_FBCONT', 'f_content');
 define('LIB_LNAME', 'l_name');
-define('LIB_LURL', 'l_url');
+define('LIB_LURL', 'l_link');
 define('LIB_LORDER', 'l_order');
 define('LIB_LPICTURE', 'l_picture');
 define('LIB_MTITLE', 'm_title');
