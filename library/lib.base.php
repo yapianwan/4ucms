@@ -2,14 +2,14 @@
 // rewrite
 function c_rewrite($t0) {
   if (REWRITE) {
-    return 'channel-'.$t0.'.html';
+    return 'channel-' . $t0 . '.html';
   } else {
     return 'channel.php?id=' . $t0;
   }
 }
 function d_rewrite($t0) {
   if (REWRITE) {
-    return 'detail-'.$t0.'.html';
+    return 'detail-' . $t0 . '.html';
   } else {
     return 'detail.php?id=' . $t0 . '';
   }
@@ -122,7 +122,7 @@ function channel_slist($t0, $t1, $t2=2) {
     $tmp = '';
     $res = $GLOBALS['db']->getAll('SELECT * FROM cms_channel WHERE c_parent = ' . $t0 . ' AND c_navigation=1 ORDER BY c_order ASC , id ASC ');
     foreach ($res as $row) {
-      $tmp .= '<li ' . ($row['id'] == $t1 ? ' class="active"' : '') . '><a href="' . c_url($row['id'],$row[LIB_CLINK]) . LIB_TARGET . $row[LIB_CTARGET] . '">' . $row[LIB_CNAME] . LIB_ALI;
+      $tmp .= '<li ' . ($row['id'] == $t1 ? ' class="active"' : '') . '><a href="' . c_url($row['id'], $row[LIB_CLINK]) . LIB_TARGET . $row[LIB_CTARGET] . '">' . $row[LIB_CNAME] . LIB_ALI;
     }
     $t2--;
   }
@@ -140,7 +140,7 @@ function current_channel_location($t0, $t1) {
     if ($row['id'] == $t1) {
       $tmp = '<li class="am-active">' . $row[LIB_CNAME] . LIB_LIE;
     } else {
-      $tmp = LIB_LIA . c_url($row['id'],$row[LIB_CLINK]) . '">' . $row[LIB_CNAME] . LIB_ALI;
+      $tmp = LIB_LIA . c_url($row['id'], $row[LIB_CLINK]) . '">' . $row[LIB_CNAME] . LIB_ALI;
     }
     if ($row['c_parent'] != 0) {
       $tmp = current_channel_location($row['c_parent'], $t1) . $tmp;
@@ -201,7 +201,7 @@ function img_always($str) {
 // 获取当前网页
 function php_self() {
   if (!empty($_SERVER[LIB_PHPSELF])) {
-    return substr($_SERVER[LIB_PHPSELF], strrpos($_SERVER[LIB_PHPSELF],'/')+1);
+    return substr($_SERVER[LIB_PHPSELF], strrpos($_SERVER[LIB_PHPSELF], '/')+1);
   } else {
     return false;
   }
