@@ -1,13 +1,13 @@
 <?php
 // 判断用户是否登陆
-function user_state($url='user.php?act=login'){
+function user_state($url='user.php?act=login') {
   if (!isset($_COOKIE['cms'][LIB_USERID]) || $_COOKIE['cms'][LIB_USERID] == '') {
     alert_href('请登录后操作', $url);
     die;
   }
 }
 // 增加积分函数
-function addPoint($point){
+function addPoint($point) {
   user_state();
   non_numeric_back($point, '积分信息有误');
   //判断是否数字
@@ -20,7 +20,7 @@ function addPoint($point){
   }
 }
 // 扣除积分函数
-function deductPoint($point){
+function deductPoint($point) {
   user_state();
   non_numeric_back($point, '积分信息有误');
   //判断是否数字

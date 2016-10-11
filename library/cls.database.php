@@ -69,7 +69,7 @@ class Database {
     $sql=fread($fp,filesize($this->file_path.$file_name));
     fclose($fp);
     $sql=explode("-- ----------",$sql);
-    foreach($sql as $val){
+    foreach ($sql as $val) {
       $this->db->query($val);
     }
     echo "数据库文件导入完成！";
@@ -83,7 +83,7 @@ class Database {
     $tbls = implode('`,`', $arr_tbl);
     $list = $this->db->query("REPAIR TABLE `{$tbls}`");
     $this->unlock();
-    if($list){
+    if ($list) {
       alert_back("数据库修复完成！");
     } else {
       alert_back("数据库修复出错请重试！");
@@ -97,7 +97,7 @@ class Database {
     $tbls = implode('`,`', $arr_tbl);
     $list = $this->db->query("OPTIMIZE TABLE `{$tbls}`");
     $this->unlock();
-    if($list){
+    if ($list) {
       alert_back("数据库优化完成！");
     } else {
       alert_back("数据库优化出错请重试！");

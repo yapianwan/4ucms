@@ -1,5 +1,5 @@
 <?php
-class Channel{
+class Channel {
   private $db;
   public function __construct($db) {
     $this->db = $db;

@@ -4,7 +4,7 @@
  *
  * @return  integer
  */
-function gmtime(){
+function gmtime() {
   return time() - date('Z');
 }
 /**
@@ -12,7 +12,7 @@ function gmtime(){
  *
  * @return  integer
  */
-function server_timezone(){
+function server_timezone() {
   if (function_exists('date_default_timezone_get')) {
     return date_default_timezone_get();
   } else {
@@ -32,7 +32,7 @@ function server_timezone(){
  *
  * @return void
  */
-function local_mktime($hour = NULL, $minute = NULL, $second = NULL, $month = NULL, $day = NULL, $year = NULL){
+function local_mktime($hour = NULL, $minute = NULL, $second = NULL, $month = NULL, $day = NULL, $year = NULL) {
   $timezone = isset($_SESSION[LIB_TIMEZONE]) ? $_SESSION[LIB_TIMEZONE] : $GLOBALS[LIB_TIMEZONE];
   /**
    * $time = mktime($hour, $minute, $second, $month, $day, $year) - date('Z') + (date('Z') - $timezone * 3600)
@@ -48,7 +48,7 @@ function local_mktime($hour = NULL, $minute = NULL, $second = NULL, $month = NUL
  *
  * @return  string
  */
-function local_date($format, $time = NULL){
+function local_date($format, $time = NULL) {
   $timezone = isset($_SESSION[LIB_TIMEZONE]) ? $_SESSION[LIB_TIMEZONE] : $GLOBALS[LIB_TIMEZONE];
   if ($time === NULL) {
     $time = gmtime();
@@ -65,7 +65,7 @@ function local_date($format, $time = NULL){
  *
  * @return  integer
  */
-function gmstr2time($str){
+function gmstr2time($str) {
   $time = strtotime($str);
   if ($time > 0) {
     $time -= date('Z');
@@ -80,7 +80,7 @@ function gmstr2time($str){
  *
  * @return  integer
  */
-function local_strtotime($str){
+function local_strtotime($str) {
   $timezone = isset($_SESSION[LIB_TIMEZONE]) ? $_SESSION[LIB_TIMEZONE] : $GLOBALS[LIB_TIMEZONE];
   /**
    * $time = mktime($hour, $minute, $second, $month, $day, $year) - date('Z') + (date('Z') - $timezone * 3600)
@@ -95,7 +95,7 @@ function local_strtotime($str){
  *
  * @return  array
  */
-function local_gettime($timestamp = NULL){
+function local_gettime($timestamp = NULL) {
   $tmp = local_getdate($timestamp);
   return $tmp[0];
 }
@@ -106,7 +106,7 @@ function local_gettime($timestamp = NULL){
  *
  * @return  array
  */
-function local_getdate($timestamp = NULL){
+function local_getdate($timestamp = NULL) {
   $timezone = isset($_SESSION[LIB_TIMEZONE]) ? $_SESSION[LIB_TIMEZONE] : $GLOBALS[LIB_TIMEZONE];
   /* 如果时间戳为空，则获得服务器的当前时间 */
   if ($timestamp === NULL) {
@@ -125,7 +125,7 @@ function local_getdate($timestamp = NULL){
  *
  * @return  array
  */
-function getDateDiff($sday, $eday, $unit = 'd'){
+function getDateDiff($sday, $eday, $unit = 'd') {
   $diff = $eday - $sday;
   switch ($unit) {
     case 'y':
@@ -159,7 +159,7 @@ function getDateDiff($sday, $eday, $unit = 'd'){
 // $sday 起始时间
 // $days 间隔天数
 // $case 0 返回格林威治时间;1 返回时间格式
-function getEndDate($sday, $days, $case = 0){
+function getEndDate($sday, $days, $case = 0) {
   $stime = date('Y-m-d H:i:s', $sday);
   $sarr = explode(' ', $stime);
   if (check_array($sarr)) {
@@ -182,7 +182,7 @@ function getEndDate($sday, $days, $case = 0){
   }
 }
 // 计算分期天数的函数
-function getPeriodDays($d, $p){
+function getPeriodDays($d, $p) {
   $pd = @ceil($d / $p);
   $epd = $d - ($p - 1) * $pd;
   for ($i = 0; $i < $p; $i++) {
@@ -215,7 +215,7 @@ function time_hex($mt=0) {
 //这个星期的星期一 
 // @$timestamp ，某个星期的某一个时间戳，默认为当前时间 
 // @is_return_timestamp ,是否返回时间戳，否则返回时间格式 
-function this_monday($timestamp=0,$is_return_timestamp=true){ 
+function this_monday($timestamp=0, $is_return_timestamp=true) { 
   if (!$timestamp) {
     $timestamp = time();
   } 
@@ -226,7 +226,7 @@ function this_monday($timestamp=0,$is_return_timestamp=true){
     return $monday_date; 
   }
 } 
-function this_sunday($timestamp=0,$is_return_timestamp=true){ 
+function this_sunday($timestamp=0, $is_return_timestamp=true) { 
   if (!$timestamp) {
     $timestamp = time();
   }
@@ -234,6 +234,6 @@ function this_sunday($timestamp=0,$is_return_timestamp=true){
   if ($is_return_timestamp) { 
     return $sunday; 
   } else { 
-    return date('Y-m-d',$sunday); 
+    return date('Y-m-d', $sunday); 
   } 
 }

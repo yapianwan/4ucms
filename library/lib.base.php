@@ -15,7 +15,7 @@ function d_rewrite($t0) {
   }
 }
 //频道链接地址
-function c_url($t0,$t1=''){
+function c_url($t0, $t1='') {
   if (!empty($t1)) {
     return $t1;
   }else{
@@ -28,7 +28,7 @@ function c_url($t0,$t1=''){
   }
 }
 //详情链接地址
-function d_url($t0,$t1=''){
+function d_url($t0, $t1='') {
   if (!empty($t1)) {
     return $t1;
   }else{
@@ -41,11 +41,11 @@ function d_url($t0,$t1=''){
   }
 }
 //TAG链接地址
-function tag_url($t0){
+function tag_url($t0) {
   return 'search.php?tag=' . $t0 . '';
 }
 //sitemap
-function sitemap($t0, $t1, $t2){
+function sitemap($t0, $t1, $t2) {
   $tmp = '';
   $res = $GLOBALS['db']->getAll('SELECT * FROM cms_channel WHERE c_parent = ' . $t0);
   foreach ($res as $row) {
@@ -61,63 +61,63 @@ function sitemap($t0, $t1, $t2){
   }
 }
 //无限级导航(宽屏)
-function navigation($t0,$t1,$t2,$t3=2,$t4="nav am-hide-md-down",$t5="sub"){
+function navigation($t0, $t1, $t2, $t3=2, $t4="nav am-hide-md-down", $t5="sub") {
   $tmp = '';
   $t2 = !empty($t2) ? $t2 : 0;
   if ($t3>0) {
-    $res = $GLOBALS['db']->getAll(LIB_CSELECT.$t0.LIB_CORDER);
+    $res = $GLOBALS['db']->getAll(LIB_CSELECT . $t0 . LIB_CORDER);
     $t3--;
-    foreach ($res AS $row){
+    foreach ($res AS $row) {
       $nav_name = !empty($row[LIB_CNNAME]) ? $row[LIB_CNNAME] : $row[LIB_CNAME];
-      if ($t0==0){
-        $tmp .= '<li '.($row['c_main']==$t2 ? 'class="'.PAGE_ACTIVE.'"' : '').'><a href="'.c_url($row['id'],$row[LIB_CLINK]).LIB_TARGET.$row[LIB_CTARGET].'">'.$nav_name.'</a>'.navigation($row['id'],'',$t2,$t3).LIB_LIE;
+      if ($t0==0) {
+        $tmp .= '<li ' . ($row['c_main']==$t2 ? 'class="' . PAGE_ACTIVE . '"' : '') . '><a href="' . c_url($row['id'],$row[LIB_CLINK]) . LIB_TARGET . $row[LIB_CTARGET] . '">' . $nav_name . '</a>' . navigation($row['id'], '', $t2, $t3) . LIB_LIE;
       }else{
-        $tmp .= LIB_LIA.c_url($row['id'],$row[LIB_CLINK]).LIB_TARGET.$row[LIB_CTARGET].'">'.$nav_name.'</a>'.navigation($row['id'],'',$t2,$t3).LIB_LIE;
+        $tmp .= LIB_LIA . c_url($row['id'], $row[LIB_CLINK]) . LIB_TARGET . $row[LIB_CTARGET] . '">' . $nav_name . '</a>' . navigation($row['id'], '', $t2, $t3) . LIB_LIE;
       }
     }
   }
-  if (!empty($tmp)){
+  if (!empty($tmp)) {
     if ($t0==0) {
-      return '<ul class="'.$t4.'">'.$t1.$tmp.LIB_ULE;
-    }else{
-      return '<ul class="'.$t5.'">'.$t1.$tmp.LIB_ULE;
+      return '<ul class="' . $t4 . '">' . $t1 . $tmp . LIB_ULE;
+    } else {
+      return '<ul class="' . $t5 . '">' . $t1 . $tmp . LIB_ULE;
     }
   }
 }
 //无限级导航（移动端）
-function navigation_m($t0,$t1,$t2,$t3=2){
+function navigation_m($t0, $t1, $t2, $t3=2) {
   $tmp = '';
   $t2 = !empty($t2) ? $t2 : 0;
   if ($t3>0) {
-    $res = $GLOBALS['db']->getAll(LIB_CSELECT.$t0.LIB_CORDER);
+    $res = $GLOBALS['db']->getAll(LIB_CSELECT . $t0 . LIB_CORDER);
     $t3--;
     foreach ($res AS $row) {
       $nav_name = !empty($row[LIB_CNNAME]) ? $row[LIB_CNNAME] : $row[LIB_CNAME];
-      $tmp .= '<li class="'.($t0==$row['id']?PAGE_ACTIVE:'').($row[LIB_CIFSUB]==1&&$t3!=0?'am-dropdown':'').'" '.($row[LIB_CIFSUB]==1&&$t3!=0?'data-am-dropdown':'').'><a '.($row[LIB_CIFSUB]==1&&$t3!=0?'class="am-dropdown-toggle"':'').($row[LIB_CIFSUB]==1&&$t3!=0?' data-am-dropdown-toggle':'').' href="'.($row[LIB_CIFSUB]==1&&$t3!=0?'javascript:;':c_url($row['id'],$row[LIB_CLINK])).'">'.$nav_name.($row[LIB_CIFSUB]==1&&$t3!=0?' <span class="am-icon-caret-down"></span>':'').'</a>'.navigation_m($row['id'],'',$t2,$t3).LIB_LIE;
+      $tmp .= '<li class="' . ($t0==$row['id'] ? PAGE_ACTIVE : '') . ($row[LIB_CIFSUB]==1 && $t3!=0 ? 'am-dropdown' : '') . '" ' . ($row[LIB_CIFSUB]==1 && $t3!=0 ? 'data-am-dropdown' : '') . '><a ' . ($row[LIB_CIFSUB]==1 && $t3!=0 ? 'class="am-dropdown-toggle"' : '') . ($row[LIB_CIFSUB]==1 && $t3!=0 ? ' data-am-dropdown-toggle' : '') . ' href="' . ($row[LIB_CIFSUB]==1 && $t3!=0 ? 'javascript:;' : c_url($row['id'], $row[LIB_CLINK])) . '">' . $nav_name . ($row[LIB_CIFSUB]==1 && $t3!=0 ? ' <span class="am-icon-caret-down"></span>' : '') . '</a>' . navigation_m($row['id'], '', $t2, $t3) . LIB_LIE;
     }
-    if (!empty($tmp)){
+    if (!empty($tmp)) {
       if ($t0==0) {
-        return '<ul class="am-nav am-nav-pills am-topbar-nav">'.$t1.$tmp.LIB_ULE;
-      }else{
-        return '<ul class="am-dropdown-content">'.$t1.$tmp.LIB_ULE;
+        return '<ul class="am-nav am-nav-pills am-topbar-nav">' . $t1 . $tmp . LIB_ULE;
+      } else {
+        return '<ul class="am-dropdown-content">' . $t1 . $tmp . LIB_ULE;
       }
     }
   }
 }
 //一级导航
-function navigation_s($t0, $t1=''){
+function navigation_s($t0, $t1='') {
   $tmp = '';
   $res = $GLOBALS['db']->getAll(LIB_CSELECT . $t0 . LIB_CORDER);
   foreach ($res as $row) {
     $nav_name = !empty($row[LIB_CNNAME]) ? $row[LIB_CNNAME] : $row[LIB_CNAME];
-      $tmp .= LIB_LIA . c_url($row['id'],$row[LIB_CLINK]) . LIB_TARGET . $row[LIB_CTARGET] . '">' . $nav_name . LIB_ALI;
+      $tmp .= LIB_LIA . c_url($row['id'], $row[LIB_CLINK]) . LIB_TARGET . $row[LIB_CTARGET] . '">' . $nav_name . LIB_ALI;
   }
   if (!empty($tmp)) {
     return $t1 . $tmp;
   }
 }
 //频道列表
-function channel_slist($t0, $t1, $t2=2){
+function channel_slist($t0, $t1, $t2=2) {
   if ($t2>0) {
     $tmp = '';
     $res = $GLOBALS['db']->getAll('SELECT * FROM cms_channel WHERE c_parent = ' . $t0 . ' AND c_navigation=1 ORDER BY c_order ASC , id ASC ');
@@ -129,11 +129,11 @@ function channel_slist($t0, $t1, $t2=2){
   if ($t2==2) {
     return $tmp;
   }else{
-    return '<ul>'.$tmp.LIB_ULE;
+    return '<ul>' . $tmp . LIB_ULE;
   }
 }
 //频道和内容页的当前位置
-function current_channel_location($t0, $t1){
+function current_channel_location($t0, $t1) {
   $tmp = '';
   $res = $GLOBALS['db']->getAll('SELECT * FROM cms_channel WHERE id = ' . $t0 . '');
   foreach ($res as $row) {
@@ -149,7 +149,7 @@ function current_channel_location($t0, $t1){
   return $tmp;
 }
 //获取频道字段
-function get_channel($t0, $t1){
+function get_channel($t0, $t1) {
   $res = $GLOBALS['db']->getRow('SELECT * FROM cms_channel WHERE id=' . $t0 . '');
   if ($row = $res) {
     return $row[$t1];
@@ -158,7 +158,7 @@ function get_channel($t0, $t1){
   }
 }
 //smtp邮件发送
-function smtp_mail($mailto, $subject, $body){
+function smtp_mail($mailto, $subject, $body) {
   // smtp主体部分
   $smtpserver = SMTP_SERVER;
   //SMTP服务器
@@ -199,9 +199,9 @@ function img_always($str) {
   }
 }
 // 获取当前网页
-function php_self(){
+function php_self() {
   if (!empty($_SERVER[LIB_PHPSELF])) {
-    return substr($_SERVER[LIB_PHPSELF],strrpos($_SERVER[LIB_PHPSELF],'/')+1);
+    return substr($_SERVER[LIB_PHPSELF], strrpos($_SERVER[LIB_PHPSELF],'/')+1);
   } else {
     return false;
   }
@@ -219,8 +219,8 @@ function is_search($p) {
   return @$p == 'search';
 }
 function is_channel() {
-  return strpos($_SERVER[LIB_PHPSELF],'channel');
+  return strpos($_SERVER[LIB_PHPSELF], 'channel');
 }
 function is_detail() {
-  return strpos($_SERVER[LIB_PHPSELF],'detail');
+  return strpos($_SERVER[LIB_PHPSELF], 'detail');
 }

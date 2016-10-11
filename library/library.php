@@ -2,20 +2,20 @@
 function alert($t0) {
   echo LIB_JS_ALERT . $t0 . '");</script>';
 }
-function alert_back($t0){
+function alert_back($t0) {
   die(LIB_JS_ALERT . $t0 . '");window.history.back();</script>');
 }
 //提示后跳转
-function alert_href($t0, $t1){
+function alert_href($t0, $t1) {
   die(LIB_JS_ALERT . $t0 . '");window.location.href="' . $t1 . '"</script>');
 }
-function back(){
+function back() {
   die('<script type="text/javascript">window.history.back();</script>');
 }
-function href($t0){
+function href($t0) {
   die('<script type="text/javascript">window.location.href="' . $t0 . '"</script>');
 }
-function url_back($t0 = ''){
+function url_back($t0 = '') {
   $url_back = $_COOKIE['cms']['url_back'];
   if (empty($url_back)) {
     if ($t0) {
@@ -32,34 +32,34 @@ function url_back($t0 = ''){
   }
 }
 //空值返回
-function null_back($t0, $t1){
+function null_back($t0, $t1) {
   if (empty($t0)) {
     alert_back($t1);
   }
 }
-function n_back($t0, $t1){
+function n_back($t0, $t1) {
   if ($t0 == '' || $t0 === null) {
     alert_back($t1);
   }
 }
 //比较返回
-function compare_back($t0,$t1,$t2){
+function compare_back($t0, $t1, $t2) {
   if ($t0 != $t1) {
     alert_back($t2);
   }
 }
 //非数字返回
-function non_numeric_back($t0, $t1){
+function non_numeric_back($t0, $t1) {
   if (!is_numeric($t0)) {
     alert_back($t1);
   }
 }
 //判断非空数组
-function check_array($arr){
+function check_array($arr) {
   return count($arr) ? count($arr) : 0;
 }
 // 判断电子邮箱
-function check_email($str){
+function check_email($str) {
   if (!empty($str)) {
     $pattern = "/^([0-9A-Za-z\\-_\\.]+)@([0-9a-z]+\\.[a-z]{2,3}(\\.[a-z]{2})?)$/i";
     return preg_match($pattern, $str);
@@ -69,7 +69,7 @@ function check_email($str){
 }
 //分页初始化
 //参数说明：1分页参数。2.每页显示多少。3.一共多少。
-function page_handle($t0, $t1, $t2){
+function page_handle($t0, $t1, $t2) {
   if (isset($_GET[$t0])) {
     $page_num = $_GET[$t0];
     if (empty($page_num) || $page_num < 1 || !is_numeric($page_num)) {
@@ -98,7 +98,7 @@ function page_handle($t0, $t1, $t2){
   return $tmp;
 }
 
-function page_ajax($t0, $t1, $t2){
+function page_ajax($t0, $t1, $t2) {
   if (isset($_POST[$t0])) {
     $page_num = $_POST[$t0];
     if (empty($page_num) || $page_num < 1 || !is_numeric($page_num)) {
@@ -129,7 +129,7 @@ function page_ajax($t0, $t1, $t2){
 
 //返回翻页条
 //参数说明：1.总页数。2.当前页。3.分页参数。4.分页半径。5.频道
-function page_show($t0, $t1, $t2, $t3){
+function page_show($t0, $t1, $t2, $t3) {
   $page_sum = $t0;
   $page_current = $t1;
   $page_parameter = $t2;
@@ -228,7 +228,7 @@ function page_show($t0, $t1, $t2, $t3){
   return $tmp . $page_back . $page_home . $page_list . $page_last . $page_next . '<input type="hidden" value="' . $page_current . '" class="page_current">';
 }
 //翻页条后台
-function page_show_admin($t0, $t1, $t2, $t3, $c_sub = 0){
+function page_show_admin($t0, $t1, $t2, $t3, $c_sub = 0) {
   $page_sum = $t0;
   $page_current = $t1;
   $page_parameter = $t2;
@@ -295,32 +295,32 @@ function page_show_admin($t0, $t1, $t2, $t3, $c_sub = 0){
   return $tmp;
 }
 //截断字符串
-function str_cut($t0, $t1, $t2 = '...'){
+function str_cut($t0, $t1, $t2 = '...') {
   $str_ext = mb_strlen($t0, 'utf8') > $t1 ? $t2 : '';
   $tmp_str = mb_substr($t0, 0, $t1, 'utf8');
   return $tmp_str . $str_ext;
 }
 //返回日期 2020-01-01
-function mydate($t0){
+function mydate($t0) {
   return mb_substr($t0, 0, 10, 'utf8');
 }
 //返回当前的脚本名
-function self_name(){
+function self_name() {
   $tmp_str = explode('/', $_SERVER['PHP_SELF']);
   return end($tmp_str);
 }
 //返回可安全执行的SQL,带html格式
-function str_isafe($str){
+function str_isafe($str) {
   $tmp = array('SELECT ', 'insert ', 'update ', 'delete ', ' and', 'drop table', 'script', '*', '%', 'eval');
   $tmp_re = array('sel&#101;ct ', 'ins&#101;rt ', 'up&#100;ate ', 'del&#101;te ', ' an&#100;', 'dro&#112; table', '&#115;cript', '&#42;', '&#37;', '$#101;val');
   return str_replace($tmp, $tmp_re, trim($str));
 }
 //返回可安全执行的SQL,不带html格式
-function str_safe($str){
+function str_safe($str) {
   return str_isafe(htmlspecialchars($str));
 }
 //返回无空格,tab,html的字串
-function str_text($str, $ext = 0){
+function str_text($str, $ext = 0) {
   if ($ext == 1) {
     return str_replace(array("\r\n", "\r", "\n", " ", "　", chr(34), chr(13), " ", "&nbsp;"), '', strip_tags(str_isafe($str)));
   } elseif ($ext == 2) {
@@ -330,18 +330,18 @@ function str_text($str, $ext = 0){
   }
 }
 //数组到sql字串
-function array_str($arr,$p=','){
+function array_str($arr,$p=',') {
   if (strpos($arr,$p)!==false) {
     return implode($p, $arr);
   } else {
     return $arr;
   }
 }
-function str_array($str,$p=','){
+function str_array($str,$p=',') {
   return explode($p, $str);
 }
 //将数组转换成供insert用的字符串
-function arr_insert($arr){
+function arr_insert($arr) {
   foreach ($arr as $k => $v) {
     $tmp_key[] = "`" . $k . "`";
     $tmp_value[] = "'" . $v . "'";
@@ -355,7 +355,7 @@ function arr_insert($arr){
   return $tmp;
 }
 //将数组转换成供update用的字符串
-function arr_update($arr){
+function arr_update($arr) {
   $tmp = '';
   foreach ($arr as $k => $v) {
     $tmp .= $k . " = '" . $v . "',";
@@ -363,7 +363,7 @@ function arr_update($arr){
   return rtrim($tmp,',');
 }
 //根据ID获取任何表的任何字段
-function get_field($t0, $t1, $t2, $t3 = 'id'){
+function get_field($t0, $t1, $t2, $t3 = 'id') {
   $res = $GLOBALS['db']->getRow('SELECT * FROM ' . $t0 . ' WHERE ' . $t3 . ' = ' . $t2 . ' ');
   if (is_array($res)) {
     return $res[$t1];
@@ -372,20 +372,20 @@ function get_field($t0, $t1, $t2, $t3 = 'id'){
   }
 }
 //通过user_id得到用户名
-function get_user_name($t0){
+function get_user_name($t0) {
   $sql = "SELECT m_name FROM cms_user WHERE id='{$t0}'";
   return $GLOBALS['db']->getOne($sql);
 }
-function get_user($t0,$t1){
+function get_user($t0,$t1) {
   $sql = "SELECT ".$t1." FROM cms_user WHERE id='".$t0."'";
   return $GLOBALS['db']->getOne($sql);
 }
 //高亮显示
-function high_light($t0, $t1){
+function high_light($t0, $t1) {
   return str_replace($t1, '<span class="highlight">' . $t1 . '</span>', $t0);
 }
 //后台操作日志
-function admin_log($code, $admin_id, $admin_name = '', $silent = ADMIN_LOG){
+function admin_log($code, $admin_id, $admin_name = '', $silent = ADMIN_LOG) {
   $log['admin_id'] = $admin_id;
   $log['admin_name'] = $admin_name;
   $log['log_code'] = $code;
@@ -396,7 +396,7 @@ function admin_log($code, $admin_id, $admin_name = '', $silent = ADMIN_LOG){
   }
 }
 //获取访问者真实IP
-function get_ip(){
+function get_ip() {
   if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
     //check ip FROM share internet
     $ip = $_SERVER['HTTP_CLIENT_IP'];
@@ -409,12 +409,12 @@ function get_ip(){
   return $ip;
 }
 // 获取当前完整URL
-function get_Url(){
+function get_Url() {
   $url_str = $_SERVER['SERVER_NAME'] . $_SERVER[LIB_RQURI];
   return LIB_HTTP . $url_str;
 }
 // 判断移动端
-function is_mobile(){
+function is_mobile() {
   $regExp = '/nokia|iphone|android|samsung|htc|motorola|blackberry|ericsson|huawei|dopod|amoi|gionee|^sie\\-|^bird|^zte\\-|haier|';
   $regExp .= 'blazer|netfront|helio|hosin|novarra|techfaith|palmsource|^mot\\-|softbank|foma|docomo|kddi|up\\.browser|up\\.link|';
   $regExp .= 'symbian|smartphone|midp|wap|phone|windows ce|CoolPad|webos|iemobile|^spice|longcos|pantech|portalmmm|';
@@ -428,7 +428,7 @@ function is_mobile(){
   }
 }
 // 随机码
-function str_rand($len = 6){
+function str_rand($len = 6) {
   $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   // characters to build the password from
   mt_srand((double) microtime() * 1000000 * getmypid());
@@ -440,7 +440,7 @@ function str_rand($len = 6){
   return $tmp_str;
 }
 // 32位非0整数
-function str_code($len = 32){
+function str_code($len = 32) {
   $chars = '123456789';
   // characters to build the password from
   mt_srand((double) microtime() * 1000000 * getmypid());
@@ -459,14 +459,14 @@ function str_code($len = 32){
  *
  * @return  mix
  */
-function addslashes_deep($value){
+function addslashes_deep($value) {
   if (empty($value)) {
     return $value;
   } else {
     return is_array($value) ? array_map('addslashes_deep', $value) : addslashes(str_isafe($value));
   }
 }
-function stripslashes_deep($value){
+function stripslashes_deep($value) {
   if (empty($value)) {
     return $value;
   } else {
@@ -474,7 +474,7 @@ function stripslashes_deep($value){
   }
 }
 // 获取碎片内容
-function get_chip($t0){
+function get_chip($t0) {
   $res = '';
   if (is_numeric($t0)) {
     $res = $GLOBALS['db']->getOne('SELECT c_content FROM cms_chip WHERE id = ' . $t0);
@@ -491,7 +491,7 @@ function get_chip($t0){
 // $t1 从第几位开始 $t2 到第几位结束
 // $t3 倒数几位
 // 如银行卡号：0,4,3 得出6222************847
-function get_mask_str($t0, $t1 = 0, $t2 = 3, $t3 = 4){
+function get_mask_str($t0, $t1 = 0, $t2 = 3, $t3 = 4) {
   $strlen = strlen($t0);
   $str_mid = '';
   $str_pre = substr($t0, $t1, $t2);
@@ -505,7 +505,7 @@ function get_mask_str($t0, $t1 = 0, $t2 = 3, $t3 = 4){
 // $p 参数名
 // $v 参数值
 // $s 替换字串
-function trans_p($p, $v, $s, $t='array'){
+function trans_p($p, $v, $s, $t='array') {
   if ($t=='array') {
     $res = $s;
     foreach ($p as $key => $val) {
@@ -517,12 +517,12 @@ function trans_p($p, $v, $s, $t='array'){
   return $res;
 }
 // 短网址
-function url_s($url){
+function url_s($url) {
   $data = array('url' => $url);
   $url = URL_MURL;
   return json_decode(http_post($url, $data), true);
 }
-function baidu_dwz($url, $type = 1){
+function baidu_dwz($url, $type = 1) {
   if ($type) {
     $baseurl = 'http://dwz.cn/create.php';
   } else {
@@ -544,7 +544,7 @@ function baidu_dwz($url, $type = 1){
     return $arrResponse['longurl'];
   }
 }
-function http_get($url){
+function http_get($url) {
   $curl = curl_init();
   curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
   curl_setopt($curl, CURLOPT_TIMEOUT, 200);
@@ -558,7 +558,7 @@ function http_get($url){
   curl_close($curl);
   return $output;
 }
-function http_post($url, $data){
+function http_post($url, $data) {
   // 模拟提交数据函数
   $curl = curl_init();
   curl_setopt($curl, CURLOPT_URL, $url);
@@ -581,7 +581,7 @@ function http_post($url, $data){
   curl_close($curl);
   return $output;
 }
-function https_get($url){
+function https_get($url) {
   // 模拟提交数据函数
   $curl = curl_init();
   // 启动一个CURL会话
@@ -612,7 +612,7 @@ function https_get($url){
   // 关闭CURL会话
   return $output;
 }
-function https_post($url, $data){
+function https_post($url, $data) {
   // 模拟提交数据函数
   $curl = curl_init();
   // 启动一个CURL会话
@@ -648,7 +648,7 @@ function https_post($url, $data){
   return $output;
 }
 // 获取最大值
-function get_max($tbl, $col, $sql = ''){
+function get_max($tbl, $col, $sql = '') {
   if ($sql != '') {
     $res = $GLOBALS['db']->getOne("SELECT MAX({$col}) FROM {$tbl} WHERE {$sql}");
   } else {
@@ -657,7 +657,7 @@ function get_max($tbl, $col, $sql = ''){
   return !empty($res) ? $res : 0;
 }
 // 自动清理超期的数据
-function clear_expire($tbl, $col, $limit, $sql, $id = 'id'){
+function clear_expire($tbl, $col, $limit, $sql, $id = 'id') {
   $ids = '';
   $res = $GLOBALS['db']->getAll("SELECT {$id},{$col},{$limit} FROM {$tbl} WHERE {$sql}");
   foreach ($res as $val) {
@@ -674,7 +674,7 @@ function clear_expire($tbl, $col, $limit, $sql, $id = 'id'){
   }
 }
 // 数组转字串（引号字串值）
-function implode_ex($w, $arr){
+function implode_ex($w, $arr) {
   $str = '';
   foreach ($arr as $key=>$val) {
     if ($key==0) {
@@ -686,21 +686,21 @@ function implode_ex($w, $arr){
   return $str;
 }
 // 获取后缀名
-function get_file_ext($t0){
+function get_file_ext($t0) {
   return substr($t0, strrpos($t0, '.') + 1);
 }
 // 从绝对本地地址获取文件名
-function get_file_name($str){
+function get_file_name($str) {
   $arr = explode('/', $str);
   $totalcount = count($arr) - 1;
   return $arr[$totalcount];
 }
-function check_browser(){
+function check_browser() {
   return strpos($_SERVER[LIB_HTTPAGT], 'MSIE 8.0') || strpos($_SERVER[LIB_HTTPAGT], 'MSIE 7.0') || strpos($_SERVER[LIB_HTTPAGT], 'MSIE 6.0');
 }
 // 地址码解析
 // type [1:state,2:city,3:district,4:location]
-function get_region($loc,$type = 1){
+function get_region($loc,$type = 1) {
   $sql = "SELECT p_name FROM cms_region_state WHERE p_code = '";
   if (!empty($loc)) {
     switch ($type) {
@@ -736,7 +736,7 @@ function get_region($loc,$type = 1){
 // 多维数组转单维
 // array(array("0"=>值),array("0"=>值)，...)
 // array("0"=>值,"1"=>值,...)
-function get_easy_array($many_arr,$many_key){
+function get_easy_array($many_arr,$many_key) {
   $res = array();
   foreach ($many_arr as $val) {
     $res[] = $val[$many_key];
@@ -747,7 +747,7 @@ function get_easy_array($many_arr,$many_key){
 // $level ['L','M','Q','H']
 // $type ['png','text','raw']
 // $size 3:99;4:132
-function get_qrcode($url,$size = 3,$margin = 2,$type = 'png',$level = 'L'){
+function get_qrcode($url,$size = 3,$margin = 2,$type = 'png',$level = 'L') {
   if (!strpos($url, LIB_HTTP)) {
     $url = LIB_HTTP.$url;
   }
@@ -776,11 +776,11 @@ function get_qrcode($url,$size = 3,$margin = 2,$type = 'png',$level = 'L'){
   return $output;
 }
 
-function alph_num($char){
+function alph_num($char) {
   $char = strtolower($char);
   $array = array('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
   $len = strlen($char);
-  for($i = 0;$i<$len;$i++){
+  for($i = 0;$i<$len;$i++) {
     $index = array_search($char[$i],$array);
     $sum += ($index+1)*pow(26,$len-$i-1);
   }
@@ -801,7 +801,7 @@ function num_alph($n) {
   }
 }
 
-function is_phonenum($num){
+function is_phonenum($num) {
   return preg_match("/^1[34578]{1}\d{9}$/",$num);
 }
 
@@ -812,7 +812,7 @@ function is_phonenum($num){
  * @param int $number 数组索引
  * @return string 返回截取的内容
  */
-function str_part($str,$sign,$number=0){
+function str_part($str,$sign,$number=0) {
   $array = explode($sign, $str);
   $length = count($array);
   if ($number<0) {

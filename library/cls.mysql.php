@@ -134,7 +134,7 @@ class Mysql {
     if ($mode == 'INSERT') {
       $fields = $values = array();
       foreach ($field_names as $value) {
-        if (array_key_exists($value, $field_values) ) {
+        if (array_key_exists($value, $field_values)) {
           $fields[] = $value;
           $values[] = '\'' . $field_values[$value] . '\'';
         }
