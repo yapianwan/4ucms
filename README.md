@@ -37,6 +37,7 @@ shadowwing@163.com
 >		/templates      前台模板
 >		/uploadfile     上传文件(需要读写权限)
 >		/view           模板切换查看
+>		sitemap.xml     (需要读写权限)
 
 ####功能介绍
 * [内容]菜单：频道管理，详情管理，幻灯管理，碎片管理
