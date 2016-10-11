@@ -49,7 +49,6 @@ $GLOBALS['db'] = $db = new Mysql(DATA_HOST, DATA_USERNAME, DATA_PASSWORD, DATA_N
 $sql = 'SELECT * FROM cms_system WHERE id = 1';
 $GLOBALS['cms'] = $cms = $db->getRow($sql);
 $system_sidenav = '导航菜单';
-$GLOBALS['rewrite'] = $cms['s_rewrite'] ? $cms['s_rewrite'] : 0;
 $GLOBALS['t_path'] = $t_path = 'templates/' . (!empty($_COOKIE['cms']['template_id']) ? $_COOKIE['cms']['template_id'] : $cms['s_template']) . '/';
 // 对用户传入的变量进行转义操作
 if (!get_magic_quotes_gpc()) {
