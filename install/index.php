@@ -93,7 +93,7 @@ $(function(){
       <tr>
         <td width="100" align="center">主机名</td>
         <td>
-          <input id="db_host" class="form_text" type="text" name="db_host">
+          <input id="db_host" class="form_text" type="text" name="db_host" value="localhost">
           <span class="color_red">*</span>
           <span class="color_gray">一般为 localhost 或者 127.0.0.1</span>
         </td>
