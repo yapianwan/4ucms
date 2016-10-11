@@ -24,19 +24,19 @@ if (isset($_POST['save'])) {
 
   set_time_limit(0);
   $fp = @fopen($file_name, "r");
-    if ($fp === false) {
-      die("不能打开SQL文件");
-    }
+  if ($fp === false) {
+    die("不能打开SQL文件");
+  }
 
-    $tbl = $db->getAll("SHOW TABLES");
-    $arr_tbl = get_easy_array($tbl,'Tables_in_'.DATA_NAME);
-    if ($arr_tbl) {
-      echo "正在清空数据库,请稍等....<br>"; 
-      foreach ($arr_tbl as $val) {
-        $db->query("DROP TABLE IF EXISTS $val"); 
-      }
-      echo "数据库清理成功<br>";
+  $tbl = $db->getAll("SHOW TABLES");
+  $arr_tbl = get_easy_array($tbl,'Tables_in_'.DATA_NAME);
+  if ($arr_tbl) {
+    echo "正在清空数据库,请稍等....<br>"; 
+    foreach ($arr_tbl as $val) {
+      $db->query("DROP TABLE IF EXISTS $val"); 
     }
+    echo "数据库清理成功<br>";
+  }
 
   echo "正在执行导入数据库操作<br>";
   // 导入数据库的MySQL命令
