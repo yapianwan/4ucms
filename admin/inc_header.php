@@ -42,7 +42,7 @@
         </a>
         <ul class="am-dropdown-content">
           <li><a href="cms_system.php"><span class="am-icon-cog"></span> 系统设置 </a></li>
-          <li><a href="cms_role.php"><span class="am-icon-user"></span> 权限管理 </a></li>
+          <li><a href="cms_role.php"><span class="am-icon-graduation-cap"></span> 权限管理 </a></li>
           <li><a href="cms_admin.php"><span class="am-icon-user"></span> 管理员</a></li>
           <li><a href="cms_template.php"><span class="am-icon-laptop"></span> 模板管理 </a></li>
           <li><a href="cms_database.php"><span class="am-icon-database"></span> 数据库管理 </a></li>
