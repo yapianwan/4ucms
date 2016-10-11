@@ -10,39 +10,39 @@
 // root
 $arr_url = array('\\'=>'/');
 if (strpos(getcwd(), ADMIN_DIR)) {
-  $arr_admin = array('/'.ADMIN_DIR=>'');
-  @define(TEXT_ROOT, strtr(strtr(getcwd(),$arr_url).'/',$arr_admin));
+  $arr_admin = array('/' . ADMIN_DIR=>'');
+  @define(TEXT_ROOT, strtr(strtr(getcwd(),$arr_url) . '/',$arr_admin));
   unset($arr_admin);
 } elseif (strpos(getcwd(), EDITOR_DIR)) {
-  $arr_editor = array('/'.EDITOR_DIR=>'');
-  @define(TEXT_ROOT, strtr(strtr(getcwd(),$arr_url).'/',$arr_editor));
+  $arr_editor = array('/' . EDITOR_DIR=>'');
+  @define(TEXT_ROOT, strtr(strtr(getcwd(),$arr_url) . '/',$arr_editor));
   unset($arr_editor);
 } elseif (strpos(getcwd(), INSTALL_DIR)) {
-  $arr_install = array('/'.INSTALL_DIR=>'');
-  @define(TEXT_ROOT, strtr(strtr(getcwd(),$arr_url).'/',$arr_install));
+  $arr_install = array('/' . INSTALL_DIR=>'');
+  @define(TEXT_ROOT, strtr(strtr(getcwd(),$arr_url) . '/',$arr_install));
   unset($arr_install);
 } elseif (strpos(getcwd(), TEMP_DIR)) {
-  $arr_temp = array('/'.TEMP_DIR=>'');
-  @define(TEXT_ROOT, strtr(strtr(getcwd(),$arr_url).'/',$arr_temp));
+  $arr_temp = array('/' . TEMP_DIR=>'');
+  @define(TEXT_ROOT, strtr(strtr(getcwd(),$arr_url) . '/',$arr_temp));
   unset($arr_temp);
 } else {
   @define(TEXT_ROOT, strtr(getcwd(),$arr_url) . '/');
 }
 unset($arr_url);
 // 引入文件
-include_once ROOT_PATH.'/library/constant.php';
-include_once ROOT_PATH.'/config/config.php';
-include_once ROOT_PATH.'/config/data.php';
-include_once ROOT_PATH.'/library/cls.mysql.php';
-include_once ROOT_PATH.'/library/library.php';
+include_once ROOT_PATH . '/library/constant.php';
+include_once ROOT_PATH . '/config/config.php';
+include_once ROOT_PATH . '/config/data.php';
+include_once ROOT_PATH . '/library/cls.mysql.php';
+include_once ROOT_PATH . '/library/library.php';
 // 公共函数库
-include_once ROOT_PATH.'/library/function.php';
+include_once ROOT_PATH . '/library/function.php';
 // 后台函数文件
-include_once ROOT_PATH.'/library/lib.user.php';
-include_once ROOT_PATH.'/library/lib.time.php';
-include ROOT_PATH.'/config/smtp.php';
-include_once ROOT_PATH.'/library/cls.smtp.php';
-include_once ROOT_PATH.'/library/lib.base.php';
+include_once ROOT_PATH . '/library/lib.user.php';
+include_once ROOT_PATH . '/library/lib.time.php';
+include ROOT_PATH . '/config/smtp.php';
+include_once ROOT_PATH . '/library/cls.smtp.php';
+include_once ROOT_PATH . '/library/lib.base.php';
 
 $GLOBALS['db'] = $db = new Mysql(DATA_HOST, DATA_USERNAME, DATA_PASSWORD, DATA_NAME);
 //cms_system
@@ -86,27 +86,27 @@ if (is_detail()) {
   $objChannel = new Channel($db);
   $channel = $objChannel->getChannel($detail['d_parent']);
 
-  $title = $detail['d_name'].'-'.$channel[LIB_CNAME].'-'.$cms[LIB_SNAME];
+  $title = $detail['d_name'] . '-' . $channel[LIB_CNAME] . '-' . $cms[LIB_SNAME];
   $keywords = !empty($detail['d_keywords']) ? $detail['d_keywords'] : $detail['d_name'];
   $description = !empty($detail[LIB_DDESC]) ? str_cut(str_text($detail[LIB_DDESC],1),220) : str_cut(str_text($cms[LIB_SDESC],1),220);
 }
 elseif (is_channel()) {
-  include ROOT_PATH.'/library/cls.channel.php';
+  include ROOT_PATH . '/library/cls.channel.php';
 
   $objChannel = new Channel($db);
   $channel = $objChannel->getChannel($id);
 
-  $title = $channel[LIB_CNAME].'-'.$cms[LIB_SNAME];
+  $title = $channel[LIB_CNAME] . '-' . $cms[LIB_SNAME];
   $keywords = !empty($channel['c_keywords']) ? $channel['c_keywords'] : $channel[LIB_CNAME];
   $description = !empty($channel['c_description']) ? $str_cut(str_text($channel['c_description'],1),220) : str_cut(str_text($cms[LIB_SDESC],1),220);
 }
 elseif (is_404(@$c_main)) {
-  $title = '404 Not Found - '.$cms[LIB_SNAME];
+  $title = '404 Not Found - ' . $cms[LIB_SNAME];
   $keywords = $cms['s_keywords'];
   $description = str_cut(str_text($cms[LIB_SDESC],1),220);
 }
 else{
-  $title = !empty($cms['s_seoname']) ? $cms[LIB_SNAME].'-'.$cms['s_seoname'] : $cms[LIB_SNAME];
+  $title = !empty($cms['s_seoname']) ? $cms[LIB_SNAME] . '-' . $cms['s_seoname'] : $cms[LIB_SNAME];
   $keywords = $cms['s_keywords'];
   $description = str_cut(str_text($cms[LIB_SDESC],1),220);
 }
