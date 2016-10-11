@@ -373,11 +373,11 @@ function get_field($t0, $t1, $t2, $t3 = 'id') {
 }
 //通过user_id得到用户名
 function get_user_name($t0) {
-  $sql = "SELECT m_name FROM cms_user WHERE id='{$t0}'";
+  $sql = "SELECT m_name FROM cms_user WHERE id = '{$t0}'";
   return $GLOBALS['db']->getOne($sql);
 }
-function get_user($t0,$t1) {
-  $sql = "SELECT ".$t1." FROM cms_user WHERE id='".$t0."'";
+function get_user($t0, $t1) {
+  $sql = "SELECT {$t1} FROM cms_user WHERE id = '{$t0}'";
   return $GLOBALS['db']->getOne($sql);
 }
 //高亮显示
@@ -678,9 +678,9 @@ function implode_ex($w, $arr) {
   $str = '';
   foreach ($arr as $key=>$val) {
     if ($key==0) {
-      $str .= '"'.$val.'"';
+      $str .= '"' . $val . '"';
     } else {
-      $str .= $w.'"'.$val.'"';
+      $str .= $w . '"' . $val . '"';
     }
   }
   return $str;
@@ -700,43 +700,43 @@ function check_browser() {
 }
 // 地址码解析
 // type [1:state,2:city,3:district,4:location]
-function get_region($loc,$type = 1) {
+function get_region($loc, $type = 1) {
   $sql = "SELECT p_name FROM cms_region_state WHERE p_code = '";
   if (!empty($loc)) {
     switch ($type) {
       case 1:
-        $p = substr($loc,0,2);
-        $name = $GLOBALS['db']->getOne($sql.intval($p)."'");
+        $p = substr($loc, 0, 2);
+        $name = $GLOBALS['db']->getOne($sql . intval($p) . "'");
         break;
       case 2:
-        $p = substr($loc,0,4);
-        $name = $GLOBALS['db']->getOne("SELECT c_name FROM cms_region_city WHERE c_code = '".intval($p)."'");
+        $p = substr($loc, 0, 4);
+        $name = $GLOBALS['db']->getOne("SELECT c_name FROM cms_region_city WHERE c_code = '" . intval($p) . "'");
         break;
       case 3:
-        $name = $GLOBALS['db']->getOne("SELECT d_name FROM cms_region_district WHERE d_code = '".intval($loc)."'");
+        $name = $GLOBALS['db']->getOne("SELECT d_name FROM cms_region_district WHERE d_code = '" . intval($loc) . "'");
         break;
       case 4:
-        $state = substr($loc,0,2);
-        $state_name = $GLOBALS['db']->getOne($sql.intval($state)."'");
-        $city = substr($loc,0,4);
-        $city_name = $GLOBALS['db']->getOne("SELECT c_name FROM cms_region_city WHERE c_code = '".intval($city)."'");
-        $district_name = $GLOBALS['db']->getOne("SELECT d_name FROM cms_region_district WHERE d_code = '".intval($loc)."'");
+        $state = substr($loc, 0, 2);
+        $state_name = $GLOBALS['db']->getOne($sql . intval($state) . "'");
+        $city = substr($loc, 0, 4);
+        $city_name = $GLOBALS['db']->getOne("SELECT c_name FROM cms_region_city WHERE c_code = '" . intval($city) . "'");
+        $district_name = $GLOBALS['db']->getOne("SELECT d_name FROM cms_region_district WHERE d_code = '" . intval($loc) . "'");
         $name = $state_name . $city_name . $district_name;
         break;
       default:
-        $p = substr($loc,0,2);
-        $name = $GLOBALS['db']->getOne($sql.intval($p)."'");
+        $p = substr($loc, 0, 2);
+        $name = $GLOBALS['db']->getOne($sql . intval($p) . "'");
         break;
     }
     return $name;
-  }else{
+  } else {
     return FALSE;
   }  
 }
 // 多维数组转单维
 // array(array("0"=>值),array("0"=>值)，...)
 // array("0"=>值,"1"=>值,...)
-function get_easy_array($many_arr,$many_key) {
+function get_easy_array($many_arr, $many_key) {
   $res = array();
   foreach ($many_arr as $val) {
     $res[] = $val[$many_key];
@@ -747,9 +747,9 @@ function get_easy_array($many_arr,$many_key) {
 // $level ['L','M','Q','H']
 // $type ['png','text','raw']
 // $size 3:99;4:132
-function get_qrcode($url,$size = 3,$margin = 2,$type = 'png',$level = 'L') {
+function get_qrcode($url, $size = 3, $margin = 2, $type = 'png', $level = 'L') {
   if (!strpos($url, LIB_HTTP)) {
-    $url = LIB_HTTP.$url;
+    $url = LIB_HTTP . $url;
   }
   switch ($type) {
     case 'jpg':
@@ -780,29 +780,29 @@ function alph_num($char) {
   $char = strtolower($char);
   $array = array('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
   $len = strlen($char);
-  for($i = 0;$i<$len;$i++) {
-    $index = array_search($char[$i],$array);
-    $sum += ($index+1)*pow(26,$len-$i-1);
+  for($i = 0; $i<$len; $i++) {
+    $index = array_search($char[$i], $array);
+    $sum += ($index+1)*pow(26, $len-$i-1);
   }
   return $sum;
 }
 
 function num_alph($n) {
   $n++;
-  $array = array(1=>'a',2=>'b',3=>'c',4=>'d',5=>'e',6=>'f',7=>'g',8=>'h',9=>'i',10=>'j',11=>'k',12=>'l',13=>'m',14=>'n',15=>'o',16=>'p',17=>'q',18=>'r',19=>'s',20=>'t',21=>'u',22=>'v',23=>'w',24=>'x',25=>'y',26=>'z');
+  $array = array(1=>'a', 2=>'b', 3=>'c', 4=>'d', 5=>'e', 6=>'f', 7=>'g', 8=>'h', 9=>'i', 10=>'j', 11=>'k', 12=>'l', 13=>'m', 14=>'n', 15=>'o', 16=>'p', 17=>'q', 18=>'r', 19=>'s', 20=>'t', 21=>'u', 22=>'v', 23=>'w', 24=>'x', 25=>'y', 26=>'z');
   if ($n<=26) {
     return strtoupper($array[$n]);
-  }else{
+  } else {
     if ($n%26 == 0) {
-      return strtoupper($array[floor(($n-1)/26)].$array[26]);
+      return strtoupper($array[floor(($n-1)/26)] . $array[26]);
     } else {
-      return strtoupper($array[floor($n/26)].$array[$n%26]);
+      return strtoupper($array[floor($n/26)] . $array[$n%26]);
     }
   }
 }
 
 function is_phonenum($num) {
-  return preg_match("/^1[34578]{1}\d{9}$/",$num);
+  return preg_match("/^1[34578]{1}\d{9}$/", $num);
 }
 
 /**
@@ -812,7 +812,7 @@ function is_phonenum($num) {
  * @param int $number 数组索引
  * @return string 返回截取的内容
  */
-function str_part($str,$sign,$number=0) {
+function str_part($str, $sign, $number=0) {
   $array = explode($sign, $str);
   $length = count($array);
   if ($number<0) {
