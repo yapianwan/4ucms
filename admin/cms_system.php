@@ -7,14 +7,12 @@ if(isset($_POST['submit'])){
   null_back($_POST[LIB_SNAME],'请填写网络名称');    
   $arr[LIB_SDOMAIN] = $_POST[LIB_SDOMAIN];
   $arr[LIB_SNAME] = $_POST[LIB_SNAME];
-  $arr[LIB_SRWT] = isset($_POST[LIB_SRWT]) ? $_POST[LIB_SRWT] : 0;
   $arr[LIB_SEON] = $_POST[LIB_SEON];
   $arr[LIB_KEYWORD] = $_POST[LIB_KEYWORD];
   $arr[LIB_SDESC] = $_POST[LIB_SDESC];
   $arr[LIB_SRIGHT] = $_POST[LIB_SRIGHT];
   $arr[LIB_SCODE] = $_POST[LIB_SCODE];
   $arr[LIB_SUSER] = $_POST[LIB_SUSER];
-  $arr['s_im'] = $_POST['s_im'];
   $arr[LIB_SFB] = $_POST[LIB_SFB];
   $sql = "UPDATE cms_system SET ".arr_update($arr)." WHERE id = 1";
   if($db->query($sql)){
@@ -80,15 +78,6 @@ if(isset($_POST['submit'])){
                     <select name="s_user" id="s_user">
                       <option value="1" <?php echo $row[LIB_SUSER] == 1 ? LIB_SELECTED :'';?>>不需审核</option>
                       <option value="0" <?php echo $row[LIB_SUSER] == 0 ? LIB_SELECTED :'';?>>需要审核</option>
-                    </select>
-                  </div>
-
-                  <div class="am-form-group">
-                    <label for="s_im">浮动客服</label>
-                    <select name="s_im" id="s_im">
-                      <option value="1" <?php echo $row['s_im'] == 1 ? LIB_SELECTED :'';?>>左侧</option>
-                      <option value="2" <?php echo $row['s_im'] == 2 ? LIB_SELECTED :'';?>>右侧</option>
-                      <option value="0" <?php echo $row['s_im'] == 0 ? LIB_SELECTED :'';?>>隐藏</option>
                     </select>
                   </div>
 
