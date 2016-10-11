@@ -2,7 +2,8 @@
 $privilege = 'detail';
 include '../library/inc.php';
 include 'cms_check.php';
-if(isset($_POST['submit'])){
+
+if (isset($_POST['submit'])) {
   $d_name = $_POST['d_name'];
   $d_picture = $_POST['d_picture'];
   $d_ifpicture = !empty($d_picture) ? 1 : 0;
@@ -28,13 +29,15 @@ if(isset($_POST['submit'])){
   $d_date = local_strtotime($_POST['d_date']);
   $d_order = $_POST['d_order'];
   $d_tag = $_POST['d_tag'];
+
   null_back($d_name,'详情名称不能为空');
   non_numeric_back($d_order,'排序必须是数字!');
-  $sql = "UPDATE cms_detail SET d_name='".$d_name."',d_fname='".$d_fname."',d_ifpicture=".$d_ifpicture.",d_picture = '".$d_picture."',d_parent=".$d_parent.",d_rec=".$d_rec.",d_hot=".$d_hot.",d_price=".$d_price.",d_ifslideshow=".$d_ifslideshow.",d_slideshow='".$d_slideshow."',d_content='".$d_content."',d_scontent='".$d_scontent."',d_seoname='".$d_seoname."',d_keywords='".$d_keywords."',d_description='".$d_description."',d_link='".$d_link."',d_order=".$d_order.",d_source='".$d_source."',d_author='".$d_author."',d_ifvideo=".$d_ifvideo.",d_video='".$d_video."',d_ifattachment=".$d_ifattachment.",d_attachment='".$d_attachment."',d_point='".$d_point."',d_tag='".$d_tag."',d_date='".$d_date."' WHERE id = ".$_GET['id'];
-  if($db->query($sql)){
+
+  $sql = "UPDATE cms_detail SET d_name='" . $d_name . "',d_fname='" . $d_fname . "',d_ifpicture=" . $d_ifpicture . ",d_picture = '" . $d_picture . "',d_parent=" . $d_parent . ",d_rec=" . $d_rec . ",d_hot=" . $d_hot . ",d_price=" . $d_price . ",d_ifslideshow=" . $d_ifslideshow . ",d_slideshow='" . $d_slideshow . "',d_content='" . $d_content . "',d_scontent='" . $d_scontent . "',d_seoname='" . $d_seoname . "',d_keywords='" . $d_keywords . "',d_description='" . $d_description . "',d_link='" . $d_link . "',d_order=" . $d_order . ",d_source='" . $d_source . "',d_author='" . $d_author . "',d_ifvideo=" . $d_ifvideo . ",d_video='" . $d_video . "',d_ifattachment=" . $d_ifattachment . ",d_attachment='" . $d_attachment . "',d_point='" . $d_point . "',d_tag='" . $d_tag . "',d_date='" . $d_date . "' WHERE id = " . $_GET['id'];
+  if ($db->query($sql)) {
     admin_log('信息编辑',$_COOKIE['admin_id']);
     alert_href('修改成功!','cms_detail.php?cid=0');
-  }else{
+  } else {
     alert_back('修改失败!');
   }
 }
@@ -43,7 +46,7 @@ if(isset($_POST['submit'])){
 <html class="no-js fixed-layout">
 <head>
 <?php include 'inc_head.php';?>
-<link rel="stylesheet" href="<?php echo SITE_DIR;?>ui/css/amazeui.datetimepicker.css">
+<link rel="stylesheet" href="<?php echo SITE_DIR;?>js/datetimepicker/css/amazeui.datetimepicker.css">
 </head>
 
 <body>
@@ -220,7 +223,7 @@ if(isset($_POST['submit'])){
 <?php include 'inc_footer.php';?>
 
 <!-- js -->
-<script src="<?php echo SITE_DIR;?>ui/js/datetimepicker/amazeui.datetimepicker.min.js"></script>
+<script src="<?php echo SITE_DIR;?>js/datetimepicker/amazeui.datetimepicker.min.js"></script>
 <script type="text/javascript">
 $(function(){
   $('.form-datetime').datetimepicker({format: 'yyyy-mm-dd hh:ii:ss'});

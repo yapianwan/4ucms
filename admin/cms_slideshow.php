@@ -3,16 +3,16 @@ $privilege = 'slideshow';
 include '../library/inc.php';
 include 'cms_check.php';
 
-if(isset($_GET['del'])){
-  $sql = "DELETE FROM cms_slideshow WHERE id = ".$_GET['del'];
-  if($db->query($sql)){
+if (isset($_GET['del'])) {
+  $sql = "DELETE FROM cms_slideshow WHERE id = " . $_GET['del'];
+  if ($db->query($sql)) {
     admin_log('幻灯删除',$_COOKIE['admin_id']);
     alert_href('删除成功!','cms_slideshow.php');
-  }else{
+  } else {
     alert_back('删除失败！');
   }
 }
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
   $s_name = $_POST['s_name'];
   $s_parent = $_POST['s_parent'];
   $s_picture = $_POST[LIB_SPIC];
@@ -20,11 +20,11 @@ if(isset($_POST['submit'])){
   $s_order = $_POST['s_order'];
   null_back($s_picture,'图片不能为空');
   non_numeric_back($s_order,'排序必须是数字!');
-  $sql = "INSERT INTO cms_slideshow (s_name,s_parent,s_picture,s_url,s_order) VALUES ('".$s_name."','".$s_parent."','".$s_picture."','".$s_url."',".$s_order.")";
-  if($db->query($sql)){
+  $sql = "INSERT INTO cms_slideshow (s_name,s_parent,s_picture,s_url,s_order) VALUES ('" . $s_name . "','" . $s_parent . "','" . $s_picture . "','" . $s_url . "'," . $s_order . ")";
+  if ($db->query($sql)) {
     admin_log('幻灯新增',$_COOKIE['admin_id']);
     alert_href('新增成功!','cms_slideshow.php');
-  }else{
+  } else {
     alert_back('新增失败!');
   }
 }
@@ -57,10 +57,10 @@ if(isset($_POST['submit'])){
                 <?php
                 $res = $db->getAll("SELECT * FROM cms_slideshow ORDER BY id DESC");
                 if (check_array($res)) {
-                foreach($res as $row){
-                  echo '<tr><td>'.$row['s_order'].'</td><td><a href="'.$row[LIB_SPIC].'" target="_blank"><img src="'.$row[LIB_SPIC].'" width="100" height="30" /></a></td><td>'.$row['s_name'].'</td><td>'.$row[LIB_SURL].'</td><td><a href="cms_slideshow_edit.php?id='.$row['id'].'" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-pencil"></span></a> <a href="cms_slideshow.php?del='.$row['id'].'" onclick="return confirm(\'确认要删除吗？\')" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-times"></span></a></td></tr>';
-                }
+                  foreach ($res as $row) {
+                    echo '<tr><td>' . $row['s_order'] . '</td><td><a href="' . $row[LIB_SPIC] . '" target="_blank"><img src="' . $row[LIB_SPIC] . '" width="100" height="30" /></a></td><td>' . $row['s_name'] . '</td><td>' . $row[LIB_SURL] . '</td><td><a href="cms_slideshow_edit.php?id=' . $row['id'] . '" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-pencil"></span></a> <a href="cms_slideshow.php?del=' . $row['id'] . '" onclick="return confirm(\'确认要删除吗？\')" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-times"></span></a></td></tr>';
                   }
+                }
                 ?>
               </tbody>
             </table>

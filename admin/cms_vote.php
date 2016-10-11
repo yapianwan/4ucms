@@ -2,16 +2,17 @@
 $privilege = 'vote';
 include '../library/inc.php';
 include 'cms_check.php';
-if(isset($_GET['del'])){
-  $sql = "DELETE FROM cms_vote WHERE id = ".$_GET['del'];
-  if($db->query($sql)){
+
+if (isset($_GET['del'])) {
+  $sql = "DELETE FROM cms_vote WHERE id = " . $_GET['del'];
+  if ($db->query($sql)) {
     admin_log('投票删除',$_COOKIE['admin_id']);
     alert_href('删除成功!','cms_vote.php');
-  }else{
+  } else {
     alert_back('删除失败！');
   }
 }
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
   $data[LIB_VNAME] = isset($_POST[LIB_VNAME]) ? $_POST[LIB_VNAME] : '';
   $data[LIB_VIFM] = isset($_POST[LIB_VIFM]) ? $_POST[LIB_VIFM] : '';
   $data[LIB_VSTIME] = isset($_POST[LIB_VSTIME]) ? gmstr2time($_POST[LIB_VSTIME]) : '';
@@ -19,10 +20,10 @@ if(isset($_POST['submit'])){
   $data[LIB_VIFM] = isset($_POST[LIB_VIFM]) ? $_POST[LIB_VIFM] : '';
   $data['v_count'] = 0;
   $sql = $db->autoExecute("cms_vote",$data,"INSERT");
-  if($db->query($sql)){
+  if ($db->query($sql)) {
     admin_log('投票新增',$_COOKIE['admin_id']);
     alert_href('新增成功!','cms_vote.php');
-  }else{
+  } else {
     alert_back('新增失败!');
   }
 }
@@ -56,10 +57,10 @@ if(isset($_POST['submit'])){
                 $pager = page_handle('page',20,$db->getOne("SELECT COUNT(*) FROM cms_vote"));
                 $res = $db->getAll("SELECT * FROM cms_vote ORDER BY id DESC LIMIT ".$pager[0].",".$pager[1]);
                 if (check_array($res)) {
-                  foreach($res as $row){
-                    $opiton_count = $db->getOne("SELECT COUNT(id) FROM cms_vote_option WHERE v_id = ".$row['id']);
+                  foreach ($res as $row) {
+                    $opiton_count = $db->getOne("SELECT COUNT(id) FROM cms_vote_option WHERE v_id = " . $row['id']);
                     $vote_status = gmtime()>=$row[LIB_VETIME] ? '已过期' : '进行中';
-                    echo '<tr><td>'.$row[LIB_VNAME].'</td><td>'.$opiton_count.'</td><td>'.$vote_status.'</td><td><a href="cms_vote_edit.php?id='.$row['id'].'" class="am-btn am-btn-default"><span class="am-icon-pencil"></span></a> <a href="cms_option.php?id='.$row['id'].'" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-list-ul"></span></a> <a href="cms_vote.php?del='.$row['id'].'" onclick="return confirm(\'确认要删除吗？\')" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-times"></span></a></td></tr>';
+                    echo '<tr><td>' . $row[LIB_VNAME] . '</td><td>' . $opiton_count . '</td><td>' . $vote_status . '</td><td><a href="cms_vote_edit.php?id=' . $row['id'] . '" class="am-btn am-btn-default"><span class="am-icon-pencil"></span></a> <a href="cms_option.php?id=' . $row['id'] . '" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-list-ul"></span></a> <a href="cms_vote.php?del=' . $row['id'] . '" onclick="return confirm(\'确认要删除吗？\')" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-times"></span></a></td></tr>';
                   }
                 }
                 ?>

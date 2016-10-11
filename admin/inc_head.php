@@ -17,11 +17,7 @@
 <link rel="stylesheet" href="../editor/themes/default/default.css" />
 
 <!-- style -->
-<style>
-.am-form select{
-  padding:0.52em;
-}
-</style>
+<style>.am-form select{ padding:0.52em}</style>
 
 <!--[if lt IE 9]>
 <script src="//libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>

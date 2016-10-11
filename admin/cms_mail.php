@@ -30,7 +30,7 @@ include 'cms_check.php';
               if ($key==0) {
                 echo $val['sub_mail'];
               } else {
-                echo ','.$val['sub_mail'];
+                echo ',' . $val['sub_mail'];
               }
             }
             echo '</textarea>';

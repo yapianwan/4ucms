@@ -2,14 +2,15 @@
 $privilege = 'qa';
 include '../library/inc.php';
 include 'cms_check.php';
+
 if (isset($_POST['execute'])) {
   null_back($_POST['id'],'请至少选中一项！');
   $s = '';
-  foreach( $_POST['id'] as $value ){
+  foreach ($_POST['id'] as $value) {
     $id .= $s . $value;
     $s = ',';
   }
-  switch ($_POST['execute_method']){
+  switch ($_POST['execute_method']) {
     case 'sok':
       $sql = "UPDATE cms_feedback SET f_ok = 1 WHERE id IN (" . $id . ")";
       break;
@@ -56,7 +57,7 @@ if (isset($_POST['execute'])) {
                 $pager = page_handle('page',10,$db->getOne("SELECT COUNT(*) FROM cms_feedback"));
                 $res = $db->getAll("SELECT * FROM cms_feedback ORDER BY id DESC LIMIT " . $pager[0] . "," . $pager[1]);
                 if (check_array($res)) {
-                  foreach($res as $row){
+                  foreach ($res as $row) {
                     if ($row['f_ok'] == 0) {
                       $temp_str = '<span style="color:red">未审</span>';
                     } else {

@@ -2,6 +2,7 @@
 $privilege = 'database';
 include '../library/inc.php';
 include_once '../library/cls.database.php';
+
 $dbc = new Database($db);
 switch ($act) {
   case 'backup':
@@ -63,7 +64,7 @@ switch ($act) {
                 $res = $dbc->tables();
                 if (check_array($res)) {
                   $count = count($res);
-                  for($i=0;$i<$count;$i++){
+                  for ($i=0;$i<$count;$i++) {
                     echo '<td class="am-u-sm-12 am-u-md-4 am-u-lg-3">'.$res[$i].'</td>';
                   }
                 }

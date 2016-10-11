@@ -2,19 +2,22 @@
 $privilege = 'slideshow';
 include '../library/inc.php';
 include 'cms_check.php';
-if(isset($_POST['submit'])){
+
+if (isset($_POST['submit'])) {
   $s_name = $_POST['s_name'];
   $s_parent = $_POST[LIB_SPARENT];
   $s_picture = $_POST['s_picture'];
   $s_url = $_POST['s_url'];
   $s_order = $_POST['s_order'];
+
   null_back($s_picture,'图片不能为空');
   non_numeric_back($s_order,'排序必须是数字!');
-  $sql = "UPDATE cms_slideshow SET s_name='".$s_name."',s_parent='".$s_parent."',s_picture='".$s_picture."',s_url='".$s_url."',s_order=".$s_order." WHERE id = ".$_GET['id'];
-  if($db->query($sql)){
+
+  $sql = "UPDATE cms_slideshow SET s_name='" . $s_name . "',s_parent='" . $s_parent . "',s_picture='" . $s_picture . "',s_url='" . $s_url . "',s_order=" . $s_order . " WHERE id = " . $_GET['id'];
+  if ($db->query($sql)) {
     admin_log('幻灯编辑',$_COOKIE['admin_id']);
     alert_href('保存成功!','cms_slideshow.php');
-  }else{
+  } else {
     alert_back('保存失败!');
   }
 }
@@ -34,8 +37,8 @@ if(isset($_POST['submit'])){
     <div class="am-g am-g-fixed">
       <div class="am-u-sm-12 am-padding-top">
         <?php
-        $res = $db->getRow("SELECT * FROM cms_slideshow WHERE id = ".$_GET['id']);
-        if($row = $res){
+        $res = $db->getRow("SELECT * FROM cms_slideshow WHERE id = " . $_GET['id']);
+        if ($row = $res) {
         ?>
         <section class="am-panel am-panel-default">
           <header class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-2'}">编辑幻灯<span class="am-icon-chevron-down am-fr"></span></header>

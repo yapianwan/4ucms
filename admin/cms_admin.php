@@ -2,6 +2,7 @@
 $privilege = 'all';
 include '../library/inc.php';
 include 'cms_check.php';
+
 if (isset($_GET['del']) && $_GET['del'] == 1) {
   alert_back('默认账户不能删除！');
 } else {

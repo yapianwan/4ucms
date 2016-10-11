@@ -81,8 +81,8 @@ elseif ($act == 'book') {
   $rooms = str_safe($_POST['rooms']);
   $adult = str_safe($_POST['adult']);
   $children = str_safe($_POST['children']);
-  $mail_subject = '['.$cms['s_name'].'] 预约邮件';
-  $mail_body = '手机号码：'.$mobile.'<br>入驻时间：'.$dpd1.'<br>退房时间：'.$dpd2.'<br>预定房间：'.$rooms.'<br>成人：'.$adult.'<br>孩子：'.$children;
+  $mail_subject = '[' . $cms['s_name'] . '] 预约邮件';
+  $mail_body = '手机号码：' . $mobile . '<br>入驻时间：' . $dpd1 . '<br>退房时间：' . $dpd2 . '<br>预定房间：' . $rooms . '<br>成人：' . $adult . '<br>孩子：' . $children;
   if (smtp_mail(SMTP_RECIEVER,$mail_subject,$mail_body)) {
     $res['msg'] = '预订成功！请保持您的手机畅通，我们稍后会与您取得联系。';
   } else {
@@ -98,8 +98,8 @@ elseif ($act == 'roombook') {
   $rooms = str_safe($_POST['rooms']);
   $adult = str_safe($_POST['adult']);
   $children = str_safe($_POST['children']);
-  $mail_subject = '['.$cms['s_name'].'] 预约邮件';
-  $mail_body = '手机号码：'.$mobile.'<br>入驻时间：'.$dpd1.'<br>退房时间：'.$dpd2.'<br>预定房间：'.$name.'&nbsp;'.$rooms.'间<br>成人：'.$adult.'<br>孩子：'.$children;
+  $mail_subject = '[' . $cms['s_name'] . '] 预约邮件';
+  $mail_body = '手机号码：' . $mobile . '<br>入驻时间：' . $dpd1 . '<br>退房时间：' . $dpd2 . '<br>预定房间：' . $name . '&nbsp;' . $rooms . '间<br>成人：' . $adult . '<br>孩子：' . $children;
   if (smtp_mail(SMTP_RECIEVER,$mail_subject,$mail_body)) {
     $res['msg'] = '预订成功！请保持您的手机畅通，我们稍后会与您取得联系。';
   } else {
@@ -117,7 +117,7 @@ elseif ($act == 'rewrite_apache') {
     alert_back($_lang[COM_MSGSUC]);
 }
 elseif ($act == 'rewrite_nginx') {
-  $str = "location ".SITE_DIR." {{$spt}rewrite ".SITE_DIR."index\.html$ ".SITE_DIR."index.php;{$spt}rewrite ^".SITE_DIR."channel-([0-9]+)\.html$ ".SITE_DIR."channel.php?id=$1;{$spt}rewrite ^".SITE_DIR."channel-([0-9]+)-([0-9]+)\.html$ ".SITE_DIR."channel.php?id=$1&page=$2;{$spt}rewrite ^".SITE_DIR."detail-([0-9]+)\.html$ ".SITE_DIR."detail.php?id=$1;{$spt}rewrite ^".SITE_DIR."user\.html$ ".SITE_DIR."user.php;{$spt}rewrite ^".SITE_DIR."user-(.*)\.html$ ".SITE_DIR."user.php?act=$1;{$spt}rewrite ^".SITE_DIR."user-(.*)-([0-9]+)\.html$ ".SITE_DIR."user.php?act=$1&page=$2;{$spt}}";
+  $str = "location " . SITE_DIR . " {{$spt}rewrite " . SITE_DIR . "index\.html$ " . SITE_DIR . "index.php;{$spt}rewrite ^" . SITE_DIR . "channel-([0-9]+)\.html$ " . SITE_DIR . "channel.php?id=$1;{$spt}rewrite ^" . SITE_DIR . "channel-([0-9]+)-([0-9]+)\.html$ " . SITE_DIR . "channel.php?id=$1&page=$2;{$spt}rewrite ^" . SITE_DIR . "detail-([0-9]+)\.html$ " . SITE_DIR . "detail.php?id=$1;{$spt}rewrite ^" . SITE_DIR . "user\.html$ " . SITE_DIR . "user.php;{$spt}rewrite ^" . SITE_DIR . "user-(.*)\.html$ " . SITE_DIR . "user.php?act=$1;{$spt}rewrite ^" . SITE_DIR . "user-(.*)-([0-9]+)\.html$ " . SITE_DIR . "user.php?act=$1&page=$2;{$spt}}";
   $fp = fopen(".nginx","w+");
   fwrite($fp,$str);
   fclose($fp);

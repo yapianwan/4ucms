@@ -3,7 +3,7 @@ include '../library/inc.php';
 
 switch ($act) {
   case 'caf':
-    alert_back('清理了 '.clear_all_files().' 个文件');
+    alert_back('清理了 ' . clear_all_files() . ' 个文件');
   break;
 
   case 'welcome':
@@ -32,7 +32,7 @@ switch ($act) {
 }
 
 function getDetailBaiduSend($s,$e) {
-  $res = $GLOBALS['db']->getAll("SELECT id FROM cms_detail WHERE d_date<".$e." AND d_date>=".$s);
+  $res = $GLOBALS['db']->getAll("SELECT id FROM cms_detail WHERE d_date<" . $e . " AND d_date>=" . $s);
   if (check_array($res)) {
     $urls = array();
     foreach ($res as $val) {
@@ -52,9 +52,9 @@ function getDetailBaiduSend($s,$e) {
     $result = curl_exec($ch);
     $j = json_decode($result,true);
     if (!empty($j['error'])) {
-      alert_back('error:'.$j['error'].', message:'.$j['message']);
+      alert_back('error:' . $j['error'] . ', message:' . $j['message']);
     } else {
-      alert_back('剩余:'.$j['remain'].'条，成功:'.$j['success'].'条');
+      alert_back('剩余:' . $j['remain'] . '条，成功:' . $j['success'] . '条');
     }
   } else {
     alert_back('无新数据无需推送');

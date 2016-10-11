@@ -3,20 +3,20 @@ $privilege = 'vote';
 include '../library/inc.php';
 include 'cms_check.php';
 
-$res = $db->getRow("SELECT * FROM cms_vote WHERE id = ".$_GET['id']);
+$res = $db->getRow("SELECT * FROM cms_vote WHERE id = " . $_GET['id']);
 
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
   $data[LIB_VNAME] = isset($_POST[LIB_VNAME]) ? $_POST[LIB_VNAME] : '';
   $data[LIB_VSTIME] = isset($_POST[LIB_VSTIME]) ? gmstr2time($_POST[LIB_VSTIME]) : '';
   $data[LIB_VETIME] = isset($_POST[LIB_VETIME]) ? gmstr2time($_POST[LIB_VETIME]) : '';
   $data[LIB_VIFM] = isset($_POST[LIB_VIFM]) ? $_POST[LIB_VIFM] : '';
   $data['v_count'] = 0;
   $str = arr_update($data);
-  $sql = "UPDATE cms_vote SET ".$str." WHERE id = ".$_POST['id'];
-  if($db->query($sql)){
+  $sql = "UPDATE cms_vote SET " . $str . " WHERE id = " . $_POST['id'];
+  if ($db->query($sql)) {
     admin_log('投票新增',$_COOKIE['admin_id']);
     alert_href('编辑成功!','cms_vote.php');
-  }else{
+  } else {
     alert_back('编辑失败!');
   }
 }
@@ -66,7 +66,7 @@ if(isset($_POST['submit'])){
               <center>
                 <input type="submit" name="submit" id="save" class="am-btn am-btn-default" value="提交保存">
                 <input type="reset" class="am-btn am-btn-default" value="放弃保存">
-                <input type="hidden" name="id" value="<?php echo $_GET['id']?>">
+                <input type="hidden" name="id" value="<?php echo $_GET['id'];?>">
               </center>
             </main>
           </form>

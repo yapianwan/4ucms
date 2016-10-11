@@ -3,26 +3,26 @@ $privilege = 'link';
 include '../library/inc.php';
 include 'cms_check.php';
 
-if(isset($_GET['del'])){
-  $sql = "DELETE FROM cms_link WHERE id = ".$_GET['del'];
-  if($db->query($sql)){
+if (isset($_GET['del'])) {
+  $sql = "DELETE FROM cms_link WHERE id = " . $_GET['del'];
+  if ($db->query($sql)) {
     admin_log('链接删除',$_COOKIE['admin_id']);
     alert_href('删除成功!','cms_link.php');
-  }else{
+  } else {
     alert_back('删除失败！');
   }
 }
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
   $data[LIB_LNAME] = $_POST[LIB_LNAME];
   $data[LIB_LPICTURE] = $_POST[LIB_LPICTURE];
   $data[LIB_LURL] = $_POST[LIB_LURL];
   $data[LIB_LORDER] = $_POST[LIB_LORDER];
   $str = arr_insert($data);
-  $sql = "INSERT INTO cms_link (".$str['key'].") VALUES (".$str['val'].")";
-  if($db->query($sql)){
+  $sql = "INSERT INTO cms_link (" . $str['key'] . ") VALUES (" . $str['val'] . ")";
+  if ($db->query($sql)) {
     admin_log('链接新增',$_COOKIE['admin_id']);
     alert_href('新增成功!','cms_link.php');
-  }else{
+  } else {
     alert_back('新增失败!');
   }
 }
@@ -54,10 +54,10 @@ if(isset($_POST['submit'])){
               <tbody>
                 <?php
                 $pager = page_handle('page',20,$db->getOne("SELECT COUNT(*) FROM cms_link"));
-                $res = $db->getAll("SELECT * FROM cms_link ORDER BY id DESC LIMIT ".$pager[0].",".$pager[1]);
+                $res = $db->getAll("SELECT * FROM cms_link ORDER BY id DESC LIMIT " . $pager[0] . "," . $pager[1]);
                 if (check_array($res)) {
-                  foreach($res as $row){
-                    echo '<tr><td>'.$row[LIB_LORDER].'</td><td><a href="'.$row[LIB_LPICTURE].'" target="_blank"><img src="'.$row[LIB_LPICTURE].'" width="100" height="30" /></a></td><td>'.$row[LIB_LNAME].'</td><td class="am-hide-sm-only">'.$row[LIB_LURL].'</td><td><a href="cms_link_edit.php?id='.$row['id'].'" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-pencil"></span></a> <a href="cms_link.php?del='.$row['id'].'" onclick="return confirm(\'确认要删除吗？\')" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-times"></span></a></td></tr>';
+                  foreach ($res as $row) {
+                    echo '<tr><td>' . $row[LIB_LORDER] . '</td><td><a href="' . $row[LIB_LPICTURE] . '" target="_blank"><img src="' . $row[LIB_LPICTURE] . '" width="100" height="30" /></a></td><td>' . $row[LIB_LNAME] . '</td><td class="am-hide-sm-only">' . $row[LIB_LURL] . '</td><td><a href="cms_link_edit.php?id=' . $row['id'] . '" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-pencil"></span></a> <a href="cms_link.php?del=' . $row['id'] . '" onclick="return confirm(\'确认要删除吗？\')" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-times"></span></a></td></tr>';
                   }
                 }
                 ?>

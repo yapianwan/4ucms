@@ -2,31 +2,32 @@
 $privilege = 'priv';
 include '../library/inc.php';
 include 'cms_check.php';
-if(isset($_GET['del']) && $_GET['del'] == 1){
+
+if (isset($_GET['del']) && $_GET['del'] == 1) {
   alert_back('默认角色不能删除！');
-}else{
-  if(isset($_GET['del'])){
-    $sql = "DELETE FROM cms_role WHERE id = ".$_GET['del'];
-    if($db->query($sql)){
+} else {
+  if (isset($_GET['del'])) {
+    $sql = "DELETE FROM cms_role WHERE id = " . $_GET['del'];
+    if ($db->query($sql)) {
       admin_log('角色删除',$_COOKIE['admin_id']);
       alert_href('删除成功!','cms_role.php');
-    }else{
+    } else {
       alert_back('删除失败！');
     }
   }  
 }
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
   $r_name = $_POST['r_name'];
-  $res = $db->getRow("SELECT * FROM cms_role WHERE r_name = '".$r_name."'");
-  if(check_array($res)){
+  $res = $db->getRow("SELECT * FROM cms_role WHERE r_name = '" . $r_name . "'");
+  if (check_array($res)) {
     alert_back('角色重名');
   }
   null_back($r_name,'请填写角色名');
-  $sql = "INSERT INTO cms_role (r_name) VALUES ('".$r_name."')";
-  if($db->query($sql)){
+  $sql = "INSERT INTO cms_role (r_name) VALUES ('" . $r_name . "')";
+  if ($db->query($sql)) {
     admin_log('角色新增',$_COOKIE['admin_id']);
     alert_href('新增成功!','cms_role.php');
-  }else{
+  } else {
     alert_back('新增失败!');
   }
 }
@@ -59,8 +60,8 @@ if(isset($_POST['submit'])){
                 <?php
                 $res = $db->getAll("SELECT * FROM cms_role ORDER BY id ASC");
                 if (check_array($res)) {
-                foreach ($res as $row) {
-                  echo '<tr><td>'.$row['r_name'].'</td><td>'.($row['id']!=1 ? '<a href="cms_priv.php?id='.$row['id'].'" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-pencil"></span></a> <a href="cms_role.php?del='.$row['id'].'" onclick="return confirm(\'确认要删除吗？\')" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-times"></a>' : '').'</td></tr>';
+                  foreach ($res as $row) {
+                    echo '<tr><td>' . $row['r_name'] . '</td><td>' . ($row['id']!=1 ? '<a href="cms_priv.php?id=' . $row['id'] . '" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-pencil"></span></a> <a href="cms_role.php?del=' . $row['id'] . '" onclick="return confirm(\'确认要删除吗？\')" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-times"></a>' : '') . '</td></tr>';
                   }
                 }
                 ?>

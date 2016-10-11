@@ -2,31 +2,32 @@
 $privilege = 'theme';
 include '../library/inc.php';
 include 'cms_check.php';
-if(isset($_GET['del'])){
-  $sql = "DELETE FROM cms_template WHERE id = ".$_GET['del'];
-  if($db->query($sql)){
+
+if (isset($_GET['del'])) {
+  $sql = "DELETE FROM cms_template WHERE id = " . $_GET['del'];
+  if ($db->query($sql)) {
     admin_log('模板删除',$_COOKIE['admin_id']);
     alert_back('删除成功！');
-  }else{
+  } else {
     alert_back('删除失败！');
   }
 }
-if($act == 'add'){
+if ($act == 'add') {
   $t_name = $_POST['t_name'];
   $t_path = $_POST[LIB_TPATH];
   if (empty($t_name) || empty($t_path)) {
     alert_back('名称或路径不能为空!');
   }
-  $sql = "INSERT INTO cms_template (t_name,t_path) VALUES ('".$t_name."','".$t_path."')";
-  if($db->query($sql)){
+  $sql = "INSERT INTO cms_template (t_name,t_path) VALUES ('" . $t_name . "','" . $t_path . "')";
+  if ($db->query($sql)) {
     admin_log('模板新增',$_COOKIE['admin_id']);
     alert_back('新增成功!');
-  }else{
+  } else {
     alert_back('新增失败!');
   }
 }
-if (isset($_GET['path'])){
-  $db->query("UPDATE cms_system SET s_template = '".$_GET['path']."'");
+if (isset($_GET['path'])) {
+  $db->query("UPDATE cms_system SET s_template = '" . $_GET['path'] . "'");
   alert_href('设置成功','cms_template.php');
 }
 ?>
@@ -62,9 +63,9 @@ if (isset($_GET['path'])){
                     if ($cms['s_template'] == $row[LIB_TPATH]) {
                       $temp_str = '<span class="color_red">当前模板</span>';
                     } else {
-                      $temp_str = '<a href="cms_template.php?path='.$row[LIB_TPATH].'" class="am-btn am-btn-default am-btn-xs">应用</a> <a href="cms_template.php?del='.$row['id'].'" onclick="return confirm(\'确定要删除吗？\')" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-times"></span></a>';
+                      $temp_str = '<a href="cms_template.php?path=' . $row[LIB_TPATH] . '" class="am-btn am-btn-default am-btn-xs">应用</a> <a href="cms_template.php?del=' . $row['id'] . '" onclick="return confirm(\'确定要删除吗？\')" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-times"></span></a>';
                     }
-                    echo '<tr><td>'.$row['t_name'].'</td><td>'.$row[LIB_TPATH].'</td><td>'.$temp_str.'</td></tr>';
+                    echo '<tr><td>' . $row['t_name'] . '</td><td>' . $row[LIB_TPATH] . '</td><td>' . $temp_str . '</td></tr>';
                   }
                 }
                 ?>

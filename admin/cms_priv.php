@@ -17,12 +17,12 @@ if ($act == 'update') {
     }
   }
   $priv = implode(',',$arr); //转为priv字串
-  $sql=("UPDATE cms_role SET r_priv='$priv' WHERE id = ".$_POST['rid']);
+  $sql = "UPDATE cms_role SET r_priv='$priv' WHERE id = ".$_POST['rid'];
   if ($db->query($sql)) {
     admin_log('权限管理',$_COOKIE['admin_id']);
     $admin_id = $db->getOne("SELECT * FROM cms_user WHERE u_rid = ".$_POST['rid']);
       alert_href('操作成功!','cms_priv.php?id='.$_POST['rid']);
-  }else{
+  } else {
     alert_back('操作失败!');
   }
 }
@@ -61,7 +61,7 @@ if ($act == 'update') {
                     <?php
                     $cms = $_lang['priv']['cms'];
                     foreach ($cms as $key=>$val) {
-                      echo PRIV_LBLB.$key.PRIV_CHKB.$key.PRIV_ID.$key.PRIV_VAL.$key.'" '.(in_array($key,$priv) ? LIB_CHECKED : '').'>'.$val.LIB_LBLE;
+                      echo PRIV_LBLB . $key . PRIV_CHKB . $key . PRIV_ID . $key . PRIV_VAL . $key . '" ' . (in_array($key,$priv) ? LIB_CHECKED : '') . '>' . $val . LIB_LBLE;
                     }
                     ?>
                   </td>
@@ -72,7 +72,7 @@ if ($act == 'update') {
                     <?php
                     $int = $_lang['priv']['interaction'];
                     foreach ($int as $key=>$val) {
-                      echo PRIV_LBLB.$key.PRIV_CHKB.$key.PRIV_ID.$key.PRIV_VAL.$key.'" '.(in_array($key,$priv) ? LIB_CHECKED : '').'>'.$val.LIB_LBLE;
+                      echo PRIV_LBLB . $key . PRIV_CHKB . $key . PRIV_ID . $key . PRIV_VAL . $key . '" ' . (in_array($key,$priv) ? LIB_CHECKED : '') . '>' . $val . LIB_LBLE;
                     }
                     ?>
                   </td>
@@ -83,7 +83,7 @@ if ($act == 'update') {
                     <?php
                     $int = $_lang['priv']['weixin'];
                     foreach ($int as $key=>$val) {
-                      echo PRIV_LBLB.$key.PRIV_CHKB.$key.PRIV_ID.$key.PRIV_VAL.$key.'" '.(in_array($key,$priv) ? LIB_CHECKED : '').'>'.$val.LIB_LBLE;
+                      echo PRIV_LBLB . $key . PRIV_CHKB . $key . PRIV_ID . $key . PRIV_VAL . $key . '" ' . (in_array($key,$priv) ? LIB_CHECKED : '') . '>' . $val . LIB_LBLE;
                     }
                     ?>
                   </td>
@@ -94,7 +94,7 @@ if ($act == 'update') {
                     <?php
                     $sys = $_lang['priv']['system'];
                     foreach ($sys as $key=>$val) {
-                      echo PRIV_LBLB.$key.PRIV_CHKB.$key.PRIV_ID.$key.PRIV_VAL.$key.'" '.(in_array($key,$priv) ? LIB_CHECKED : '').'>'.$val.LIB_LBLE;
+                      echo PRIV_LBLB . $key . PRIV_CHKB . $key . PRIV_ID . $key . PRIV_VAL . $key . '" ' . (in_array($key,$priv) ? LIB_CHECKED : '') . '>' . $val . LIB_LBLE;
                     }
                     ?>
                   </td>
@@ -154,12 +154,12 @@ function getChannelPriv($pid,$rid,$priv) {
   foreach ($res as $val) {
     if ($val['c_ifsub'] || $val['c_parent']==0) {
       if ($val['c_ifsub']==0 && $val['c_parent']==0) {
-        $str .= '<table class="am-table am-table-bordered"><tr><th><label for="c'.$val['id'].PRIV_CHKBNAMEB.$val['id'].PRIV_IDB.$val['id'].PRIV_VALB.$val['id'].'" '.(in_array("c".$val['id'],$priv) ? LIB_CHECKED : '').'>'.$val[LIB_CNAME].'</label></th><td class="gray">无子频道</td></tr></table>';
+        $str .= '<table class="am-table am-table-bordered"><tr><th><label for="c' . $val['id'] . PRIV_CHKBNAMEB . $val['id'] . PRIV_IDB . $val['id'] . PRIV_VALB . $val['id'] . '" ' . (in_array("c" . $val['id'],$priv) ? LIB_CHECKED : '') . '>' . $val[LIB_CNAME] . '</label></th><td class="gray">无子频道</td></tr></table>';
       } else {
-        $str .= '<table class="am-table am-table-bordered"><tr><th><label for="c'.$val['id'].PRIV_CHKBNAMEB.$val['id'].PRIV_IDB.$val['id'].PRIV_VALB.$val['id'].'" '.(in_array("c".$val['id'],$priv) ? LIB_CHECKED : '').'>'.$val[LIB_CNAME].'</label></th><td>'.getChannelPriv($val['id'],$rid,$priv).'</td></tr></table>';
+        $str .= '<table class="am-table am-table-bordered"><tr><th><label for="c' . $val['id'] . PRIV_CHKBNAMEB . $val['id'] . PRIV_IDB . $val['id'] . PRIV_VALB . $val['id'] . '" ' . (in_array("c" . $val['id'],$priv) ? LIB_CHECKED : '') . '>' . $val[LIB_CNAME] . '</label></th><td>' . getChannelPriv($val['id'],$rid,$priv) . '</td></tr></table>';
       }
     } else {
-      $str .= '<label for="c'.$val['id'].PRIV_CHKBNAMEB.$val['id'].PRIV_IDB.$val['id'].PRIV_VALB.$val['id'].'" '.(in_array("c".$val['id'],$priv) ? LIB_CHECKED : '').'>'.$val[LIB_CNAME].LIB_LBLE;
+      $str .= '<label for="c' . $val['id'] . PRIV_CHKBNAMEB . $val['id'] . PRIV_IDB . $val['id'] . PRIV_VALB . $val['id'] . '" ' . (in_array("c" . $val['id'],$priv) ? LIB_CHECKED : '') . '>' . $val[LIB_CNAME] . LIB_LBLE;
     }
   }
   return $str;

@@ -2,6 +2,7 @@
 $privilege = 'channel';
 include '../library/inc.php';
 include 'cms_check.php';
+
 if (isset($_GET['del'])) {
   $sql = 'SELECT * FROM cms_channel WHERE id = ' . $_GET['del'];
   $res = $db->getRow($sql);

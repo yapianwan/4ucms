@@ -2,7 +2,8 @@
 $privilege = 'member';
 include '../library/inc.php';
 include 'cms_check.php';
-if(isset($_POST['submit'])){
+
+if (isset($_POST['submit'])) {
   $u_rid = isset($_POST[LIB_URID]) ? $_POST[LIB_URID] : '';
   if ($_GET['id']==1) {
     alert_back('该用户为内置用户无法操作!');
@@ -10,9 +11,9 @@ if(isset($_POST['submit'])){
   $u_psw = trim($_POST['u_psw']);
   $u_cash = trim($_POST['u_cash']);
   if (!empty($u_psw)) {
-    $sql = "UPDATE cms_user SET u_rid='".$u_rid."',u_psw='".md5($u_psw)."',u_cash=".$u_cash." WHERE id = ".$_GET['id'];
+    $sql = "UPDATE cms_user SET u_rid='" . $u_rid . "',u_psw='" . md5($u_psw) . "',u_cash=" . $u_cash . " WHERE id = " . $_GET['id'];
   } else {
-    $sql = "UPDATE cms_user SET u_rid='".$u_rid."',u_cash=".$u_cash." WHERE id = ".$_GET['id'];
+    $sql = "UPDATE cms_user SET u_rid='" . $u_rid . "',u_cash=" . $u_cash . " WHERE id = " . $_GET['id'];
   }
   if ($db->query($sql)) {
     admin_log('会员编辑',$_COOKIE['admin_id']);
@@ -37,7 +38,7 @@ if(isset($_POST['submit'])){
     <div class="am-g am-g-fixed">
       <div class="am-u-sm-12 am-padding-top">
         <?php
-        $res = $db->getRow("SELECT * FROM cms_user WHERE id = ".$_GET['id']);
+        $res = $db->getRow("SELECT * FROM cms_user WHERE id = " . $_GET['id']);
         if($row = $res){
         ?>
         <section class="am-panel am-panel-default">
@@ -61,7 +62,7 @@ if(isset($_POST['submit'])){
                     <?php
                     $res = $db->getAll("SELECT * FROM cms_role ORDER BY id ASC");
                     foreach ($res as $val) {
-                      echo '<option value="'.$val['id'].'" '.($row[LIB_URID]==$val['id'] ? 'selected="selected"' : '').'>'.$val['r_name'].'</option>';
+                      echo '<option value="' . $val['id'] . '" ' . ($row[LIB_URID]==$val['id'] ? 'selected="selected"' : '') . '>' . $val['r_name'] . '</option>';
                     }
                     ?>
                   </select>
@@ -90,7 +91,7 @@ if(isset($_POST['submit'])){
               </div>
               <div class="am-form-group">
                 <label>地址</label>
-                <div><?php echo $row['u_province'].' '.$row['u_city'].' '.$row['u_district'].' '.$row['u_addr']?></div>
+                <div><?php echo $row['u_province'] . ' ' . $row['u_city'] . ' ' . $row['u_district'] . ' ' . $row['u_addr']?></div>
               </div>
               <div class="am-form-group">
                 <label>邮编</label>
@@ -108,6 +109,5 @@ if(isset($_POST['submit'])){
 </div>
 
 <?php include 'inc_footer.php';?>
-
 </body>
 </html>

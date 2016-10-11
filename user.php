@@ -185,7 +185,7 @@ elseif ($act == 'psw_reset') {
   $u_email = str_safe($_POST[LIB_UMAIL]);
   $u_code = str_safe($_POST['rand']);
   // 验证u_code
-  $res = $db->getRow(LIB_SLCTUSERWHRUEMAILEQ.$u_email."' AND u_code = '".$u_code."'");
+  $res = $db->getRow(LIB_SLCTUSERWHRUEMAILEQ . $u_email . "' AND u_code = '" . $u_code . "'");
   if (check_array($res)) {
     include $t_path . 'psw_reset.php';
   } else {

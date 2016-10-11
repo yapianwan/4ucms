@@ -2,28 +2,29 @@
 $privilege = 'detail';
 include '../library/inc.php';
 include 'cms_check.php';
+
 if (isset($_POST['execute'])) {
   null_back($_POST['id'],'请至少选中一项！');
   $s = '';
-  foreach( $_POST['id'] as $value ){
+  foreach ($_POST['id'] as $value) {
     $id .= $s.$value;
     $s = ',';
   }
   switch ($_POST['execute_method']){
     case 'srec':
-      $sql = "UPDATE cms_detail SET d_rec = 1 WHERE id in (".$id.")";
+      $sql = "UPDATE cms_detail SET d_rec = 1 WHERE id in (" . $id . ")";
       break;
     case 'crec':
-      $sql = "UPDATE cms_detail SET d_rec = 0 WHERE id in (".$id.")";
+      $sql = "UPDATE cms_detail SET d_rec = 0 WHERE id in (" . $id . ")";
       break;
     case 'shot':
-      $sql = "UPDATE cms_detail SET d_hot = 1 WHERE id in (".$id.")";
+      $sql = "UPDATE cms_detail SET d_hot = 1 WHERE id in (" . $id . ")";
       break;
     case 'chot':
-      $sql = "UPDATE cms_detail SET d_hot = 0 WHERE id in (".$id.")";
+      $sql = "UPDATE cms_detail SET d_hot = 0 WHERE id in (" . $id . ")";
       break;
     case 'delete':
-      $sql = "DELETE FROM cms_detail WHERE id IN (".$id.")";
+      $sql = "DELETE FROM cms_detail WHERE id IN (" . $id . ")";
       admin_log('批量信息删除',$_COOKIE['admin_id']);
       break;
     default:
@@ -35,12 +36,12 @@ if (isset($_POST['execute'])) {
 if ( isset($_POST['shift']) ) {
   null_back($_POST['id'],'请至少选中一项！');
   $s = '';
-  foreach( $_POST['id'] as $value ){
-    $id .= $s.$value;
+  foreach ($_POST['id'] as $value) {
+    $id .= $s . $value;
     $s = ',';
   }
   null_back($_POST['shift_target'],'请选择要转移到的频道');
-  $db->query("UPDATE cms_detail SET d_parent = ".$_POST['shift_target']." WHERE id IN (".$id.")");
+  $db->query("UPDATE cms_detail SET d_parent = " . $_POST['shift_target'] . " WHERE id IN (" . $id . ")");
   admin_log('信息转移',$_COOKIE['admin_id']);
   alert_href('转移成功!','cms_detail.php?cid=0');
 }
@@ -96,16 +97,16 @@ if ( isset($_POST['shift']) ) {
                  <?php
                   if (isset($_GET['cid'])) {
                     if ($_GET['cid'] != 0){
-                      $pager = page_handle('page',20,mysql_num_rows(mysql_query("SELECT * FROM cms_detail WHERE d_parent IN (".get_channel($_GET['cid'],'c_sub').")")));
-                      $res = $db->getAll("SELECT * FROM cms_detail WHERE d_parent IN (".get_channel($_GET['cid'],'c_sub').") ORDER BY id DESC LIMIT ".$pager[0].",".$pager[1]);
+                      $pager = page_handle('page',20,mysql_num_rows(mysql_query("SELECT * FROM cms_detail WHERE d_parent IN (" . get_channel($_GET['cid'],'c_sub') . ")")));
+                      $res = $db->getAll("SELECT * FROM cms_detail WHERE d_parent IN (" . get_channel($_GET['cid'],'c_sub') . ") ORDER BY id DESC LIMIT " . $pager[0] . "," . $pager[1]);
                     }else{
                       $pager = page_handle('page',20,mysql_num_rows(mysql_query("SELECT * FROM cms_detail")));
-                      $res = $db->getAll("SELECT * FROM cms_detail ORDER BY id DESC LIMIT ".$pager[0].",".$pager[1]);
+                      $res = $db->getAll("SELECT * FROM cms_detail ORDER BY id DESC LIMIT " . $pager[0] . "," . $pager[1]);
                     }
                   }
                   if (isset($_GET['search'])) {
-                    $pager = page_handle('page',20,mysql_num_rows(mysql_query("SELECT * FROM cms_detail WHERE d_name LIKE '%".$_GET['key']."%'")));
-                    $res = $db->getAll("SELECT * FROM cms_detail WHERE d_name LIKE '%".$_GET['key']."%' limit ".$pager[0].",".$pager[1]);
+                    $pager = page_handle('page',20,mysql_num_rows(mysql_query("SELECT * FROM cms_detail WHERE d_name LIKE '%" . $_GET['key'] . "%'")));
+                    $res = $db->getAll("SELECT * FROM cms_detail WHERE d_name LIKE '%" . $_GET['key'] . "%' limit " . $pager[0] . "," . $pager[1]);
                   }
                   if (check_array($res)) {
                   foreach($res as $row){
@@ -113,7 +114,7 @@ if ( isset($_POST['shift']) ) {
                   <tr>
                     <td><input type="checkbox" name="id[]" value="<?php echo $row['id'] ?>" /></td>
                     <td><?php echo $row['d_order'] ?></td>
-                    <td align="left"><?php echo '<a href="../detail.php?id='.$row['id'].'" target="_blank">'.$row['d_name'].'</a>' ?></td>
+                    <td align="left"><?php echo '<a href="../detail.php?id=' . $row['id'] . '" target="_blank">' . $row['d_name'] . '</a>' ?></td>
                     <td><?php echo get_channel_name($row['d_parent'])?></td>
                     <td class="am-hide">
                       <?php 

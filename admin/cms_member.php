@@ -2,12 +2,13 @@
 $privilege = 'member';
 include '../library/inc.php';
 include 'cms_check.php';
-if(isset($_GET['del'])){
-  $sql = "DELETE FROM cms_user WHERE id = ".$_GET['del'];
-  if($db->query($sql)){
+
+if (isset($_GET['del'])) {
+  $sql = "DELETE FROM cms_user WHERE id = " . $_GET['del'];
+  if ($db->query($sql)) {
     admin_log('会员删除',$_COOKIE['admin_id']);
     alert_href('删除成功!','cms_member.php');
-  }else{
+  } else {
     alert_back('删除失败！');
   }  
 }
@@ -48,10 +49,10 @@ if(isset($_GET['del'])){
               <tbody>
                 <?php
                 $pager = page_handle('page',20,$db->getOne("SELECT COUNT(*) FROM cms_user WHERE u_isadmin = 0"));
-                $res = $db->getAll("SELECT * FROM cms_user WHERE u_isadmin = 0 ORDER BY id DESC LIMIT ".$pager[0].",".$pager[1]);
+                $res = $db->getAll("SELECT * FROM cms_user WHERE u_isadmin = 0 ORDER BY id DESC LIMIT " . $pager[0] . "," . $pager[1]);
                 if (check_array($res)) {
                   foreach($res as $row){
-                    echo '<tr><td>'.$row['u_name'].'</td><td>'.$row['u_email'].'</td><td>'.$row['u_mobile'].'</td><td><a href="cms_member_edit.php?id='.$row['id'].'" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-pencil"></span></a> <a href="cms_member.php?del='.$row['id'].'" onclick="return confirm(\'确认要删除吗？\')" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-times"></span></a></td></tr>';
+                    echo '<tr><td>' . $row['u_name'] . '</td><td>' . $row['u_email'] . '</td><td>' . $row['u_mobile'] . '</td><td><a href="cms_member_edit.php?id=' . $row['id'] . '" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-pencil"></span></a> <a href="cms_member.php?del=' . $row['id'] . '" onclick="return confirm(\'确认要删除吗？\')" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-times"></span></a></td></tr>';
                   }
                 }
                 ?>

@@ -2,26 +2,28 @@
 $privilege = 'link';
 include '../library/inc.php';
 include 'cms_check.php';
-if(isset($_GET['del'])){
-  $sql = "DELETE FROM cms_vote_option WHERE id = ".$_GET['del'];
-  if($db->query($sql)){
+
+if (isset($_GET['del'])) {
+  $sql = "DELETE FROM cms_vote_option WHERE id = " . $_GET['del'];
+  if ($db->query($sql)) {
     admin_log('投票项目删除',$_COOKIE['admin_id']);
     alert_back('删除成功!');
-  }else{
+  } else {
     alert_back('删除失败！');
   }
 }
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
   $data['v_id'] = isset($_POST['v_id']) ? $_POST['v_id'] : $_GET['id'];
   $data[LIB_ONAME] = isset($_POST[LIB_ONAME]) ? $_POST[LIB_ONAME] : '';
   $data['o_count'] = 0;
   $data[LIB_OORDER] = isset($_POST[LIB_OORDER]) ? $_POST[LIB_OORDER] : 100;
   $arr = arr_insert($data);
-  $sql = "INSERT INTO cms_vote_option (".$arr[0].") VALUES (".$arr[1].")";
-  if($db->query($sql)){
+
+  $sql = "INSERT INTO cms_vote_option (" . $arr[0] . ") VALUES (" . $arr[1] . ")";
+  if ($db->query($sql)) {
     admin_log('投票项目新增',$_COOKIE['admin_id']);
     alert_back('新增成功!');
-  }else{
+  } else {
     alert_back('新增失败!');
   }
 }
@@ -53,10 +55,10 @@ if(isset($_POST['submit'])){
               <tbody>
                 <?php
                 $pager = page_handle('page',20,$db->getOne("SELECT COUNT(*) FROM cms_vote_option WHERE v_id = ".$_GET['id']));
-                $res = $db->getAll("SELECT * FROM cms_vote_option WHERE v_id = ".$_GET['id']." ORDER BY o_order ASC, id DESC LIMIT ".$pager[0].",".$pager[1]);
+                $res = $db->getAll("SELECT * FROM cms_vote_option WHERE v_id = " . $_GET['id'] . " ORDER BY o_order ASC, id DESC LIMIT " . $pager[0] . "," . $pager[1]);
                 if (check_array($res)) {
                   foreach($res as $row){
-                    echo '<tr><td>'.$row[LIB_ONAME].'</td><td><a href="cms_vote.php?del='.$row['id'].'" onclick="return confirm(\'确认要删除吗？\')" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-times"></span></a></td></tr>';
+                    echo '<tr><td>' . $row[LIB_ONAME] . '</td><td><a href="cms_vote.php?del=' . $row['id'] . '" onclick="return confirm(\'确认要删除吗？\')" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-times"></span></a></td></tr>';
                   }
                 }
                 ?>

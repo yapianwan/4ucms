@@ -25,7 +25,7 @@ if ($act == 'adminLogin') {
     $_SESSION[CMS_LOGINCONT] = 0;
   }
 
-  $sql = "SELECT * FROM cms_user WHERE u_name = '".$a_name."' AND u_psw = '".md5($a_password)."' AND u_isadmin=1";
+  $sql = "SELECT * FROM cms_user WHERE u_name = '" . $a_name . "' AND u_psw = '" . md5($a_password) . "' AND u_isadmin=1";
   $res = $db->getRow($sql);
 
   if (check_array($res)) {

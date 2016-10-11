@@ -2,18 +2,20 @@
 $privilege = 'link';
 include '../library/inc.php';
 include 'cms_check.php';
-if(isset($_POST['submit'])){
+
+if (isset($_POST['submit'])) {
   null_back($_POST[LIB_LNAME],'请填写链接名称');
   non_numeric_back($_POST[LIB_LORDER],'排序必须是数字!');
   $data[LIB_LNAME] = $_POST[LIB_LNAME];
   $data[LIB_LPICTURE] = $_POST[LIB_LPICTURE];
   $data[LIB_LURL] = $_POST[LIB_LURL];
   $data[LIB_LORDER] = $_POST[LIB_LORDER];
-  $sql = "UPDATE cms_link SET ".arr_update($data)." WHERE id = ".$_GET['id'];
-  if($db->query($sql)){
+
+  $sql = "UPDATE cms_link SET " . arr_update($data) . " WHERE id = " . $_GET['id'];
+  if ($db->query($sql)) {
     admin_log('链接编辑',$_COOKIE['admin_id']);
     alert_href('保存成功!','cms_link.php');
-  }else{
+  } else {
     alert_back('保存失败!');
   }
 }
@@ -33,8 +35,8 @@ if(isset($_POST['submit'])){
     <div class="am-g am-g-fixed">
       <div class="am-u-sm-12 am-padding-top">
         <?php
-        $res = $db->getRow("SELECT * FROM cms_link WHERE id = ".$_GET['id']);
-        if($row = $res){
+        $res = $db->getRow("SELECT * FROM cms_link WHERE id = " . $_GET['id']);
+        if ($row = $res) {
         ?>
         <section class="am-panel am-panel-default">
           <header class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-1'}">编辑链接<span class="am-icon-chevron-down am-fr"></span></header>
