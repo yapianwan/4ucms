@@ -1,5 +1,5 @@
 <?php
-header('Content-type:text/html; charset=utf-8');//设置编码
+header('Content-type:text/html; charset=utf-8');
 include '../library/inc.php';
 if (isset($_POST['save'])) {
   $db_name = $_POST['db_name'];
