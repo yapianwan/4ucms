@@ -6,7 +6,7 @@ include '../language/priv.php';
 
 // 获取管理员权限
 $rid = $_GET['id'];
-$res = $GLOBALS['db']->getOne("SELECT r_priv FROM cms_role WHERE id = ".$rid);
+$res = $GLOBALS['db']->getOne("SELECT r_priv FROM cms_role WHERE id = " . $rid);
 $priv = explode(',',$res);
 
 // 更新权限至数据库
@@ -17,10 +17,10 @@ if ($act == 'update') {
     }
   }
   $priv = implode(',',$arr); //转为priv字串
-  $sql = "UPDATE cms_role SET r_priv='$priv' WHERE id = ".$_POST['rid'];
+  $sql = "UPDATE cms_role SET r_priv = '$priv' WHERE id = ".$_POST['rid'];
   if ($db->query($sql)) {
     admin_log('权限管理',$_COOKIE['admin_id']);
-    $admin_id = $db->getOne("SELECT * FROM cms_user WHERE u_rid = ".$_POST['rid']);
+    $admin_id = $db->getOne("SELECT * FROM cms_user WHERE u_rid = " . $_POST['rid']);
       alert_href('操作成功!','cms_priv.php?id='.$_POST['rid']);
   } else {
     alert_back('操作失败!');

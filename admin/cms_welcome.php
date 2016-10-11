@@ -45,7 +45,7 @@ $priv = $db->getOne("SELECT COUNT(id) FROM cms_role WHERE id>0");
     </ul>
     <ul class="am-avg-sm-1 am-avg-md-4 am-margin am-padding am-text-center admin-content-list ">
       <li><a href="cms_admin.php"><span class="am-icon-btn am-icon-user"></span><br/>管理员: <?php echo $adm;?></a></li>
-      <li><a href="cms_priv.php"><span class="am-icon-btn am-icon-graduation-cap"></span><br/>权限管理: <?php echo $priv;?></a></li>
+      <li><a href="cms_role.php"><span class="am-icon-btn am-icon-graduation-cap"></span><br/>权限管理: <?php echo $priv;?></a></li>
     </ul>
     
     </div>
