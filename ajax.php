@@ -73,41 +73,6 @@ elseif ($act == 'feedback_post') {
   }
 }
 
-// book ajax
-elseif ($act == 'book') {
-  $mobile = str_safe($_POST['mobile']);
-  $dpd1 = str_safe($_POST['dpd1']);
-  $dpd2 = str_safe($_POST['dpd2']);
-  $rooms = str_safe($_POST['rooms']);
-  $adult = str_safe($_POST['adult']);
-  $children = str_safe($_POST['children']);
-  $mail_subject = '[' . $cms['s_name'] . '] 预约邮件';
-  $mail_body = '手机号码：' . $mobile . '<br>入驻时间：' . $dpd1 . '<br>退房时间：' . $dpd2 . '<br>预定房间：' . $rooms . '<br>成人：' . $adult . '<br>孩子：' . $children;
-  if (smtp_mail(SMTP_RECIEVER,$mail_subject,$mail_body)) {
-    $res['msg'] = '预订成功！请保持您的手机畅通，我们稍后会与您取得联系。';
-  } else {
-    $res['msg'] = '预订失败！请稍后重试。';
-  }
-  echo json_encode($res);
-}
-elseif ($act == 'roombook') {
-  $name = str_safe($_POST['room-name']);
-  $mobile = str_safe($_POST['mobile']);
-  $dpd1 = str_safe($_POST['dpd1']);
-  $dpd2 = str_safe($_POST['dpd2']);
-  $rooms = str_safe($_POST['rooms']);
-  $adult = str_safe($_POST['adult']);
-  $children = str_safe($_POST['children']);
-  $mail_subject = '[' . $cms['s_name'] . '] 预约邮件';
-  $mail_body = '手机号码：' . $mobile . '<br>入驻时间：' . $dpd1 . '<br>退房时间：' . $dpd2 . '<br>预定房间：' . $name . '&nbsp;' . $rooms . '间<br>成人：' . $adult . '<br>孩子：' . $children;
-  if (smtp_mail(SMTP_RECIEVER,$mail_subject,$mail_body)) {
-    $res['msg'] = '预订成功！请保持您的手机畅通，我们稍后会与您取得联系。';
-  } else {
-    $res['msg'] = '预订失败！请稍后重试。';
-  }
-  echo json_encode($res);
-}
-
 // rewrite
 elseif ($act == 'rewrite_apache') {
   $str = "RewriteEngine On{$spt}#主域名指向www二级域名{$spt}#RewriteCond %{HTTP_HOST} ^domain.com [NC]{$spt}#RewriteRule ^(.*)$ http://www.domain.com/$1 [L,R=301]{$spt}RewriteBase /{$spt}RewriteRule ^index\.html$ index.php{$spt}RewriteRule ^channel-([0-9]+)\.html$ channel.php?id=$1{$spt}RewriteRule ^channel-([0-9]+)-([0-9]+)\.html$ channel.php?id=$1&page=$2{$spt}RewriteRule ^detail-([0-9]+)\.html$ detail.php?id=$1{$spt}RewriteRule ^user\.html$ user.php{$spt}RewriteRule ^user-(.*)\.html$ user.php?act=$1{$spt}RewriteRule ^user-(.*)-([0-9]+)\.html$ user.php?act=$1&page=$2";
