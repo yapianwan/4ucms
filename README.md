@@ -46,7 +46,7 @@ shadowwing@163.com
 
 ####常用数据表
 >[cms_channel]
->>id  
+>>id
 >>c_name  频道名称
 >>c_ifpicture  频道图片判断 1/0
 >>c_picture  频道图片
@@ -77,19 +77,19 @@ shadowwing@163.com
 >>c_order  频道排序 默认值100,越小越靠前
 
 >[cms_chip]
->>id  
+>>id
 >>c_code  调用代码
 >>c_name  描述
 >>c_content  内容
 >>c_safe  删除保护 1/0
 
 >[cms_cmodel]
->>id  
+>>id
 >>c_name  频道模型名称
 >>c_value  频道模型对应文件名
 
 >[cms_detail]
->>id  
+>>id
 >>d_name  详情名称
 >>d_ifpicture  详情图片判断 1/0
 >>d_picture  详情图片
@@ -118,12 +118,12 @@ shadowwing@163.com
 >>d_date  发布日期
 
 >[cms_dmodel]
->>id  
+>>id
 >>d_name  详情模型名称
 >>d_value  详情模型对应文件名
 
 >[cms_feedback]
->>id  
+>>id
 >>f_type  留言类别
 >>f_name  姓名
 >>f_tel  电话/手机
@@ -139,19 +139,19 @@ shadowwing@163.com
 >>f_ok  状态判断 1/0
 
 >[cms_link]
->>id  
+>>id
 >>l_name  友情链接名称
 >>l_order  排序 默认值100,越小越靠前
 >>l_link  链接地址
 >>l_picture  友情链接图片
 
 >[cms_role]
->>id  
+>>id
 >>r_name  角色名称
 >>r_priv  角色权限字串 使用","分隔
 
 >[cms_slideshow]
->>id  
+>>id
 >>s_name  幻灯名称
 >>s_parent  所属层级 可以配置为全局,频道....
 >>s_order  排序 默认值100,越小越靠前
@@ -159,12 +159,12 @@ shadowwing@163.com
 >>s_picture  幻灯字串
 
 >[cms_subscribe]
->>id  
+>>id
 >>sub_mail  订阅邮箱
 >>sub_date  订阅日期
 
 >[cms_system]
->>id  
+>>id
 >>s_template  当前模板ID
 >>s_domain  域名
 >>s_name  站点名称
@@ -176,12 +176,12 @@ shadowwing@163.com
 >>s_feedback  留言判断
 
 >[cms_template]
->>id  
+>>id
 >>t_name  模板名称
 >>t_path  模板文件夹名
 
 >[cms_user]
->>id  
+>>id
 >>u_rid  管理员角色ID
 >>u_enable  生效判断 1/0
 >>u_name  用户名称
@@ -207,7 +207,7 @@ shadowwing@163.com
 >>u_isadmin  管理员判断
 
 >[cms_user_level]
->>id  
+>>id
 >>ul_name  用户等级名称
 >>ul_content  等级内容
 >>ul_point  等级所需点数
