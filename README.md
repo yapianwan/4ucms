@@ -4,8 +4,8 @@
 * PHP
 * MYSQL
 
-####程序大小
-3.71 M (不含前台模板大小)
+####主程序部分
+2.38 M
 
 ####系统预览
 [http://mcmswx.foru.net.cn/](http://mcmswx.foru.net.cn/view/)
