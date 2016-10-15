@@ -18,15 +18,15 @@
 shadowwing@163.com
 
 ####系统搭建
-1. 创建数据库并指定utf-8编码（CREATE DATABASE 数据库名称 DEFAULT CHARSET utf8 COLLATE utf8_general_ci;）
-2. 打开install/index.php进行数据导入；当然您也可以直接导入install/data.sql文件来替代前面的步骤
-3. 修改config/data.php内的数据库连接信息
-4. 修改config/config.php内的网站路径信息
+1. 修改config/data.php内的数据库连接信息
+2. 修改config/config.php内的网站路径信息
+3. 创建数据库并指定utf-8编码（CREATE DATABASE 数据库名称 DEFAULT CHARSET utf8 COLLATE utf8_general_ci;）
+4. 打开install/index.php进行数据导入；当然您也可以直接导入install/data.sql文件来替代前面的步骤
 5. 如果需要使用smtp功能，请修改config/smtp.php内的对应信息
 
 ####目录结构
 >		/admin          管理后台,默认账户密码为admin
->		/config         配置项(data.php文件需要读写权限)
+>		/config         配置项
 >		/editor         编辑器
 >		/fonts          字体
 >		/install        数据安装

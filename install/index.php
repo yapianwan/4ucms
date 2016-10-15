@@ -3,25 +3,7 @@ header('Content-type:text/html; charset=utf-8');
 include '../library/inc.php';
 if (isset($_POST['save'])) {
   $db_name = $_POST['db_name'];
-  $str = '';
-  $str .= '<?php';
-  $str .= "\n";
-  $str .= '//Mysql数据库信息';
-  $str .= "\n";
-  $str .= 'define(\'DATA_HOST\', \''.$_POST['db_host'].'\');';
-  $str .= "\n";
-  $str .= 'define(\'DATA_USERNAME\', \''.$_POST['db_username'].'\');';
-  $str .= "\n";
-  $str .= 'define(\'DATA_PASSWORD\', \''.$_POST['db_password'].'\');';
-  $str .= "\n";
-  $str .= 'define(\'DATA_NAME\', \''.$db_name.'\');';
-  $str .= "\n";    
-  $str .= '?>';
-  $files = ROOT_PATH.'/config/data.php';
   $file_name = ROOT_PATH.INSTALL_DIR.'/data.sql';
-  $ff = fopen($files,'w+');
-  fwrite($ff,$str);
-
   set_time_limit(0);
   $fp = @fopen($file_name, "r");
   if ($fp === false) {
