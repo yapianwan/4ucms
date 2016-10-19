@@ -205,9 +205,9 @@ function page_show($t0, $t1, $t2, $t3) {
       $page_home = LIB_LIA . $page_link . $page_parameter . '=1" title="首页">1...' . LIB_ALI;
     }
     if ($page_current == 1) {
-      $page_back = LIB_LICLS.PAGE_DISABLED.'"><a href="javascript:;" title="上一页">&laquo' . LIB_ALI;
+      $page_back = LIB_LICLS.PAGE_DISABLED.'"><a href="javascript:;" title="上一页"><<' . LIB_ALI;
     } else {
-      $page_back = LIB_LIA . $page_link . $page_parameter . '=' . ($page_current - 1) . '" title="上一页">&laquo' . LIB_ALI;
+      $page_back = LIB_LIA . $page_link . $page_parameter . '=' . ($page_current - 1) . '" title="上一页"><<' . LIB_ALI;
     }
     for ($i = $page_start; $i <= $page_end; $i++) {
       if ($i == $page_current) {
@@ -220,9 +220,9 @@ function page_show($t0, $t1, $t2, $t3) {
       $page_last = LIB_LIA . $page_link . $page_parameter . '=' . $page_sum . '" title="尾页">...' . $page_sum . '' . LIB_ALI;
     }
     if ($page_current == $page_sum) {
-      $page_next = LIB_LICLS.PAGE_DISABLED.'"><a href="javascript:;" title="下一页">&raquo' . LIB_ALI;
+      $page_next = LIB_LICLS.PAGE_DISABLED.'"><a href="javascript:;" title="下一页">>>' . LIB_ALI;
     } else {
-      $page_next = LIB_LIA . $page_link . $page_parameter . '=' . ($page_current + 1) . '" title="下一页">&raquo' . LIB_ALI;
+      $page_next = LIB_LIA . $page_link . $page_parameter . '=' . ($page_current + 1) . '" title="下一页">>>' . LIB_ALI;
     }
   }
   return $tmp . $page_back . $page_home . $page_list . $page_last . $page_next . '<input type="hidden" value="' . $page_current . '" class="page_current">';
@@ -269,9 +269,9 @@ function page_show_admin($t0, $t1, $t2, $t3, $c_sub = 0) {
     $page_home = LIB_LIA . $page_link . $page_parameter . '=1" title="首页">1...' . LIB_ALI;
   }
   if ($page_current == 1) {
-    $page_back = '<li class="am-disabled"><a href="javascript:;" title="上一页">&laquo' . LIB_ALI;
+    $page_back = '<li class="am-disabled"><a href="javascript:;" title="上一页"><<' . LIB_ALI;
   } else {
-    $page_back = LIB_LIA . $page_link . $page_parameter . '=' . ($page_current - 1) . '" title="上一页">&laquo' . LIB_ALI;
+    $page_back = LIB_LIA . $page_link . $page_parameter . '=' . ($page_current - 1) . '" title="上一页"><<' . LIB_ALI;
   }
   for ($i = $page_start; $i <= $page_end; $i++) {
     if ($i == $page_current) {
@@ -284,9 +284,9 @@ function page_show_admin($t0, $t1, $t2, $t3, $c_sub = 0) {
     $page_last = LIB_LIA . $page_link . $page_parameter . '=' . $page_sum . '" title="尾页">...' . $page_sum . '' . LIB_ALI;
   }
   if ($page_current == $page_sum) {
-    $page_next = '<li class="am-disabled"><a href="javascript:;" title="下一页">&raquo' . LIB_ALI;
+    $page_next = '<li class="am-disabled"><a href="javascript:;" title="下一页">>>' . LIB_ALI;
   } else {
-    $page_next = LIB_LIA . $page_link . $page_parameter . '=' . ($page_current + 1) . '" title="下一页">&raquo' . LIB_ALI;
+    $page_next = LIB_LIA . $page_link . $page_parameter . '=' . ($page_current + 1) . '" title="下一页">>>' . LIB_ALI;
   }
   $tmp = $tmp . $page_back . $page_home . $page_list . $page_last . $page_next . '</ul><input type="hidden" value="' . $page_current . '" class="page_current">';
   if ($c_sub) {
@@ -383,6 +383,30 @@ function get_user($t0, $t1) {
 //高亮显示
 function high_light($t0, $t1) {
   return str_replace($t1, '<span class="highlight">' . $t1 . '</span>', $t0);
+}
+//后台操作日志
+function admin_log($code, $admin_id, $admin_name = '', $silent = ADMIN_LOG) {
+  $log['admin_id'] = $admin_id;
+  $log['admin_name'] = $admin_name;
+  $log['log_code'] = $code;
+  $log['log_time'] = date('Y-m-d H:i:s', time());
+  $log['log_ip'] = get_ip();
+  if ($silent == 1 || $silent===true) {
+    $GLOBALS['db']->autoExecute('cms_admin_log', $log);
+  }
+}
+//获取访问者真实IP
+function get_ip() {
+  if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+    //check ip FROM share internet
+    $ip = $_SERVER['HTTP_CLIENT_IP'];
+  } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+    //to check ip is pass FROM proxy
+    $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+  } else {
+    $ip = $_SERVER['REMOTE_ADDR'];
+  }
+  return $ip;
 }
 // 获取当前完整URL
 function get_Url() {

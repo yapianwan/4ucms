@@ -186,12 +186,3 @@ function gzip_enabled() {
   }
   return $enabled_gzip;
 }
-function page_back() {
-  $str = substr($_SERVER[LIB_PHPSELF], strrpos($_SERVER[LIB_PHPSELF], '/')+1);
-  $arr = explode('_', $str);
-  if (count($arr)>2) {
-    return $arr[0] . '_' . $arr[1] . '.php';
-  } else {
-    return $arr[0] . '_' . $arr[1];
-  }
-}

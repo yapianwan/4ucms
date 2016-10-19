@@ -2,7 +2,9 @@
   <div class="am-topbar-brand">
     <a href="index.php?act=welcome"><span class="am-icon-home"></span> 首页 </a>
   </div>
-  <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target:'#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+
+  <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+
   <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
 
     <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
@@ -46,7 +48,6 @@
           <li><a href="cms_database.php"><span class="am-icon-database"></span> 数据库管理 </a></li>
           <li><a href="cms_rewrite.php"><span class="am-icon-exchange"></span> 伪静态 </a></li>
           <li><a href="javascript:if(confirm('是否进行sitemap文件生成?')) window.open('../sitemap.php?act=xml');"><span class="am-icon-cubes"></span> sitemap </a></li>
-          <li><a href="index.php?act=caf"><span class="am-icon-refresh"></span> 清理缓存 </a></li>
           <!--<li><a href="javascript:if(confirm('是否进行百度主动推送?')) window.location.href='index.php?act=baiduSend';"><span class="am-icon-exchange"></span> 百度主动推送 </a></li>-->
           </ul>
       </li>

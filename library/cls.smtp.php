@@ -233,4 +233,5 @@ class Smtp {
       echo $message; 
     } 
   } 
-}
+} 
+?>

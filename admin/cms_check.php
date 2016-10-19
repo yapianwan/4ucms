@@ -1,7 +1,8 @@
 <?php
+header("Content-Type: text/html; charset=utf-8");
 // 判断登陆
 if (!isset($_COOKIE['admin_name'])) {
-  alert_href('请先登录', 'cms_login.php');
+  alert_href('请先登录','cms_login.php');
 }
 // 判断权限
 if (!empty($privilege)) {
@@ -11,3 +12,4 @@ if (!empty($privilege)) {
     alert_back('无操作权限');
   }
 }
+?>

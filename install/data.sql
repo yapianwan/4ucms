@@ -286,7 +286,7 @@ CREATE TABLE `cms_vote_log` (
   `o_id` int(10) DEFAULT NULL,
   `l_ip` varchar(20) NOT NULL DEFAULT '',
   `l_date` int(10) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 -- ----------
 CREATE TABLE `cms_vote_option` (
@@ -295,6 +295,6 @@ CREATE TABLE `cms_vote_option` (
   `o_name` varchar(250) NOT NULL DEFAULT '',
   `o_count` int(10) unsigned NOT NULL DEFAULT '0',
   `o_order` int(11) NOT NULL DEFAULT '100',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 -- ----------

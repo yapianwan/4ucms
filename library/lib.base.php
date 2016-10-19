@@ -1,4 +1,19 @@
 <?php
+// rewrite
+function c_rewrite($t0) {
+  if (REWRITE) {
+    return 'channel-' . $t0 . '.html';
+  } else {
+    return 'channel.php?id=' . $t0;
+  }
+}
+function d_rewrite($t0) {
+  if (REWRITE) {
+    return 'detail-' . $t0 . '.html';
+  } else {
+    return 'detail.php?id=' . $t0 . '';
+  }
+}
 //频道链接地址
 function c_url($t0, $t1='') {
   if (!empty($t1)) {
@@ -23,21 +38,6 @@ function d_url($t0, $t1='') {
     } else {
       return d_rewrite($t0);
     }
-  }
-}
-// rewrite
-function c_rewrite($t0) {
-  if (REWRITE) {
-    return 'channel-' . $t0 . '.html';
-  } else {
-    return 'channel.php?id=' . $t0;
-  }
-}
-function d_rewrite($t0) {
-  if (REWRITE) {
-    return 'detail-' . $t0 . '.html';
-  } else {
-    return 'detail.php?id=' . $t0 . '';
   }
 }
 //TAG链接地址
@@ -157,6 +157,28 @@ function get_channel($t0, $t1) {
     return '不存在';
   }
 }
+//smtp邮件发送
+function smtp_mail($mailto, $subject, $body) {
+  // smtp主体部分
+  $smtpserver = SMTP_SERVER;
+  //SMTP服务器
+  $smtpserverport = 25;
+  //SMTP服务器端口
+  $smtpusermail = SMTP_EMAIL;
+  //SMTP服务器的用户邮箱
+  $smtpemailto = isset($mailto) && !empty($mailto) ? $mailto : 'shadowwing@163.com';
+  //发送给谁
+  $smtpuser = SMTP_ID;
+  //SMTP服务器的用户帐号
+  $smtppass = SMTP_PASS;
+  //SMTP服务器的用户密码
+  $mailsubject = '=?UTF-8?B?' . base64_encode($subject) . '?=';
+  //邮件主题
+  $mailbody = $body;
+  //邮件内容
+  $smtp = new Smtp($smtpserver, $smtpserverport, $smtpuser, $smtppass);
+  return $smtp->sendmail($smtpemailto, $smtpusermail, $mailsubject, $mailbody);
+}
 // 释放资源
 function unset_str($str) {
   if (strpos($str, ',')!==false) {
@@ -183,30 +205,6 @@ function php_self() {
   } else {
     return false;
   }
-}
-//后台操作日志
-function admin_log($code, $admin_id, $admin_name = '', $silent = ADMIN_LOG) {
-  $log['admin_id'] = $admin_id;
-  $log['admin_name'] = $admin_name;
-  $log['log_code'] = $code;
-  $log['log_time'] = date('Y-m-d H:i:s', time());
-  $log['log_ip'] = get_ip();
-  if ($silent == 1 || $silent===true) {
-    $GLOBALS['db']->autoExecute('cms_admin_log', $log);
-  }
-}
-//获取访问者真实IP
-function get_ip() {
-  if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-    //check ip FROM share internet
-    $ip = $_SERVER['HTTP_CLIENT_IP'];
-  } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-    //to check ip is pass FROM proxy
-    $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-  } else {
-    $ip = $_SERVER['REMOTE_ADDR'];
-  }
-  return $ip;
 }
 function is_home($p) {
   return @$p == 'index';

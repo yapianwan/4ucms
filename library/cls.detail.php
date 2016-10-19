@@ -42,3 +42,4 @@ class Detail{
     $this->db->query("UPDATE cms_detail SET d_hits = d_hits + 1 WHERE id = $id");
   }
 }
+?>

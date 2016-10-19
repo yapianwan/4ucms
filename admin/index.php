@@ -3,11 +3,7 @@ include '../library/inc.php';
 
 switch ($act) {
   case 'caf':
-    //清理所有缓存文件
-    $tpl->clearAllCache();
-    //清理全部编译模板
-    $tpl->clearCompiledTemplate();
-    alert_back('缓存已清理');
+    alert_back('清理了 ' . clear_all_files() . ' 个文件');
   break;
 
   case 'welcome':
@@ -64,3 +60,4 @@ function getDetailBaiduSend($s,$e) {
     alert_back('无新数据无需推送');
   }
 }
+?>

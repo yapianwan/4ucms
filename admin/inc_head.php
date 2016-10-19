@@ -13,13 +13,11 @@
 
 <!-- Amaze UI CSS -->
 <link rel="stylesheet" href="//cdn.amazeui.org/amazeui/2.7.2/css/amazeui.flat.min.css">
-<link rel="stylesheet" href="{?$smarty.const.SITE_DIR?}templates/admin/css/admin.css">
+<link rel="stylesheet" href="css/admin.css">
 <link rel="stylesheet" href="../editor/themes/default/default.css" />
 
 <!-- style -->
-<style>
-.am-form select{ padding:0.52em}
-</style>
+<style>.am-form select{ padding:0.52em}</style>
 
 <!--[if lt IE 9]>
 <script src="//libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
@@ -28,7 +26,7 @@
 <![endif]-->
 
 <!--[if (gte IE 9)|!(IE)]><!-->
-<script src="//libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+<script src="<?php echo SITE_DIR;?>/js/jquery-2.1.4.min.js"></script>
 <!--<![endif]-->
 <script src="//cdn.amazeui.org/amazeui/2.7.2/js/amazeui.min.js"></script>
 <script charset="utf-8" type="text/javascript" src="../editor/kindeditor.js"></script>
