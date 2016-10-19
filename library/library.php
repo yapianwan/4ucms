@@ -178,12 +178,12 @@ function page_show($t0, $t1, $t2, $t3) {
   $tmp = '';
   if (REWRITE) {
     if ($page_current > ($page_len + 1)) {
-      $page_home = LIB_LIA . $page_link . '1.html" title="首页">1...' . LIB_ALI;
+      $page_home = LIB_LIA . $page_link . '1.html" title="首页">&laquo;' . LIB_ALI;
     }
     if ($page_current == 1) {
-      $page_back = LIB_LICLS.PAGE_DISABLED.'"><a href="javascript:;" title="上一页"><<' . LIB_ALI;
+      $page_back = LIB_LICLS.PAGE_DISABLED.'"><a href="javascript:;" title="上一页">&lsaquo;' . LIB_ALI;
     } else {
-      $page_back = LIB_LIA . $page_link . ($page_current - 1) . '.html" title="上一页"><<' . LIB_ALI;
+      $page_back = LIB_LIA . $page_link . ($page_current - 1) . '.html" title="上一页">&lsaquo;' . LIB_ALI;
     }
     for ($i = $page_start; $i <= $page_end; $i++) {
       if ($i == $page_current) {
@@ -193,21 +193,21 @@ function page_show($t0, $t1, $t2, $t3) {
       }
     }
     if ($page_current < ($page_sum - $page_len)) {
-      $page_last = LIB_LIA . $page_link . $page_sum . '.html" title="尾页">...' . $page_sum . '' . LIB_ALI;
+      $page_last = LIB_LIA . $page_link . $page_sum . '.html" title="尾页">&raquo;' . $page_sum . '' . LIB_ALI;
     }
     if ($page_current == $page_sum) {
-      $page_next = LIB_LICLS.PAGE_DISABLED.'"><a href="javascript:;" title="下一页">>>' . LIB_ALI;
+      $page_next = LIB_LICLS.PAGE_DISABLED.'"><a href="javascript:;" title="下一页">&rsaquo;' . LIB_ALI;
     } else {
-      $page_next = LIB_LIA . $page_link . ($page_current + 1) . '.html" title="下一页">>>' . LIB_ALI;
+      $page_next = LIB_LIA . $page_link . ($page_current + 1) . '.html" title="下一页">&rsaquo;' . LIB_ALI;
     }
   } else {
     if ($page_current > ($page_len + 1)) {
-      $page_home = LIB_LIA . $page_link . $page_parameter . '=1" title="首页">1...' . LIB_ALI;
+      $page_home = LIB_LIA . $page_link . $page_parameter . '=1" title="首页">&laquo;' . LIB_ALI;
     }
     if ($page_current == 1) {
-      $page_back = LIB_LICLS.PAGE_DISABLED.'"><a href="javascript:;" title="上一页">&laquo' . LIB_ALI;
+      $page_back = LIB_LICLS.PAGE_DISABLED.'"><a href="javascript:;" title="上一页">&lsaquo;' . LIB_ALI;
     } else {
-      $page_back = LIB_LIA . $page_link . $page_parameter . '=' . ($page_current - 1) . '" title="上一页">&laquo' . LIB_ALI;
+      $page_back = LIB_LIA . $page_link . $page_parameter . '=' . ($page_current - 1) . '" title="上一页">&lsaquo;' . LIB_ALI;
     }
     for ($i = $page_start; $i <= $page_end; $i++) {
       if ($i == $page_current) {
@@ -217,12 +217,12 @@ function page_show($t0, $t1, $t2, $t3) {
       }
     }
     if ($page_current < ($page_sum - $page_len)) {
-      $page_last = LIB_LIA . $page_link . $page_parameter . '=' . $page_sum . '" title="尾页">...' . $page_sum . '' . LIB_ALI;
+      $page_last = LIB_LIA . $page_link . $page_parameter . '=' . $page_sum . '" title="尾页">&raquo;' . $page_sum . '' . LIB_ALI;
     }
     if ($page_current == $page_sum) {
-      $page_next = LIB_LICLS.PAGE_DISABLED.'"><a href="javascript:;" title="下一页">&raquo' . LIB_ALI;
+      $page_next = LIB_LICLS.PAGE_DISABLED.'"><a href="javascript:;" title="下一页">&rsaquo;' . LIB_ALI;
     } else {
-      $page_next = LIB_LIA . $page_link . $page_parameter . '=' . ($page_current + 1) . '" title="下一页">&raquo' . LIB_ALI;
+      $page_next = LIB_LIA . $page_link . $page_parameter . '=' . ($page_current + 1) . '" title="下一页">&rsaquo;' . LIB_ALI;
     }
   }
   return $tmp . $page_back . $page_home . $page_list . $page_last . $page_next . '<input type="hidden" value="' . $page_current . '" class="page_current">';
@@ -266,12 +266,12 @@ function page_show_admin($t0, $t1, $t2, $t3, $c_sub = 0) {
   $page_next = '';
   $tmp = '<ul class="am-pagination am-pagination-centered">';
   if ($page_current > ($page_len + 1)) {
-    $page_home = LIB_LIA . $page_link . $page_parameter . '=1" title="首页">1...' . LIB_ALI;
+    $page_home = LIB_LIA . $page_link . $page_parameter . '=1" title="首页">&laquo;' . LIB_ALI;
   }
   if ($page_current == 1) {
-    $page_back = '<li class="am-disabled"><a href="javascript:;" title="上一页">&laquo' . LIB_ALI;
+    $page_back = '<li class="am-disabled"><a href="javascript:;" title="上一页">&lsaquo;' . LIB_ALI;
   } else {
-    $page_back = LIB_LIA . $page_link . $page_parameter . '=' . ($page_current - 1) . '" title="上一页">&laquo' . LIB_ALI;
+    $page_back = LIB_LIA . $page_link . $page_parameter . '=' . ($page_current - 1) . '" title="上一页">&lsaquo;' . LIB_ALI;
   }
   for ($i = $page_start; $i <= $page_end; $i++) {
     if ($i == $page_current) {
@@ -281,12 +281,12 @@ function page_show_admin($t0, $t1, $t2, $t3, $c_sub = 0) {
     }
   }
   if ($page_current < ($page_sum - $page_len)) {
-    $page_last = LIB_LIA . $page_link . $page_parameter . '=' . $page_sum . '" title="尾页">...' . $page_sum . '' . LIB_ALI;
+    $page_last = LIB_LIA . $page_link . $page_parameter . '=' . $page_sum . '" title="尾页">&raquo;' . $page_sum . '' . LIB_ALI;
   }
   if ($page_current == $page_sum) {
-    $page_next = '<li class="am-disabled"><a href="javascript:;" title="下一页">&raquo' . LIB_ALI;
+    $page_next = '<li class="am-disabled"><a href="javascript:;" title="下一页">&rsaquo;' . LIB_ALI;
   } else {
-    $page_next = LIB_LIA . $page_link . $page_parameter . '=' . ($page_current + 1) . '" title="下一页">&raquo' . LIB_ALI;
+    $page_next = LIB_LIA . $page_link . $page_parameter . '=' . ($page_current + 1) . '" title="下一页">&rsaquo;' . LIB_ALI;
   }
   $tmp = $tmp . $page_back . $page_home . $page_list . $page_last . $page_next . '</ul><input type="hidden" value="' . $page_current . '" class="page_current">';
   if ($c_sub) {
