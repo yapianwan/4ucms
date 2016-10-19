@@ -186,7 +186,7 @@ CREATE TABLE `cms_slideshow` (
   `s_name` varchar(255) DEFAULT NULL,
   `s_parent` varchar(255) DEFAULT NULL,
   `s_order` int(11) NOT NULL DEFAULT '100',
-  `s_url` varchar(255) DEFAULT NULL,
+  `s_link` varchar(255) DEFAULT NULL,
   `s_picture` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -272,10 +272,10 @@ INSERT INTO `cms_user_level` (`id`,`ul_name`,`ul_content`,`ul_point`) VALUES ('1
 CREATE TABLE `cms_vote` (
   `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
   `v_name` varchar(250) NOT NULL DEFAULT '',
-  `v_stime` int(11) unsigned NOT NULL DEFAULT '0',
-  `v_etime` int(11) unsigned NOT NULL DEFAULT '0',
+  `v_stime` int(10) unsigned NOT NULL DEFAULT '0',
+  `v_etime` int(10) unsigned NOT NULL DEFAULT '0',
   `v_ifmulti` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `v_count` int(10) unsigned NOT NULL DEFAULT '0',
+  `v_count` int(11) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -286,8 +286,7 @@ CREATE TABLE `cms_vote_log` (
   `o_id` int(10) DEFAULT NULL,
   `l_ip` varchar(20) NOT NULL DEFAULT '',
   `l_date` int(10) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `vote_id` (`v_id`) USING BTREE
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 -- ----------
 CREATE TABLE `cms_vote_option` (
@@ -296,7 +295,6 @@ CREATE TABLE `cms_vote_option` (
   `o_name` varchar(250) NOT NULL DEFAULT '',
   `o_count` int(10) unsigned NOT NULL DEFAULT '0',
   `o_order` int(11) NOT NULL DEFAULT '100',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `vote_id` (`v_id`) USING BTREE
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 -- ----------

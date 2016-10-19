@@ -97,7 +97,7 @@ define('LIB_QDATE', 'q_date');
 define('LIB_TPATH', 't_path');
 define('LIB_SDOMAIN', 's_domain');
 define('LIB_SPIC', 's_picture');
-define('LIB_SURL', 's_url');
+define('LIB_SURL', 's_link');
 define('LIB_STYPE', 's_type');
 define('LIB_SNAME', 's_name');
 define('LIB_SQID', 's_qid');

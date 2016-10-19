@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html class="no-js fixed-layout">
+<head>
+{?include file='inc_head.html'?}
+</head>
+
+<body>
+{?include file='inc_header.html'?}
+
+<div class="am-cf admin-main">
+  <!-- content start -->
+  <div class="admin-content">
+    <div class="am-g am-g-fixed">
+      <div class="am-u-sm-12 am-padding-top">
+
+        <section class="am-panel am-panel-default">
+          <header class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-1'}">电子邮箱<span class="am-icon-chevron-down am-fr"></span></header>
+          <main class="am-panel-bd am-collapse am-text-break am-in" id="collapse-panel-1">
+            <textarea class="am-form-field" rows="15" id="doc-ta-1" onClick="select();">{?foreach $res as $key=>$val?}{?if $key==0?}{?$val.sub_mail?}{?else?},{?$val.sub_mail?}{?/if?}{?/foreach?}</textarea>
+            {?$pager[2]|page_show_admin:$pager[3]:'page':2?}
+          </main>
+        </section>
+
+      </div>
+    </div>
+  </div>
+  <!-- content end -->
+</div>
+
+{?include file='inc_footer.html'?}
+</body>
+</html>

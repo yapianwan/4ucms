@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html class="no-js fixed-layout">
+<head>
+{?include file='inc_head.html'?}
+</head>
+
+<body>
+{?include file='inc_header.html'?}
+
+<div class="am-cf admin-main">
+  <!-- content start -->
+  <div class="admin-content">
+    <div class="am-g am-g-fixed">
+    
+    <div class="am-cf am-padding">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">管理员: {?$smarty.cookies.admin_name?}</strong></div>
+    </div>
+
+    <ul class="am-avg-sm-1 am-avg-md-4 am-margin am-padding am-text-center admin-content-list ">
+      <li><a href="{?$chn_url?}"><span class="am-icon-btn am-icon-th-large"></span><br>站点频道: {?$chn?}</a></li>
+      <li><a href="{?$dtl_url?}"><span class="am-icon-btn am-icon-file-text"></span><br/>频道详情: {?$dtl?}</a></li>
+      <li><a href="{?$sld_url?}"><span class="am-icon-btn am-icon-archive"></span><br/>幻灯片: {?$sld?}</a></li>
+      <li><a href="{?$chip_url?}"><span class="am-icon-btn am-icon-file-code-o"></span><br/>代码碎片: {?$chip?}</a></li>
+    </ul>
+    <ul class="am-avg-sm-1 am-avg-md-4 am-margin am-padding am-text-center admin-content-list ">
+      <li><a href="{?$usr_url?}"><span class="am-icon-btn am-icon-users"></span><br/>会员: {?$usr?}</a></li>
+      <li><a href="{?$fdb_url?}"><span class="am-icon-btn am-icon-comment"></span><br/>在线留言: {?$fdb?}</a></li>
+      <li><a href="{?$link_url?}"><span class="am-icon-btn am-icon-link"></span><br/>友情连接: {?$link?}</a></li>
+      <li><a href="{?$tpl_url?}"><span class="am-icon-btn am-icon-laptop"></span><br/>站点模版: {?$tpl?}</a></li>
+    </ul>
+    <ul class="am-avg-sm-1 am-avg-md-4 am-margin am-padding am-text-center admin-content-list ">
+      <li><a href="{?$adm_url?}"><span class="am-icon-btn am-icon-user"></span><br/>管理员: {?$adm?}</a></li>
+      <li><a href="{?$priv_url?}"><span class="am-icon-btn am-icon-graduation-cap"></span><br/>权限管理: {?$priv?}</a></li>
+    </ul>
+    
+    </div>
+  </div>
+  <!-- content end -->
+</div>
+
+{?include file='inc_footer.html'?}
+</body>
+</html>

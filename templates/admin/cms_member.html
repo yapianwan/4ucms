@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html class="no-js fixed-layout">
+<head>
+{?include file='inc_head.html'?}
+</head>
+
+<body>
+{?include file='inc_header.html'?}
+
+<div class="am-cf admin-main">
+  <!-- content start -->
+  <div class="admin-content">
+    <div class="am-g am-g-fixed">
+      <div class="am-u-sm-12 am-padding-top">
+
+        <section class="am-panel am-panel-default">
+          <header class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-1'}">会员管理<span class="am-icon-chevron-down am-fr"></span></header>
+          <main class="am-panel-bd am-collapse am-in" id="collapse-panel-1">
+            <form method="get" class="am-form am-show-sm-up am-nbfc">
+                <div class="am-u-sm-12">
+                  <div class="am-input-group">
+                    <input id="key" class="am-form-field" type="text" name="key" placeholder="名称查找" />
+                    <span class="am-input-group-btn"><button type="submit" id="search" class="am-btn" name="search">检索</button></span>
+                  </div>
+                </div>
+            </form>
+            <hr/>
+            <table class="am-table am-table-striped admin-content-table">
+              <thead>
+              <tr>
+                <th>帐号</th><th>邮箱</th><th>手机</th><th>操作</th>
+              </tr>
+              </thead>
+              <tbody>
+                {?foreach $res as $val?}
+                <tr><td>{?$val.u_name?}</td><td>{?$val.u_email?}</td><td>{?$val.u_mobile?}</td><td><a href="cms_member_edit.php?id={?$val.id?}" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-pencil"></span></a> <a href="cms_member.php?del={?$val.id?}" onclick="return confirm(\'确认要删除吗？\')" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-times"></span></a></td></tr>
+                {?/foreach?}
+              </tbody>
+            </table>
+            {?$pager[2]|page_show_admin:$pager[3]:'page':2?}
+          </main>
+        </section>
+
+      </div>
+    </div>
+  </div>
+  <!-- content end -->
+</div>
+
+{?include file='inc_footer.html'?}
+</body>
+</html>

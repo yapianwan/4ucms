@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html class="no-js fixed-layout">
+<head>
+{?include file='inc_head.html'?}
+</head>
+
+<body>
+{?include file='inc_header.html'?}
+
+<div class="am-cf admin-main">
+  <!-- content start -->
+  <div class="admin-content">
+    <div class="am-g am-g-fixed">
+      <div class="am-u-sm-12 am-padding-top">
+
+        <section class="am-panel am-panel-default">
+          <header class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-1'}">系统设置<span class="am-icon-chevron-down am-fr"></span></header>
+          <form action="" method="post" class="am-form">
+
+            <main class="am-tabs am-margin" data-am-tabs>
+              <ul class="am-tabs-nav am-nav am-nav-tabs">
+                <li class="am-active"><a href="#tab1">基本信息</a></li>
+                <li><a href="#tab2">SEO</a></li>
+              </ul>
+
+              <div class="am-tabs-bd">
+                <section class="am-tab-panel am-fade am-in am-active" id="tab1">
+                  <div class="am-form-group">
+                    <label for="s_domain">域名</label>
+                    <input id="s_domain" type="text" name="s_domain" value="{?$res.s_domain?}" placeholder="请在域名前添加http://，如:http://www.163.com">
+                  </div>
+
+                  <div class="am-form-group">
+                    <label for="s_name">网站名称</label>
+                    <input id="s_name" type="text" name="s_name" value="{?$res.s_name?}">
+                  </div>
+
+                  <div class="am-form-group">
+                    <label for="s_copyright">版权信息</label>
+                    <textarea id="s_copyright" name="s_copyright">{?$res.s_copyright|stripslashes?}</textarea>
+                  </div>
+                  
+                  <div class="am-form-group">
+                    <label for="s_code">第三方代码</label>
+                    <textarea id="s_code" name="s_code">{?$res.s_code?}</textarea>
+                  </div>
+
+                  <div class="am-form-group">
+                    <label for="s_user">用户注册</label>
+                    <select name="s_user" id="s_user">
+                      <option value="1" {?if $res.s_user == 1?}{?$smarty.const.LIB_SELECTED?}{?/if?}>不需审核</option>
+                      <option value="0" {?if $res.s_user == 0?}{?$smarty.const.LIB_SELECTED?}{?/if?}>需要审核</option>
+                    </select>
+                  </div>
+
+                  <div class="am-form-group">
+                    <label for="s_feedback">留言控制</label>
+                    <select name="s_feedback" id="s_feedback">
+                      <option value="1" {?if $res.s_feedback == 1?}{?$smarty.const.LIB_SELECTED?}{?/if?}>需要审核</option>
+                      <option value="2" {?if $res.s_feedback == 2?}{?$smarty.const.LIB_SELECTED?}{?/if?}>不需审核</option>
+                      <option value="0" {?if $res.s_feedback == 0?}{?$smarty.const.LIB_SELECTED?}{?/if?}>关闭留言</option>
+                    </select>
+                  </div>
+                </section>
+              
+                <section class="am-tab-panel am-fade" id="tab2">
+                  <div class="am-form-group">
+                    <label for="s_seoname">优化标题</label>
+                    <input id="s_seoname" type="text" name="s_seoname" value="{?$res.s_seoname?}">
+                  </div>
+
+                  <div class="am-form-group">
+                    <label for="s_keywords">关键字</label>
+                    <textarea id="s_keywords" type="text" name="s_keywords">{?$res.s_keywords?}</textarea>
+                  </div>
+
+                  <div class="am-form-group">
+                    <label for="s_description">关键描述</label>
+                    <textarea id="s_description" name="s_description">{?$res.s_description?}</textarea>
+                  </div>
+                </section>
+                
+                <center>
+                  <button type="submit" name="submit" class="am-btn am-btn-default">提交保存</button>
+                </center>
+                <br>
+              </div> 
+            </main>
+          </form>
+        </section>
+
+      </div>
+    </div>
+  </div>
+  <!-- content end -->
+</div>
+
+{?include file='inc_footer.html'?}
+
+<!-- js -->
+<script type="text/javascript">
+$(function(){
+  $('#save').click(function(){
+    if ($('#s_domain').val() == ''){
+      alert('请填写域名');
+      $('#c_name').focus();
+      return false;
+    }
+    if ($('#s_name').val() == ''){
+      alert('请填写网络名称');
+      $('#c_name').focus();
+      return false;
+    }
+  });
+});
+KindEditor.ready(function(K) {
+  K.create('#s_copyright',{allowFileManager : true});
+});
+</script>
+</body>
+</html>

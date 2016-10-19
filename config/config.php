@@ -11,6 +11,7 @@ define('VERIFYCODE_HEIGHT', 50);
 // 初始化页面
 define('REWRITE', false);
 define('TIME_OUT', 5 * 60);
+define('SMARTY_TIMEOUT', 24 * 60 * 60);
 // 定义重复操作最短的允许时间，单位秒
 define('COOKIE_EXPIRE', 30 * 24 * 3600);
 // cookie超期时间(月*天*日)

@@ -123,4 +123,3 @@ class Database {
     unset($this->file_path);
   }
 }
-?>

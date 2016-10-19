@@ -31,115 +31,16 @@ if (isset($_POST['submit'])) {
   $sql = "INSERT INTO cms_user (u_rid,u_enable,u_name,u_tname,u_psw,u_isadmin) VALUES ('" . $a_role . "',1,'" . $a_name . "','" . $a_tname . "','" . md5($a_password) . "',1)";
   if ($db->query($sql)) {
     admin_log('管理员新增', $_COOKIE['admin_id']);
-    alert_href('新增成功!', 'cms_admin.php');
+    alert_href('新增成功!', page_back());
   } else {
     alert_back('新增失败!');
   }
 }
-?>
-<!DOCTYPE html>
-<html class="no-js fixed-layout">
-<head>
-<?php include 'inc_head.php';?>
-</head>
-
-<body>
-<?php include'inc_header.php';?>
-
-<div class="am-cf admin-main">
-  <!-- content start -->
-  <div class="admin-content">
-    <div class="am-g am-g-fixed">
-    <div class="am-u-sm-12 am-padding-top">
-
-      <div class="am-panel am-panel-default">
-      <div class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-1'}">现有管理员<span class="am-icon-chevron-down am-fr"></span></div>
-      <div class="am-panel-bd am-collapse am-in" id="collapse-panel-1">
-        <table class="am-table am-table-striped admin-content-table">
-          <thead>
-          <tr>
-          <th>ID</th><th>帐号</th><th>昵称</th><th>管理</th>
-          </tr>
-          </thead>
-          <tbody>
-            <?php
-            $res = $db->getAll("SELECT * FROM cms_user WHERE u_isadmin = 1");
-            if (check_array($res)) {
-              foreach($res as $row){
-                echo '<tr><td>'.$row['id'].'</td><td>'.$row['u_name'].'</td><td>'.$row['u_tname'].'</td>';
-                echo '<td><a href="cms_admin_edit.php?id='.$row['id'].'" class="am-btn am-btn-default"><span class="am-icon-pencil"></span></a> <a href="cms_admin.php?del='.$row['id'].'" onclick="return confirm(\'确认要删除吗？\')" class="am-btn am-btn-default"><span class="am-icon-times"></span></a></td>';
-                echo '</tr>';
-              }
-            }
-            ?>
-          </tbody>
-        </table>
-        </div>
-      </div>
-
-    <section class="am-panel am-panel-default">
-      <header class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-2'}">新增管理员<span class="am-icon-chevron-down am-fr"></span></header>
-      <form action="" method="post" class="am-form">
-        <main class="am-panel-bd am-panel-bordered am-collapse am-in" id="collapse-panel-2">
-          <div class="am-form-group">
-          <label for="a_name">登录帐号</label>
-          <input id="a_name" type="text" name="a_name">
-          </div>
-          <div class="am-form-group">
-          <label for="a_password">登录密码</label>
-          <input name="a_password" type="password" id="a_password">
-          </div>
-          <div class="am-form-group">
-          <label for="a_cassword">重复密码</label>
-          <input name="a_cassword" type="password" id="a_cassword">
-          </div>
-          <div class="am-form-group">
-          <label for="a_tname">昵称</label>
-          <input name="a_tname" type="text" id="a_tname">
-          </div>
-          <div class="am-form-group">
-          <label for="a_role">权限角色</label>
-          <select name="a_role" id="a_role">
-            <?php
-            $res = $db->getAll("SELECT * FROM cms_role");
-            foreach($res as $row) {
-              echo '<option value="'.$row['id'].'">'.$row['r_name'].'</option>';
-            }
-            ?>
-          </select>
-          </div>
-            <center><button type="submit" name="submit" class="am-btn am-btn-primary">提交保存</button>
-              <button type="reset" class="am-btn am-btn-primary">放弃保存</button></center>
-            </main>
-          </form>
-    </section>
-
-    </div>
-    </div>
-  </div>
-  <!-- content end -->
-</div>
-<?php include 'inc_footer.php';?>
-<!-- js -->
-<script type="text/javascript">
-$(function(){
-  $('.submit').click(function(){
-    if ($('#a_name').val() == ''){
-      alert('请填写登录帐号');
-      $('#a_name').focus();
-      return false;
-    }
-    if ($('#a_password').val() == ''){
-      alert('请填写登录密码');
-      $('#a_password').focus();
-      return false;
-    }  
-    if($('#a_password').val() != $('#a_cassword').val()){
-      alert('两次密码不一致');
-      return false;
-    }
-  });
-});
-</script>
-</body>
-</html>
+$user = $db->getAll("SELECT * FROM cms_user WHERE u_isadmin = 1");
+foreach ($user as $key=>$val) {
+  $user[$key]['edit_url'] = 'cms_admin_edit.php?id=' . $val['id'];
+  $user[$key]['del_url'] = 'cms_admin.php?del=' . $val['id'];
+}
+$tpl->assign('user', $user);
+$tpl->assign('role', $db->getAll("SELECT * FROM cms_role"));
+$tpl->display(tpl());

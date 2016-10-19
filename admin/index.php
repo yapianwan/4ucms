@@ -60,4 +60,3 @@ function getDetailBaiduSend($s,$e) {
     alert_back('无新数据无需推送');
   }
 }
-?>

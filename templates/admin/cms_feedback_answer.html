@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html class="no-js fixed-layout">
+<head>
+{?include file='inc_head.html'?}
+<link rel="stylesheet" href="{?$smarty.const.SITE_DIR?}ui/css/amazeui.datetimepicker.css">
+</head>
+
+<body>
+{?include file='inc_header.html'?}
+
+<div class="am-cf admin-main">
+  <!-- content start -->
+  <div class="admin-content">
+    <div class="am-g am-g-fixed">
+      <div class="am-u-sm-12 am-padding-top">
+
+        <section class="am-panel am-panel-default">
+          <header class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-1'}">回复留言<span class="am-icon-chevron-down am-fr"></span></header>
+          <form action="" method="post" class="am-form">
+            <main class="am-panel-bd am-panel-bordered am-collapse am-in" id="collapse-panel-1">
+              <table class="am-table am-table-bordered">
+                <tr><td class="am-text-right">留言人</td><td>{?$res.f_name?}</td></tr>
+                <tr><td class="am-text-right">联系电话</td><td>{?$res.f_tel?}</td></tr>
+                <tr><td class="am-text-right">电子邮件</td><td>{?$res.f_email?}</td></tr>
+                <tr><td class="am-text-right">留言标题</td><td>{?$res.f_title?}</td></tr>
+                <tr><td class="am-text-right">留言内容</td><td>{?$res.f_content?}</td></tr>
+                <tr><td class="am-text-right">留言日期</td><td>{?'Y-m-d H:i:s'|local_date:$res.f_date?}</td></tr>
+              </table>
+               <div class="am-form-group">
+                <label for="f_answer">回复内容</label>
+                <textarea name="f_answer" id="f_answer">{?$res.f_answer|stripslashes?}</textarea>
+              </div>
+              <center>
+                <button type="submit" name="submit" class="am-btn am-btn-default">提交保存</button>
+                <button type="reset" class="am-btn am-btn-default">放弃保存</button>
+              </center>
+            </main>
+          </form>
+        </section>
+
+      </div>
+    </div>
+  </div>
+  <!-- content end -->
+</div>
+
+{?include file='inc_footer.html'?}
+
+<!-- js -->
+<script type="text/javascript">
+KindEditor.ready(function(K) {
+  K.create('#f_answer',{allowFileManager : true});
+});
+</script>
+</body>
+</html>

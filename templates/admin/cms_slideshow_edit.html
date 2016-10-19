@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html class="no-js fixed-layout">
+<head>
+{?include file='inc_head.html'?}
+</head>
+
+<body>
+{?include file='inc_header.html'?}
+
+<div class="am-cf admin-main">
+  <!-- content start -->
+  <div class="admin-content">
+    <div class="am-g am-g-fixed">
+      <div class="am-u-sm-12 am-padding-top">
+
+        <section class="am-panel am-panel-default">
+          <header class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-2'}">编辑幻灯<span class="am-icon-chevron-down am-fr"></span></header>
+          <form action="" method="post" class="am-form">
+            <main class="am-panel-bd am-panel-bordered am-collapse am-in" id="collapse-panel-2">
+              <div class="am-form-group">
+                <label for="s_name">幻灯名称</label>
+                 <input id="s_name" type="text" name="s_name" value="{?$res.s_name?}">
+              </div>
+              <div class="am-fomr-group">
+                <label for="s_parent">属于</label>
+                <select name="s_parent">
+                  <option value="global" {?if $res.s_parent == 'global'?}{?$smarty.const.LIB_SELECTED?}{?/if?}>全局</option>
+                  <option value="mobile" {?if $res.s_parent == 'mobile'?}{?$smarty.const.LIB_SELECTED?}{?/if?}>手机端</option>
+                  <option value="index" {?if $res.s_parent == 'index'?}{?$smarty.const.LIB_SELECTED?}{?/if?}>首页</option>
+                  {?$channel_select_list?}
+                </select>
+              </div>
+              <div class="am-form-group">
+                <label for="s_picture">幻灯图片</label>
+                <div class="am-input-group">
+                  <input name="s_picture" type="text" id="s_picture" class="am-form-field" value="{?$res.s_picture?}">
+                  <span class="am-input-group-btn">
+                    <button class="am-btn am-btn-default" id="s_picture_upload" type="button">选择图片</button>
+                  </span>
+                </div>
+              </div>
+              <div class="am-form-group">
+                <label for="s_link">链接地址</label>
+                 <input id="s_link" type="text" name="s_link" value="{?$res.s_link?}">
+              </div>
+              <div class="am-form-group">
+                <label for="s_order">排序</label>
+                 <input id="s_order" type="text" name="s_order" value="100" value="{?$res.s_order?}">
+              </div>
+              <center>
+                <button type="submit" name="submit" id="save" class="am-btn am-btn-default">提交保存</button>
+              </center>
+            </main>
+          </form>
+        </section>
+
+      </div>
+    </div>
+  </div>
+  <!-- content end -->
+</div>
+
+{?include file='inc_footer.html'?}
+
+<!-- js -->
+<script type="text/javascript">
+$(function(){
+  $('#save').click(function(){
+
+    if($('#s_picture').val() == ''){
+      alert('图片不能为空');
+      $('#s_picture_upload').focus();
+      return false;
+    }
+    if (isNaN($('#s_order').val()) || $('#s_order').val() == '') {
+      alert('排序必须是数字');
+      $('#s_order').focus();
+      return false;
+    }
+  });
+});
+KindEditor.ready(function(K) {
+  var editor = K.editor({allowFileManager : true});
+  K('#s_picture_upload').click(function() {
+    editor.loadPlugin('image', function() {
+      editor.plugin.imageDialog({
+      imageUrl : K('#s_picture').val(),
+      clickFn : function(url, title, width, height, border, align) {
+        K('#s_picture').val(url);
+        editor.hideDialog();
+        }
+      });
+    });
+  });
+});
+</script>
+</body>
+</html>

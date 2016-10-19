@@ -71,4 +71,3 @@ class Channel {
   }
   public function __destruct() {}
 }
-?>
