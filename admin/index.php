@@ -3,7 +3,11 @@ include '../library/inc.php';
 
 switch ($act) {
   case 'caf':
-    alert_back('清理了 ' . clear_all_files() . ' 个文件');
+    //清理所有缓存文件
+    $tpl->clearAllCache();
+    //清理全部编译模板
+    $tpl->clearCompiledTemplate();
+    alert_back('缓存已清理');
   break;
 
   case 'welcome':
