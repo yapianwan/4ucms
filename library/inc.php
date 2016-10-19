@@ -33,8 +33,8 @@ unset($arr_url);
 include_once ROOT_PATH . '/library/constant.php';
 include ROOT_PATH . '/config/config.php';
 include ROOT_PATH . '/config/data.php';
-include ROOT_PATH . '/config/smarty.php';
 include ROOT_PATH . '/config/smtp.php';
+include ROOT_PATH . '/config/smarty.php';
 
 include_once ROOT_PATH . '/library/cls.mysql.php';
 $GLOBALS['db'] = $db = new Mysql(DATA_HOST, DATA_USERNAME, DATA_PASSWORD, DATA_NAME);
@@ -53,6 +53,7 @@ $sql = 'SELECT * FROM cms_system WHERE id = 1';
 $GLOBALS['cms'] = $cms = $db->getRow($sql);
 $system_sidenav = '导航菜单';
 $GLOBALS['t_path'] = $t_path = 'templates/' . (!empty($_COOKIE['cms']['template_id']) ? $_COOKIE['cms']['template_id'] : $cms['s_template']) . '/';
+
 // 对用户传入的变量进行转义操作
 if (!get_magic_quotes_gpc()) {
   if (!empty($_GET)) {
