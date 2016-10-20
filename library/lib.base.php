@@ -93,7 +93,7 @@ function navigation_m($t0, $t1, $t2, $t3=2, $class='am-nav am-nav-pills am-topba
     foreach ($res AS $row) {
       $nav_name = !empty($row['c_nname']) ? $row['c_nname'] : $row['c_name'];
       if ($row['c_ifsub']==1 && $t3!=0) {
-        $tmp .= '<li class="' . $arr[2] . ($row['c_main']==$t2 ? $arr[3] : '') . '" ' . $arr[4] . '><a class="' . $arr[5] . '" ' . $arr[6] . ' href="javascript:;">' . $nav_name .  '<span class="'.$arr[7].'"></span>' . '</a>' . navigation_m($row['id'], '', $t2, $t3, $class) . '</li>';
+        $tmp .= '<li class="' . $arr[2] . ($row['c_main']==$t2 ? $arr[3] : '') . '" ' . $arr[4] . '><a class="' . $arr[5] . '" ' . $arr[6] . ' href="' . c_url($row['id'], $row['c_link']) . '">' . $nav_name .  '<span class="'.$arr[7].'"></span>' . '</a>' . navigation_m($row['id'], '', $t2, $t3, $class) . '</li>';
       } else {
         $tmp .= '<li class="' . ($row['c_main']==$t2 ? $arr[3] : '') . '"><a href="' . c_url($row['id'], $row['c_link']) . '">' . $nav_name . '</a>' . navigation_m($row['id'], '', $t2, $t3, $class) . '</li>';
       }
