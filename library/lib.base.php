@@ -65,42 +65,41 @@ function navigation($t0, $t1, $t2, $t3=2, $t4="nav am-hide-md-down", $t5="sub") 
   $tmp = '';
   $t2 = !empty($t2) ? $t2 : 0;
   if ($t3>0) {
-    $res = $GLOBALS['db']->getAll(LIB_CSELECT . $t0 . LIB_CORDER);
+    $res = $GLOBALS['db']->getAll('SELECT * FROM cms_channel WHERE c_navigation = 1 AND c_parent = ' . $t0 . ' ORDER BY c_order ASC , id ASC');
     $t3--;
     foreach ($res AS $row) {
-      $nav_name = !empty($row[LIB_CNNAME]) ? $row[LIB_CNNAME] : $row[LIB_CNAME];
+      $nav_name = !empty($row['c_nname']) ? $row['c_nname'] : $row['c_name'];
       if ($t0==0) {
-        $tmp .= '<li ' . ($row['c_main']==$t2 ? 'class="' . PAGE_ACTIVE . '"' : '') . '><a href="' . c_url($row['id'],$row[LIB_CLINK]) . LIB_TARGET . $row[LIB_CTARGET] . '">' . $nav_name . '</a>' . navigation($row['id'], '', $t2, $t3) . LIB_LIE;
+        $tmp .= '<li ' . ($row['c_main']==$t2 ? 'class="active"' : '') . '><a href="' . c_url($row['id'], $row['c_link']) . '" target="' . $row['c_target'] . '">' . $nav_name . '</a>' . navigation($row['id'], '', $t2, $t3) . '</li>';
       }else{
-        $tmp .= LIB_LIA . c_url($row['id'], $row[LIB_CLINK]) . LIB_TARGET . $row[LIB_CTARGET] . '">' . $nav_name . '</a>' . navigation($row['id'], '', $t2, $t3) . LIB_LIE;
+        $tmp .= '<li><a href="' . c_url($row['id'], $row['c_link']) . '" target="' . $row['c_target'] . '">' . $nav_name . '</a>' . navigation($row['id'], '', $t2, $t3) . '</li>';
       }
     }
   }
   if (!empty($tmp)) {
-    if ($t0==0) {
-      return '<ul class="' . $t4 . '">' . $t1 . $tmp . LIB_ULE;
-    } else {
-      return '<ul class="' . $t5 . '">' . $t1 . $tmp . LIB_ULE;
-    }
+    return '<ul class="' . ($t0==0 ? $t4 : $t5). '">' . $t1 . $tmp . '</ul>';
   }
 }
-//无限级导航（移动端）
-function navigation_m($t0, $t1, $t2, $t3=2) {
+//无限级导航（移动端)
+// $s[mainul|subul|liclass|liactive|lidata|aclass|adata|icondown]
+// $s[0     |1    |2      |3       |4     |5     |6    |7]
+function navigation_m($t0, $t1, $t2, $t3=2, $class='am-nav am-nav-pills am-topbar-nav|am-dropdown-content|am-dropdown|am-active|data-am-dropdown|am-dropdown-toggle|data-am-dropdown-toggle|am-icon-caret-down'){
   $tmp = '';
   $t2 = !empty($t2) ? $t2 : 0;
-  if ($t3>0) {
-    $res = $GLOBALS['db']->getAll(LIB_CSELECT . $t0 . LIB_CORDER);
+  $arr = explode('|', $class);
+  if ($t3 > 0) {
+    $res = $GLOBALS['db']->getAll('SELECT * FROM cms_channel WHERE c_navigation = 1 AND c_parent = ' . $t0 . ' ORDER BY c_order ASC , id ASC');
     $t3--;
     foreach ($res AS $row) {
-      $nav_name = !empty($row[LIB_CNNAME]) ? $row[LIB_CNNAME] : $row[LIB_CNAME];
-      $tmp .= '<li class="' . ($t0==$row['id'] ? PAGE_ACTIVE : '') . ($row[LIB_CIFSUB]==1 && $t3!=0 ? 'am-dropdown' : '') . '" ' . ($row[LIB_CIFSUB]==1 && $t3!=0 ? 'data-am-dropdown' : '') . '><a ' . ($row[LIB_CIFSUB]==1 && $t3!=0 ? 'class="am-dropdown-toggle"' : '') . ($row[LIB_CIFSUB]==1 && $t3!=0 ? ' data-am-dropdown-toggle' : '') . ' href="' . ($row[LIB_CIFSUB]==1 && $t3!=0 ? 'javascript:;' : c_url($row['id'], $row[LIB_CLINK])) . '">' . $nav_name . ($row[LIB_CIFSUB]==1 && $t3!=0 ? ' <span class="am-icon-caret-down"></span>' : '') . '</a>' . navigation_m($row['id'], '', $t2, $t3) . LIB_LIE;
+      $nav_name = !empty($row['c_nname']) ? $row['c_nname'] : $row['c_name'];
+      if ($row['c_ifsub']==1 && $t3!=0) {
+        $tmp .= '<li class="' . $arr[2] . ($row['c_main']==$t2 ? $arr[3] : '') . '" ' . $arr[4] . '><a class="' . $arr[5] . '" ' . $arr[6] . ' href="javascript:;">' . $nav_name .  '<span class="'.$arr[7].'"></span>' . '</a>' . navigation_m($row['id'], '', $t2, $t3, $class) . '</li>';
+      } else {
+        $tmp .= '<li class="' . ($row['c_main']==$t2 ? $arr[3] : '') . '"><a href="' . c_url($row['id'], $row['c_link']) . '">' . $nav_name . '</a>' . navigation_m($row['id'], '', $t2, $t3, $class) . '</li>';
+      }
     }
     if (!empty($tmp)) {
-      if ($t0==0) {
-        return '<ul class="am-nav am-nav-pills am-topbar-nav">' . $t1 . $tmp . LIB_ULE;
-      } else {
-        return '<ul class="am-dropdown-content">' . $t1 . $tmp . LIB_ULE;
-      }
+      return '<ul class="' . ($t0==0 ? $arr[0] : $arr[1]). '">' . $t1 . $tmp . '</ul>';
     }
   }
 }
