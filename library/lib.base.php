@@ -132,17 +132,21 @@ function channel_slist($t0, $t1, $t2=2) {
   }
 }
 //频道和内容页的当前位置
-function current_channel_location($t0, $t1) {
+function current_channel_location($t0, $t1, $t2='<li class="am-active">|</li>|<li><a href="|">|</a></li>|') {
   $tmp = '';
+  $arr = explode('|', $t2);
   $res = $GLOBALS['db']->getAll('SELECT * FROM cms_channel WHERE id = ' . $t0 . '');
   foreach ($res as $row) {
     if ($row['id'] == $t1) {
-      $tmp = '<li class="am-active">' . $row[LIB_CNAME] . LIB_LIE;
+      $tmp = $arr[0] . $row['c_name'] . $arr[1];
     } else {
-      $tmp = LIB_LIA . c_url($row['id'], $row[LIB_CLINK]) . '">' . $row[LIB_CNAME] . LIB_ALI;
+      $tmp = $arr[2] . c_url($row['id'], $row['c_link']) . $arr[3] . $row['c_name'] . $arr[4];
+    }
+    if (get_channel($row['id'], 'c_ifsub')) {
+      $tmp .=  $arr[5];
     }
     if ($row['c_parent'] != 0) {
-      $tmp = current_channel_location($row['c_parent'], $t1) . $tmp;
+      $tmp = current_channel_location($row['c_parent'], $t1, $t2) . $tmp;
     }
   }
   return $tmp;
