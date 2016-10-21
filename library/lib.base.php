@@ -83,7 +83,7 @@ function navigation($t0, $t1, $t2, $t3=2, $t4="nav am-hide-md-down", $t5="sub") 
 //无限级导航（移动端)
 // $s[mainul|subul|liclass|liactive|lidata|aclass|adata|icondown]
 // $s[0     |1    |2      |3       |4     |5     |6    |7]
-function navigation_m($t0, $t1, $t2, $t3=2, $class='am-nav am-nav-pills am-topbar-nav|am-dropdown-content|am-dropdown|am-active|data-am-dropdown|am-dropdown-toggle|data-am-dropdown-toggle|am-icon-caret-down'){
+function navigation_m($t0, $t1, $t2, $t3=2, $class='am-nav am-nav-pills am-topbar-nav|am-dropdown-content|am-dropdown| am-active|data-am-dropdown|am-dropdown-toggle|data-am-dropdown-toggle|am-icon-caret-down'){
   $tmp = '';
   $t2 = !empty($t2) ? $t2 : 0;
   $arr = explode('|', $class);
