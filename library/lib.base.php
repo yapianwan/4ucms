@@ -138,12 +138,9 @@ function current_channel_location($t0, $t1, $t2='<li class="am-active">|</li>|<l
   $res = $GLOBALS['db']->getAll('SELECT * FROM cms_channel WHERE id = ' . $t0 . '');
   foreach ($res as $row) {
     if ($row['id'] == $t1) {
-      $tmp = $arr[0] . $row['c_name'] . $arr[1];
+      $tmp = $arr[5] . $arr[0] . $row['c_name'] . $arr[1];
     } else {
-      $tmp = $arr[2] . c_url($row['id'], $row['c_link']) . $arr[3] . $row['c_name'] . $arr[4];
-    }
-    if (get_channel($row['id'], 'c_ifsub')) {
-      $tmp .=  $arr[5];
+      $tmp = $arr[5] . $arr[2] . c_url($row['id'], $row['c_link']) . $arr[3] . $row['c_name'] . $arr[4];
     }
     if ($row['c_parent'] != 0) {
       $tmp = current_channel_location($row['c_parent'], $t1, $t2) . $tmp;
