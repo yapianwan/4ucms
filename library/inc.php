@@ -33,16 +33,15 @@ unset($arr_url);
 include_once ROOT_PATH . '/library/constant.php';
 include_once ROOT_PATH . '/config/config.php';
 include_once ROOT_PATH . '/config/data.php';
+include ROOT_PATH . '/config/smtp.php';
 include_once ROOT_PATH . '/library/cls.mysql.php';
 include_once ROOT_PATH . '/library/library.php';
-// 公共函数库
 include_once ROOT_PATH . '/library/function.php';
-// 后台函数文件
+include_once ROOT_PATH . '/library/lib.base.php';
 include_once ROOT_PATH . '/library/lib.user.php';
 include_once ROOT_PATH . '/library/lib.time.php';
-include ROOT_PATH . '/config/smtp.php';
 include_once ROOT_PATH . '/library/cls.smtp.php';
-include_once ROOT_PATH . '/library/lib.base.php';
+include_once ROOT_PATH . '/library/lib.smtp.php';
 
 $GLOBALS['db'] = $db = new Mysql(DATA_HOST, DATA_USERNAME, DATA_PASSWORD, DATA_NAME);
 //cms_system
