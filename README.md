@@ -18,7 +18,7 @@
 shadowwing@163.com
 
 ####系统搭建
-* [本机搭建视频](http://mcmswx.foru.net.cn/4ucms.mp4)
+* [本机搭建视频](http://mcmswx.foru.net.cn/videoplayer/index.html)
 1. 修改config/data.php内的数据库连接信息
 2. 修改config/config.php内的网站路径信息
 3. 创建数据库并指定utf-8编码（CREATE DATABASE 数据库名称 DEFAULT CHARSET utf8 COLLATE utf8_general_ci;）
