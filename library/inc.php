@@ -44,6 +44,7 @@ include_once ROOT_PATH . '/library/cls.smtp.php';
 include_once ROOT_PATH . '/library/lib.smtp.php';
 
 $GLOBALS['db'] = $db = new Mysql(DATA_HOST, DATA_USERNAME, DATA_PASSWORD, DATA_NAME);
+
 //cms_system
 $sql = 'SELECT * FROM cms_system WHERE id = 1';
 $GLOBALS['cms'] = $cms = $db->getRow($sql);

@@ -10,14 +10,19 @@ if (isset($_POST['save'])) {
     die("不能打开SQL文件");
   }
 
+  if ($db->query('use '.DATA_NAME) === NULL) {
+    die('无法使用数据库,请检查后重试!');
+  }
   $tbl = $db->getAll("SHOW TABLES");
-  $arr_tbl = get_easy_array($tbl,'Tables_in_'.DATA_NAME);
-  if ($arr_tbl) {
-    echo "正在清空数据库,请稍等....<br>"; 
-    foreach ($arr_tbl as $val) {
-      $db->query("DROP TABLE IF EXISTS $val"); 
+  if (!empty($tbl)) {
+    $arr_tbl = get_easy_array($tbl,'Tables_in_'.DATA_NAME);
+    if ($arr_tbl) {
+      echo "正在清空数据库,请稍等....<br>"; 
+      foreach ($arr_tbl as $val) {
+        $db->query("DROP TABLE IF EXISTS $val"); 
+      }
+      echo "数据库清理成功<br>";
     }
-    echo "数据库清理成功<br>";
   }
 
   echo "正在执行导入数据库操作<br>";
