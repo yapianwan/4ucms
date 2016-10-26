@@ -17,7 +17,8 @@ function smtp_mail($mailto, $subject, $body) {
   $mailsubject = '=?UTF-8?B?' . base64_encode($subject) . '?=';
   //邮件主题
   $mailbody = $body;
-  //邮件内容
-  $smtp = new Smtp($smtpserver, $smtpserverport, $smtpuser, $smtppass);
-  return $smtp->sendmail($smtpemailto, $smtpusermail, $mailsubject, $mailbody);
+  $mailtype = 'HTML';
+  //邮件格式（HTML/TXT）,TXT为文本邮件
+  $smtp = new Smtp($smtpserver, $smtpserverport, true, $smtpuser, $smtppass);
+  return $smtp->sendmail($smtpemailto, $smtpusermail, $mailsubject, $mailbody, $mailtype);
 }

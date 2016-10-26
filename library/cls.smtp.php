@@ -29,7 +29,7 @@ class Smtp {
     } 
 
     /* Main Function */ 
-    function sendmail($to, $from, $subject = "", $body = "", $mailtype, $cc = "", $bcc = "", $additional_headers = "") {
+    function sendmail($to, $from, $subject = "", $body = "", $mailtype = "HTML", $cc = "", $bcc = "", $additional_headers = "") {
         $mail_from = $this->get_address($this->strip_comment($from)); 
         $body = preg_replace("/(^|(\r\n))(\.)/", "\1.\3", $body); 
         $header = "MIME-Version:1.0\r\n"; 
