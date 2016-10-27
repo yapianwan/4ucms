@@ -17,7 +17,7 @@ function channel_select_list($t0, $t1, $t2, $t3) {
   if (is_array($res)) {
     foreach ($res as $row) {
       $select = $row['id'] == $t2 ? 'selected="selected"' : '';
-      $tmp .= LIB_OPB . $row['id'] . '" ' . $select . '>' . $s . $row[LIB_CNAME] . LIB_OPE . channel_select_list($row['id'], $level, $t2, $t3);
+      $tmp .= LIB_OPB . $row['id'] . '" ' . $select . '>' . $s . $row[LIB_CNAME] . LIB_OPE . (strpos($t0, ',') ? '' : channel_select_list($row['id'], $level, $t2, $t3));
     }
   }
   return $tmp;
