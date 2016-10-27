@@ -384,17 +384,6 @@ function get_user($t0, $t1) {
 function high_light($t0, $t1) {
   return str_replace($t1, '<span class="highlight">' . $t1 . '</span>', $t0);
 }
-//后台操作日志
-function admin_log($code, $admin_id, $admin_name = '', $silent = ADMIN_LOG) {
-  $log['admin_id'] = $admin_id;
-  $log['admin_name'] = $admin_name;
-  $log['log_code'] = $code;
-  $log['log_time'] = date('Y-m-d H:i:s', time());
-  $log['log_ip'] = get_ip();
-  if ($silent == 1 || $silent===true) {
-    $GLOBALS['db']->autoExecute('cms_admin_log', $log);
-  }
-}
 //获取访问者真实IP
 function get_ip() {
   if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
