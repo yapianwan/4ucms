@@ -15,12 +15,12 @@ class Smtp {
     var $sock; 
 
     /* Constractor */ 
-    function __construct($relay_host = "", $smtp_port = 25, $auth = false, $user, $pass) {
+    function __construct($relay_host = "", $smtp_port = 25, $user, $pass, $auth=true) {
         $this->debug = FALSE; 
         $this->smtp_port = $smtp_port; 
         $this->relay_host = $relay_host; 
         $this->time_out = 30; //is used in fsockopen()  
-        $this->auth = $auth;//auth 
+        $this->auth = $auth;//auth
         $this->user = $user; 
         $this->pass = $pass; 
         $this->host_name = "localhost"; //is used in HELO command  
@@ -28,7 +28,8 @@ class Smtp {
         $this->sock = FALSE; 
     } 
 
-    /* Main Function */ 
+    /* Main Function */
+    //$mailtype 邮件格式（HTML/TXT）,TXT为文本邮件
     function sendmail($to, $from, $subject = "", $body = "", $mailtype = "HTML", $cc = "", $bcc = "", $additional_headers = "") {
         $mail_from = $this->get_address($this->strip_comment($from)); 
         $body = preg_replace("/(^|(\r\n))(\.)/", "\1.\3", $body); 
