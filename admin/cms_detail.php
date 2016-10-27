@@ -67,15 +67,17 @@ if ( isset($_POST['shift']) ) {
             <form method="get" class="am-form am-show-sm-up">
               <div class="am-g">
                 <div class="am-u-sm-4">
+                  <?php if (!isset($cids)) {?>
                   <select onchange="location.href='cms_detail.php?cid='+this.options[this.selectedIndex].value;">
                     <option value="0">全部频道</option>
                     <?php
-                    echo channel_select_list(0,0,$_GET['cid'],0);
+                    echo isset($cids) ? channel_select_list($cids,0,$_GET['cid'],0) : channel_select_list(0,0,$_GET['cid'],0);
                     if(isset($_GET['key'])){
                       echo '<option selected="selected" >搜索结果</option>';
                     }
                     ?>
                   </select>
+                  <?php } ?>
                 </div>
                 <div class="am-u-sm-8">
                   <div class="am-input-group">
@@ -97,18 +99,28 @@ if ( isset($_POST['shift']) ) {
                  <?php
                   if (isset($_GET['cid'])) {
                     if ($_GET['cid'] != 0){
-                      $pager = page_handle('page',20,mysql_num_rows(mysql_query("SELECT * FROM cms_detail WHERE d_parent IN (" . get_channel($_GET['cid'],'c_sub') . ")")));
-                      $res = $db->getAll("SELECT * FROM cms_detail WHERE d_parent IN (" . get_channel($_GET['cid'],'c_sub') . ") ORDER BY id DESC LIMIT " . $pager[0] . "," . $pager[1]);
+                      $pager = page_handle('page',20,mysql_num_rows(mysql_query("SELECT * FROM cms_detail WHERE d_parent IN (" . (isset($cids) ? $cids : get_channel($_GET['cid'],'c_sub')) . ")")));
+                      $res = $db->getAll("SELECT * FROM cms_detail WHERE d_parent IN (" . (isset($cids) ? $cids : get_channel($_GET['cid'],'c_sub')) . ") ORDER BY id DESC LIMIT " . $pager[0] . "," . $pager[1]);
                     }else{
-                      $pager = page_handle('page',20,mysql_num_rows(mysql_query("SELECT * FROM cms_detail")));
-                      $res = $db->getAll("SELECT * FROM cms_detail ORDER BY id DESC LIMIT " . $pager[0] . "," . $pager[1]);
+                      if (isset($cids)) {
+                        $pager = page_handle('page',20,mysql_num_rows(mysql_query("SELECT * FROM cms_detail WHERE d_parent IN (" . $cids . ")")));
+                        $res = $db->getAll("SELECT * FROM cms_detail WHERE d_parent IN (" . $cids . ") ORDER BY id DESC LIMIT " . $pager[0] . "," . $pager[1]);
+                      } else {
+                        $pager = page_handle('page',20,mysql_num_rows(mysql_query("SELECT * FROM cms_detail")));
+                        $res = $db->getAll("SELECT * FROM cms_detail ORDER BY id DESC LIMIT " . $pager[0] . "," . $pager[1]);
+                      }
                     }
                   }
                   if (isset($_GET['search'])) {
-                    $pager = page_handle('page',20,mysql_num_rows(mysql_query("SELECT * FROM cms_detail WHERE d_name LIKE '%" . $_GET['key'] . "%'")));
-                    $res = $db->getAll("SELECT * FROM cms_detail WHERE d_name LIKE '%" . $_GET['key'] . "%' limit " . $pager[0] . "," . $pager[1]);
+                    if (isset($cids)) {
+                      $pager = page_handle('page',20,mysql_num_rows(mysql_query("SELECT * FROM cms_detail WHERE d_name LIKE '%" . $_GET['key'] . "%' AND d_parent IN (" . $cids . ")")));
+                      $res = $db->getAll("SELECT * FROM cms_detail WHERE d_name LIKE '%" . $_GET['key'] . "%' AND d_parent IN (" . $cids . ") limit " . $pager[0] . "," . $pager[1]);
+                    } else {
+                      $pager = page_handle('page',20,mysql_num_rows(mysql_query("SELECT * FROM cms_detail WHERE d_name LIKE '%" . $_GET['key'] . "%'")));
+                      $res = $db->getAll("SELECT * FROM cms_detail WHERE d_name LIKE '%" . $_GET['key'] . "%' limit " . $pager[0] . "," . $pager[1]);
+                    }
                   }
-                  if (check_array($res)) {
+                  if (!empty($res)) {
                   foreach($res as $row){
                   ?>
                   <tr>

@@ -41,6 +41,22 @@ if (isset($_POST['submit'])) {
     alert_back('修改失败!');
   }
 }
+
+$res = $db->getRow("SELECT * FROM cms_detail WHERE id = ".$_GET['id']);
+// 权限限制
+$state = 0;
+if (isset($cids)) {
+  $arr = explode(',', $cids);
+  foreach ($arr as $val) {
+    if ($val == $res['d_parent']) {
+      $state = 1;
+      break;
+    }
+  }
+  if ($state == 0) {
+    alert_back('无操作权限');
+  }
+}
 ?>
 <!DOCTYPE html>
 <html class="no-js fixed-layout">
@@ -63,7 +79,6 @@ if (isset($_POST['submit'])) {
           <form action="" method="post" class="am-form">
             <main class="am-panel-bd am-panel-bordered am-collapse am-in" id="collapse-panel-2">
               <?php
-                $res = $db->getRow("SELECT * FROM cms_detail WHERE id = ".$_GET['id']);
                 if($row = $res){
               ?>
               <div class="am-tabs am-margin" data-am-tabs>

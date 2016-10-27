@@ -93,7 +93,7 @@ if (isset($_POST['submit'])) {
                       <label for="d_parent">所属频道</label>
                        <select id="d_parent" name="d_parent">
                         <option value="">请选择上级频道</option>
-                        <?php echo channel_select_list(0,0,0,0); ?>
+                        <?php echo isset($cids) ? channel_select_list($cids,0,0,0) : channel_select_list(0,0,0,0); ?>
                       </select>
                     </div>
                     <div class="am-form-group">

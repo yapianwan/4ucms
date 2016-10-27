@@ -8,7 +8,11 @@ function channel_select_list($t0, $t1, $t2, $t3) {
     $s = $s . '├ ';
   }
   $level = $level + 1;
-  $sql = LIB_CSELECTF . $t0 . ' AND id <> ' . $t3 . '';
+  if (strpos($t0, ',')) {
+    $sql = "SELECT * FROM cms_channel WHERE id IN (" . $t0 . ") AND id <> $t3";
+  } else {
+    $sql = "SELECT * FROM cms_channel WHERE c_parent IN (" . $t0 . ") AND id <> $t3";
+  }
   $res = $GLOBALS['db']->getAll($sql);
   if (is_array($res)) {
     foreach ($res as $row) {
@@ -185,4 +189,14 @@ function gzip_enabled() {
     $enabled_gzip = function_exists('ob_gzhandler');
   }
   return $enabled_gzip;
+}
+function admin_log($msg, $admin_id, $admin_name = '', $active = ADMIN_LOG) {
+  if ($active) {
+    $log['admin_id'] = $admin_id;
+    $log['admin_name'] = $admin_name;
+    $log['log_code'] = $msg;
+    $log['log_time'] = local_date('Y-m-d H:i:s', time());
+    $log['log_ip'] = get_ip();
+    $GLOBALS['db']->autoExecute('cms_admin_log', $log);
+  }
 }
