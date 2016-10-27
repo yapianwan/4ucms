@@ -1,47 +1,20 @@
 <?php
 @session_start();
-@header('Content-type: text/html;charset=UTF-8');
-@define('SQL_DIR', 'sql');
-@define('ADMIN_DIR', 'admin');
-@define('EDITOR_DIR', 'editor/php/');
-@define('INSTALL_DIR', 'install');
-@define('TEMP_DIR', 'temp');
-@define('TEXT_ROOT', 'ROOT_PATH');
-// root
-$arr_url = array('\\'=>'/');
-if (strpos(getcwd(), ADMIN_DIR)) {
-  $arr_admin = array('/' . ADMIN_DIR=>'');
-  @define(TEXT_ROOT, strtr(strtr(getcwd(),$arr_url) . '/',$arr_admin));
-  unset($arr_admin);
-} elseif (strpos(getcwd(), EDITOR_DIR)) {
-  $arr_editor = array('/' . EDITOR_DIR=>'');
-  @define(TEXT_ROOT, strtr(strtr(getcwd(),$arr_url) . '/',$arr_editor));
-  unset($arr_editor);
-} elseif (strpos(getcwd(), INSTALL_DIR)) {
-  $arr_install = array('/' . INSTALL_DIR=>'');
-  @define(TEXT_ROOT, strtr(strtr(getcwd(),$arr_url) . '/',$arr_install));
-  unset($arr_install);
-} elseif (strpos(getcwd(), TEMP_DIR)) {
-  $arr_temp = array('/' . TEMP_DIR=>'');
-  @define(TEXT_ROOT, strtr(strtr(getcwd(),$arr_url) . '/',$arr_temp));
-  unset($arr_temp);
-} else {
-  @define(TEXT_ROOT, strtr(getcwd(),$arr_url) . '/');
-}
-unset($arr_url);
+header('Content-type: text/html;charset=UTF-8');
+define('ROOT_PATH', strtr(__DIR__.'/',array('\\'=>'/')));
 // 引入文件
-include_once ROOT_PATH . '/library/constant.php';
-include_once ROOT_PATH . '/config/config.php';
-include_once ROOT_PATH . '/config/data.php';
-include ROOT_PATH . '/config/smtp.php';
-include_once ROOT_PATH . '/library/cls.mysql.php';
-include_once ROOT_PATH . '/library/library.php';
-include_once ROOT_PATH . '/library/function.php';
-include_once ROOT_PATH . '/library/lib.base.php';
-include_once ROOT_PATH . '/library/lib.user.php';
-include_once ROOT_PATH . '/library/lib.time.php';
-include_once ROOT_PATH . '/library/cls.smtp.php';
-include_once ROOT_PATH . '/library/lib.smtp.php';
+include_once ROOT_PATH . './constant.php';
+include_once ROOT_PATH . '../config/config.php';
+include_once ROOT_PATH . '../config/data.php';
+include ROOT_PATH . '../config/smtp.php';
+include_once ROOT_PATH . './cls.mysql.php';
+include_once ROOT_PATH . './library.php';
+include_once ROOT_PATH . './function.php';
+include_once ROOT_PATH . './lib.base.php';
+include_once ROOT_PATH . './lib.user.php';
+include_once ROOT_PATH . './lib.time.php';
+include_once ROOT_PATH . './cls.smtp.php';
+include_once ROOT_PATH . './lib.smtp.php';
 
 $GLOBALS['db'] = $db = new Mysql(DATA_HOST, DATA_USERNAME, DATA_PASSWORD, DATA_NAME);
 
@@ -77,8 +50,8 @@ $id = isset($_GET['id']) && $_GET['id'] > 0 ? str_safe($_GET['id']) : 0;
 $act = !empty($_POST['act']) ? str_safe($_POST['act']) : (!empty($_GET['act']) ? str_safe($_GET['act']) : '');
 // header
 if (is_detail()) {
-  include ROOT_PATH.'/library/cls.detail.php';
-  include ROOT_PATH.'/library/cls.channel.php';
+  include ROOT_PATH.'./cls.detail.php';
+  include ROOT_PATH.'./cls.channel.php';
 
   $objDetail = new Detail($db);
   $detail = $objDetail->getDetail($id);
@@ -90,7 +63,7 @@ if (is_detail()) {
   $description = !empty($detail[LIB_DDESC]) ? str_cut(str_text($detail[LIB_DDESC],1),220) : str_cut(str_text($cms[LIB_SDESC],1),220);
 }
 elseif (is_channel()) {
-  include ROOT_PATH . '/library/cls.channel.php';
+  include ROOT_PATH . './cls.channel.php';
 
   $objChannel = new Channel($db);
   $channel = $objChannel->getChannel($id);

@@ -67,7 +67,6 @@ if ( isset($_POST['shift']) ) {
             <form method="get" class="am-form am-show-sm-up">
               <div class="am-g">
                 <div class="am-u-sm-4">
-                  <?php if (!isset($cids)) {?>
                   <select onchange="location.href='cms_detail.php?cid='+this.options[this.selectedIndex].value;">
                     <option value="0">全部频道</option>
                     <?php
@@ -77,7 +76,6 @@ if ( isset($_POST['shift']) ) {
                     }
                     ?>
                   </select>
-                  <?php } ?>
                 </div>
                 <div class="am-u-sm-8">
                   <div class="am-input-group">

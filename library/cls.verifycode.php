@@ -25,7 +25,7 @@ class ValidateCode {
     $this->height = $h;
     $this->fontsize = $fs;
     $this->codelen = $cl;
-    $this->font = ROOT_PATH . '/fonts/elephant.ttf';
+    $this->font = ROOT_PATH . '../fonts/elephant.ttf';
   }
   //生成随机码
   private function createCode() {

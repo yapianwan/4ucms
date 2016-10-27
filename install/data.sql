@@ -211,12 +211,11 @@ CREATE TABLE `cms_system` (
   `s_copyright` longtext,
   `s_code` longtext,
   `s_feedback` tinyint(1) NOT NULL DEFAULT '0',
-  `s_smarty` tinyint(1) NOT NULL DEFAULT '0',
   `s_user` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 -- ----------
-INSERT INTO `cms_system` (`id`,`s_template`,`s_domain`,`s_name`,`s_seoname`,`s_keywords`,`s_description`,`s_copyright`,`s_code`,`s_feedback`,`s_smarty`,`s_user`) VALUES ('1','1','http://www.domain.com','网站','优化标题','关键字','关键描述','&copy; 2005-2015 4UCMS信息科技有限公司 版权所有，并保留所有权利。','','0','0','0');
+INSERT INTO `cms_system` (`id`,`s_template`,`s_domain`,`s_name`,`s_seoname`,`s_keywords`,`s_description`,`s_copyright`,`s_code`,`s_feedback`,`s_user`) VALUES ('1','1','http://www.domain.com','网站','优化标题','关键字','关键描述','&copy; 2005-2015 4UCMS信息科技有限公司 版权所有，并保留所有权利。','','0','0');
 -- ----------
 CREATE TABLE `cms_template` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
