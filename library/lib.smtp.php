@@ -1,6 +1,6 @@
 <?php
 //smtp邮件发送
-function smtp_mail($mailto, $subject, $body) {
+function smtpMail($mailto, $subject, $body) {
   // smtp主体部分
   $smtpserver = SMTP_SERVER;
   //SMTP服务器
@@ -18,5 +18,5 @@ function smtp_mail($mailto, $subject, $body) {
   //邮件主题
   $mailbody = $body;
   $smtp = new Smtp($smtpserver, $smtpserverport, $smtpuser, $smtppass);
-  return $smtp->sendmail($smtpemailto, $smtpusermail, $mailsubject, $mailbody);
+  return $smtp->sendMail($smtpemailto, $smtpusermail, $mailsubject, $mailbody);
 }
