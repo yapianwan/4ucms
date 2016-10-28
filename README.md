@@ -1,7 +1,7 @@
 ![4ucms](http://mcmswx.foru.net.cn/favicon.png)
 
 ####开发环境
-* PHP
+* PHP 5.3+
 * MYSQL
 
 ####主程序部分
