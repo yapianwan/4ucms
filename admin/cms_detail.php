@@ -125,7 +125,7 @@ if ( isset($_POST['shift']) ) {
                     <td><input type="checkbox" name="id[]" value="<?php echo $row['id'] ?>" /></td>
                     <td><?php echo $row['d_order'] ?></td>
                     <td align="left"><?php echo '<a href="../detail.php?id=' . $row['id'] . '" target="_blank">' . $row['d_name'] . '</a>' ?></td>
-                    <td><?php echo get_channel_name($row['d_parent'])?></td>
+                    <td><?php echo get_channel($row['d_parent'], 'c_name')?></td>
                     <td class="am-hide">
                       <?php 
                         echo $row['d_rec'] == 1 ? '<span class="am-badge am-badge-success">推</span>':'';
