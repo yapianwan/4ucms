@@ -28,7 +28,7 @@ function update_channel() {
   $sql = 'SELECT * FROM cms_channel ORDER BY id ASC';
   $res = $GLOBALS['db']->getAll($sql);
   foreach ($res as $row) {
-    $sql2 = 'update cms_channel set c_sub="' . get_channel_sub($row['id'], $row['id']) . '",c_ifsub=' . get_channel_ifsub($row['id']) . ',c_main=' . get_channel_main($row['id']) . ' WHERE id = ' . $row['id'] . ' ';
+    $sql2 = 'update cms_channel set c_sub="' . get_channel($row['id'], 'c_sub') . '",c_ifsub=' . get_channel($row['id'], 'c_ifsub') . ',c_main=' . get_channel($row['id'], 'c_main') . ' WHERE id = ' . $row['id'] . ' ';
     $GLOBALS['db']->query($sql2);
   }
 }
