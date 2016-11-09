@@ -148,7 +148,7 @@ if (isset($cids)) {
                     </div>
                     <div class="am-form-group">
                       <label for="d_date">添加日期</label>
-                       <input id="d_date" type="text" name="d_date" value="<?php echo local_date('Y-m-d H:i:s',gmtime());?>" data-am-datepicker>
+                       <input id="d_date" type="text" name="d_date" value="<?php echo local_date('Y-m-d H:i:s', $row['d_date']);?>" data-am-datepicker>
                     </div>
                     <div class="am-form-group">
                       <label for="d_order">排序</label>
