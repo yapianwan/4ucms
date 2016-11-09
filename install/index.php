@@ -2,7 +2,7 @@
 include '../library/inc.php';
 if (isset($_POST['save'])) {
   $db_name = $_POST['db_name'];
-  $file_name = ROOT_PATH.INSTALL_DIR.'/data.sql';
+  $file_name = '../'.INSTALL_DIR.'/data.sql';
   set_time_limit(0);
   $fp = @fopen($file_name, "r");
   if ($fp === false) {
