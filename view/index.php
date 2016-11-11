@@ -1,15 +1,7 @@
 <?php
-// 引入文件
-require '../config/data.php';
-// smtp配置文件
-require '../library/cls.mysql.php';
-require '../library/library.php';
-require '../library/lib.time.php';
-// 引入mysql类
-$db = new Mysql(DATA_HOST, DATA_USERNAME, DATA_PASSWORD, DATA_NAME);
 // 更新模板
 if(!empty($_GET['t_id'])) {
-  setcookie('cms[template_id]',str_safe($_GET['t_id']),gmtime()+30*24*3600,'/');
+  setcookie('cms[template_id]', $_GET['t_id'], time()+30*24*3600,'/');
   header('Location:../');
 }
 ?>
@@ -35,16 +27,26 @@ if(!empty($_GET['t_id'])) {
 </head>
 
 <body>
-<?php
-$res = $db->getAll("SELECT * FROM cms_template ORDER BY id DESC");
-echo '<ul class="list">';
-foreach ($res as $key=>$val) {
-  echo '<li><a href="?t_id='.$val['t_path'].'" class="img"><img src="images/'.$val['id'].'.jpg"></a><a href="?t_id='.$val['t_path'].'">'.$val['t_name'].'</a></li>';
-}
-echo '</ul>';
-?>
+  <ul class="list">
+    <?php
+    $dir = './images/';
+    $file = scandir($dir);
+    foreach ($file as $key=>$val) {
+      if ($val!='.' && $val!='..') {
+        $filename = explode('.', $val);
+        $arr[$key] = $filename[0];
+      }
+    }
+    sort($arr);
+    foreach ($arr as $val) {
+      echo '<li><a href="?t_id=' . $val . '" class="img"><img src="images/' . $val . '.jpg"></a><a href="?t_id=' . $val . '">' . '网站' . $val . '</a></li>';
+    }
+    ?>
+  </ul>
 </body>
 </html>
 <?php
+unset($dir);
+unset($file);
 unset($t_id);
-unset($res);
+unset($arr);
