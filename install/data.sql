@@ -225,7 +225,7 @@ CREATE TABLE `cms_template` (
   UNIQUE KEY `id` (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 -- ----------
-INSERT INTO `cms_template` (`id`,`t_name`,`t_path`) VALUES ('1','网站1','1');
+INSERT INTO `cms_template` (`id`,`t_name`,`t_path`) VALUES ('1','网站','1');
 -- ----------
 CREATE TABLE `cms_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
