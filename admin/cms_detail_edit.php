@@ -62,7 +62,6 @@ if (isset($cids)) {
 <html class="no-js fixed-layout">
 <head>
 <?php include 'inc_head.php';?>
-<link rel="stylesheet" href="<?php echo SITE_DIR;?>js/datetimepicker/css/amazeui.datetimepicker.css">
 </head>
 
 <body>
@@ -238,10 +237,8 @@ if (isset($cids)) {
 <?php include 'inc_footer.php';?>
 
 <!-- js -->
-<script src="<?php echo SITE_DIR;?>js/datetimepicker/amazeui.datetimepicker.min.js"></script>
 <script type="text/javascript">
 $(function(){
-  $('.form-datetime').datetimepicker({format: 'yyyy-mm-dd hh:ii:ss'});
 
   $('#save').click(function(){
     if($('#d_name').val() == ''){
