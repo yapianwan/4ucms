@@ -13,7 +13,7 @@ function get_ip() {
   return $ip;
 }
 // 获取当前完整URL
-function get_Url() {
+function get_url() {
   $url_str = $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
   return 'http://' . $url_str;
 }
