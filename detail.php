@@ -25,7 +25,6 @@ $next = $objDetail->getNext($detail['id']);
 
 $objDetail->addHit($detail['id']);// 浏览自增
 
-//读取指定的频道模型
 include $t_path . $channel['c_dmodel'];
 
 // 释放资源

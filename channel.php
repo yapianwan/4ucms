@@ -17,7 +17,6 @@ $current_channel_location = current_channel_location($channel['id'], $channel['i
 $channel_parent = $objChannel->getParent($channel['id']);
 $channel_main = $objChannel->getMain($channel['id']);
 
-//读取指定的频道模型
 include $t_path . $channel['c_cmodel'];
 
 // 释放资源

@@ -74,7 +74,6 @@ if ($act == 'adminLogin') {
       </div>
       <div class="am-form-group">
         <div class="am-input-group">
-          <input id="vercode" type="text" name="vercode" class="am-form-field" value="">
           <span class="am-input-group-btn">
             <img src="verifycode.php?v=<?php echo rand();?>" onclick="javascript:this.src='verifycode.php?v='+Math.random();" class="hand" title="点击刷新验证码" height="38">
           </span>
