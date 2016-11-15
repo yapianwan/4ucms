@@ -8,4 +8,4 @@ setcookie('cms[url_back]', get_url());// 返回网址
 // 首页初始值
 $current_channel_location = '';
 //读取指定的频道模型
-include $t_path . 'index.php';
+include $t_path . self_name();

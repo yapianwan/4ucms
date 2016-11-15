@@ -13,4 +13,4 @@ if (!empty($_GET[LIB_KEY])) {
   alert_back($_lang[LIB_KEY]);
 }
 //读取指定的频道模型
-include $t_path . 'search.php';
+include $t_path . self_name();
