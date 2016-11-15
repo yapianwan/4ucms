@@ -25,7 +25,7 @@ $GLOBALS['db'] = $db = new Mysql(DATA_HOST, DATA_USERNAME, DATA_PASSWORD, DATA_N
 //cms_system
 $sql = 'SELECT * FROM cms_system WHERE id = 1';
 $cms = $db->getRow($sql);
-$GLOBALS['t_path'] = $t_path = 'templates/' . (@$_COOKIE['cms']['template_id'] ?: $cms['s_template']) . '/';
+$GLOBALS['t_path'] = $t_path = 'templates/' . (!empty($_COOKIE['cms']['template_id']) ? $_COOKIE['cms']['template_id'] : $cms['s_template']) . '/';
 
 // 对用户传入的变量进行转义操作
 if (!get_magic_quotes_gpc()) {
