@@ -31,10 +31,10 @@ if(!empty($_GET['t_id'])) {
     <?php
     $dir = './images/';
     $file = scandir($dir);
-    foreach ($file as $key=>$val) {
+    foreach ($file as $val) {
       if ($val!='.' && $val!='..') {
         $filename = explode('.', $val);
-        $arr[$key] = $filename[0];
+        $arr[] = $filename[0];
       }
     }
     sort($arr);
