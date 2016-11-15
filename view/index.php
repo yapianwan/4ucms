@@ -17,7 +17,7 @@ if(!empty($_GET['t_id'])) {
 <meta name="renderer" content="webkit">
 <style>
 .list{width:80%;list-style:none;margin:3rem auto;padding:0;overflow:hidden}
-.list li{margin:1.5%;float:left;line-height:40px;border:1px solid #ccc;border-radius:5px;width:30%;min-width:200px;position:re4lative;}
+.list li{margin:1.5%;float:left;line-height:40px;border:1px solid #ccc;width:30%;min-width:200px;position:re4lative;box-shadow: 0 0 10px rgba(0,0,0,.2);}
 .list .qrcode{display:none;position:absolute;left:50%;margin-left:-60px;width:120px;height:120px;}
 .list .qrcode img{width:120px;height:120px;}
 .list li:hover .qrcode{display:block;}
