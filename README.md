@@ -24,6 +24,7 @@ shadowwing@163.com
 3. 创建数据库并指定utf-8编码（CREATE DATABASE 数据库名称 DEFAULT CHARSET utf8 COLLATE utf8_general_ci;）
 4. 打开install/index.php进行数据导入；当然您也可以直接导入install/data.sql文件来替代前面的步骤
 5. 如果需要使用smtp功能，请修改config/smtp.php内的对应信息
+6. 有些主机无法正常显示验证码, 请修改config/config.php内的"VERIFYCODE_GD"项为false;
 
 ####目录结构
 >		/admin          管理后台,默认账户密码为admin
