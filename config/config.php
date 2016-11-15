@@ -12,6 +12,7 @@ define('VERIFYCODE_WIDTH', 150);
 define('VERIFYCODE_HEIGHT', 50);
 // 初始化页面
 define('REWRITE', false);
+define('VERIFYCODE_GD', true);
 define('TIME_OUT', 5 * 60);
 // 定义重复操作最短的允许时间，单位秒
 define('COOKIE_EXPIRE', 30 * 24 * 3600);

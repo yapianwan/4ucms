@@ -1,6 +1,6 @@
 <?php
 //验证码类
-class ValidateCode {
+class VerifyCode {
   private $charset = 'abcdefghkmnprstuvwxyzABCDEFGHKMNPRSTUVWXYZ23456789';
   //随机因子
   private $code;
@@ -19,24 +19,44 @@ class ValidateCode {
   //指定字体大小
   private $fontcolor;
   //指定字体颜色
+  private $state;
   //构造方法初始化
   public function __construct($w, $h, $fs = 24, $cl = 4) {
-    $this->width = $w;
-    $this->height = $h;
-    $this->fontsize = $fs;
-    $this->codelen = $cl;
-    $this->font = ROOT_PATH . '../fonts/elephant.ttf';
+    if (VERIFYCODE_GD) {
+      $this->width = $w;
+      $this->height = $h;
+      $this->fontsize = $fs;
+      $this->codelen = $cl;
+      $this->font = ROOT_PATH . '../fonts/elephant.ttf';
+      $this->state = true;
+    } else {
+      $this->state = false;
+    }
   }
   //生成随机码
   private function createCode() {
-    $_len = strlen($this->charset) - 1;
-    for ($i = 0; $i < $this->codelen; $i++) {
-      $this->code .= $this->charset[mt_rand(0, $_len)];
+    if ($this->state) {
+      $_len = strlen($this->charset) - 1;
+      for ($i = 0; $i < $this->codelen; $i++) {
+        $this->code .= $this->charset[mt_rand(0, $_len)];
+      }
+    } else {
+      $file = scandir(ROOT_PATH . 'verifycode/');
+      foreach ($file as $val) {
+        if ($val!='.' && $val!='..') {
+          $filename = explode('.', $val);
+          $arr[] = $filename[0];
+        }
+      }
+      shuffle($arr);
+      $res = array_slice($arr, 0, 1);
+      $this->code = $res[0];
     }
   }
   //生成背景
   private function createBg() {
-    $this->img = imagecreatetruecolor($this->width, $this->height);
+    $this->img = imagecreatetruecolor($this->width, $this->height) or die('Cannot Initialize new GD image stream');;
+    // $color = imagecolorallocate($this->img, mt_rand(157,255), mt_rand(157,255), mt_rand(157,255));
     $color = imagecolorallocate($this->img, 240, 240, 240);
     imagefilledrectangle($this->img, 0, $this->height, $this->width, 0, $color);
   }
@@ -63,11 +83,17 @@ class ValidateCode {
   }
   //对外生成
   public function doimg() {
-    $this->createBg();
-    $this->createCode();
-    $this->createLine();
-    $this->createFont();
-    $this->outPut();
+    if ($this->state) {
+      $this->createBg();
+      $this->createCode();
+      $this->createLine();
+      $this->createFont();
+      $this->outPut();
+    } else {
+      $this->createCode();
+      $_SESSION['verifycode_admin'] = $_SESSION['verifycode'] = strtolower($this->code);
+      return '../library/verifycode/' . $this->code . '.png';
+    }
   }
   //获取验证码
   public function getCode() {
