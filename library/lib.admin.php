@@ -17,7 +17,7 @@ function channel_select_list($t0, $t1, $t2, $t3) {
   if (is_array($res)) {
     foreach ($res as $row) {
       $select = $row['id'] == $t2 ? 'selected="selected"' : '';
-      $tmp .= LIB_OPB . $row['id'] . '" ' . $select . '>' . $s . $row[LIB_CNAME] . LIB_OPE . (strpos($t0, ',') ? '' : channel_select_list($row['id'], $level, $t2, $t3));
+      $tmp .= '<option value="' . $row['id'] . '" ' . $select . '>' . $s . $row['c_name'] . '</option>' . (strpos($t0, ',') ? '' : channel_select_list($row['id'], $level, $t2, $t3));
     }
   }
   return $tmp;
@@ -41,7 +41,7 @@ function channel_list($t0, $t1) {
   for ($i = 0; $i < $level; $i++) {
     $s = $s . '&nbsp;-&nbsp;';
   }
-  $res = $GLOBALS['db']->getAll(LIB_CSELECTF . $t0 . ' ORDER BY c_order ASC, id ASC ');
+  $res = $GLOBALS['db']->getAll('SELECT * FROM cms_channel WHERE c_parent = ' . $t0 . ' ORDER BY c_order ASC, id ASC ');
   $level = $level + 1;
   if (!empty($res)) {
     foreach ($res as $row) {
@@ -55,7 +55,7 @@ function channel_list($t0, $t1) {
 function get_channel_model_name($t0) {
   $res = $GLOBALS['db']->getRow('SELECT * FROM cms_cmodel WHERE c_value="' . $t0 . '"');
   if (!!($row = $res)) {
-    return $row[LIB_CNAME];
+    return $row['c_name'];
   } else {
     return '自定义';
   }
@@ -76,7 +76,7 @@ function channel_model_select_list($t0 = 0) {
   @($res = $GLOBALS['db']->getAll('SELECT * FROM cms_cmodel'));
   foreach ($res as $row) {
     $SELECT = $row['c_value'] == $t0 && !empty($t0) ? 'SELECTed="SELECTed"' : '';
-    $tmp .= LIB_OPB . $row['c_value'] . '" ' . $SELECT . '>' . $row[LIB_CNAME] . LIB_OPE;
+    $tmp .= '<option value="' . $row['c_value'] . '" ' . $SELECT . '>' . $row['c_name'] . '</option>';
   }
   return $tmp;
 }
@@ -86,7 +86,7 @@ function detail_model_select_list($t0 = 0) {
   $res = $GLOBALS['db']->getAll('SELECT * FROM cms_dmodel');
   foreach ($res as $row) {
     $SELECT = $row['d_value'] == $t0 && !empty($t0) ? 'SELECTed="SELECTed"' : '';
-    $tmp .= LIB_OPB . $row['d_value'] . '" ' . $SELECT . '>' . $row['d_name'] . LIB_OPE;
+    $tmp .= '<option value="' . $row['d_value'] . '" ' . $SELECT . '>' . $row['d_name'] . '</option>';
   }
   return $tmp;
 }
@@ -122,13 +122,76 @@ function gzip_enabled() {
   return $enabled_gzip;
 }
 
-function admin_log($msg, $admin_id, $admin_name = '', $active = ADMIN_LOG) {
-  if ($active) {
-    $log['admin_id'] = $admin_id;
-    $log['admin_name'] = $admin_name;
-    $log['log_code'] = $msg;
-    $log['log_time'] = local_date('Y-m-d H:i:s', time());
-    $log['log_ip'] = get_ip();
+//后台操作日志
+function admin_log($code, $admin_id, $admin_name = '', $silent = ADMIN_LOG) {
+  $log['admin_id'] = $admin_id;
+  $log['admin_name'] = $admin_name;
+  $log['log_code'] = $code;
+  $log['log_time'] = date('Y-m-d H:i:s', time());
+  $log['log_ip'] = get_ip();
+  if ($silent == 1 || $silent===true) {
     $GLOBALS['db']->autoExecute('cms_admin_log', $log);
+  } else {
+    // print_r($log);
   }
+}
+
+// 自动清理超期的数据
+function clear_expire($tbl, $col, $limit, $sql, $id = 'id') {
+  $ids = '';
+  $res = $GLOBALS['db']->getAll("SELECT {$id},{$col},{$limit} FROM {$tbl} WHERE {$sql}");
+  foreach ($res as $val) {
+    if (gmtime() > $val[$col] + $val[$limit]) $ids .= $val[$id] . ',';
+  }
+  if (!empty($ids)) {
+    $idstr = rtrim($ids, ',');
+    $sql = "DELETE FROM {$tbl} WHERE {$id} IN ({$idstr})";
+    if ($GLOBALS['db']->query($sql)) {
+      return true;
+    } else {
+      return false;
+    }
+  } else {
+    return false;
+  }
+}
+
+// 获取中文首字母
+function get_first_letter($str) {
+  $fchar = ord($str[0]);
+  if ($fchar >= ord('A') and $fchar <= ord('z')) {
+    return strtoupper($str[0]);
+  }
+  $s1 = iconv('UTF-8', 'gb2312', $str);
+  $s2 = iconv('gb2312', 'UTF-8', $s1);
+  if ($s2 == $str) {
+    $s = $s1;
+  } else {
+    $s = $str;
+  }
+  $asc = ord($s[0]) * 256 + ord($s[1]) - 65536;
+  if ($asc >= -20319 and $asc <= -20284) return 'A';
+  if ($asc >= -20283 and $asc <= -19776) return 'B';
+  if ($asc >= -19775 and $asc <= -19219) return 'C';
+  if ($asc >= -19218 and $asc <= -18711) return 'D';
+  if ($asc >= -18710 and $asc <= -18527) return 'E';
+  if ($asc >= -18526 and $asc <= -18240) return 'F';
+  if ($asc >= -18239 and $asc <= -17923) return 'G';
+  if ($asc >= -17922 and $asc <= -17418) return 'I';
+  if ($asc >= -17417 and $asc <= -16475) return 'J';
+  if ($asc >= -16474 and $asc <= -16213) return 'K';
+  if ($asc >= -16212 and $asc <= -15641) return 'L';
+  if ($asc >= -15640 and $asc <= -15166) return 'M';
+  if ($asc >= -15165 and $asc <= -14923) return 'N';
+  if ($asc >= -14922 and $asc <= -14915) return 'O';
+  if ($asc >= -14914 and $asc <= -14631) return 'P';
+  if ($asc >= -14630 and $asc <= -14150) return 'Q';
+  if ($asc >= -14149 and $asc <= -14091) return 'R';
+  if ($asc >= -14090 and $asc <= -13319) return 'S';
+  if ($asc >= -13318 and $asc <= -12839) return 'T';
+  if ($asc >= -12838 and $asc <= -12557) return 'W';
+  if ($asc >= -12556 and $asc <= -11848) return 'X';
+  if ($asc >= -11847 and $asc <= -11056) return 'Y';
+  if ($asc >= -11055 and $asc <= -10247) return 'Z';
+  return null;
 }

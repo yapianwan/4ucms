@@ -133,7 +133,7 @@ if ( isset($_POST['shift']) ) {
                         echo $row['d_ifslideshow'] == 1 ? '<span class="am-badge am-badge-primary">图</span>':'';
                       ?>
                     </td>
-                    <td class="am-hide"><?php echo mydate($row['d_date']) ?></td>
+                    <td class="am-hide"><?php echo local_date('Y-m-d H:i:s', $row['d_date']) ?></td>
                     <td><a href="cms_detail_edit.php?id=<?php echo $row['id']?>" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-pencil"></span></a></td>
                   </tr>
                   <?php
@@ -166,7 +166,7 @@ if ( isset($_POST['shift']) ) {
               </tfoot>
             </table>
             </form>
-            <?php echo page_show_admin($pager[2],$pager[3],'page',2);?>
+            <ul class="am-pagination am-pagination-centered"><?php echo page_show($pager[2],$pager[3],'page',2);?></ul>
           </main>
         </section>
 

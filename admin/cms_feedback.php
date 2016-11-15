@@ -84,7 +84,7 @@ if (isset($_POST['execute'])) {
               </tbody>
             </table>
             </form>
-            <?php echo page_show_admin($pager[2],$pager[3],'page',2);?>
+            <ul class="am-pagination am-pagination-centered"><?php echo page_show($pager[2],$pager[3],'page',2);?></ul>
           </div>
         </div>
 

@@ -13,6 +13,7 @@ include_once ROOT_PATH . './cls.smtp.php';
 
 include_once ROOT_PATH . './lib.base.php';
 include_once ROOT_PATH . './lib.admin.php';
+include_once ROOT_PATH . './lib.url.php';
 include_once ROOT_PATH . './library.php';
 
 include_once ROOT_PATH . './lib.time.php';
