@@ -76,7 +76,16 @@ if ($act == 'adminLogin') {
         <div class="am-input-group">
           <input id="vercode" type="text" name="vercode" class="am-form-field" value="">
           <span class="am-input-group-btn">
-            <img src="verifycode.php?v=<?php echo rand();?>" onclick="javascript:window.location.reload();" class="hand" title="点击刷新验证码" height="38">
+            <?php
+            if (VERIFYCODE_GD) {
+              echo '<img src="verifycode.php?v='.rand().'" onclick="javascript:this.src=\'verifycode.php?v=\'+Math.random();" class="hand" title="点击刷新验证码" height="38">';
+            } else {
+              include_once ROOT_PATH . './cls.verifycode.php';
+              $_vc = new VerifyCode(150, 50);
+              $code = $_vc->doimg();
+              echo '<img src="../'.$code.'" onclick="javascript:window.location.reload();" class="hand" title="点击刷新验证码" height="38">';
+            }
+            ?>
           </span>
         </div>
       </div>

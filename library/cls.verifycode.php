@@ -92,7 +92,7 @@ class VerifyCode {
     } else {
       $this->createCode();
       $_SESSION['verifycode_admin'] = $_SESSION['verifycode'] = strtolower($this->code);
-      return '../library/verifycode/' . $this->code . '.png';
+      return 'library/verifycode/' . $this->code . '.png';
     }
   }
   //获取验证码
