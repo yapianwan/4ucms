@@ -20,8 +20,7 @@ if (isset($_POST['submit'])) {
   $data[LIB_VETIME] = isset($_POST[LIB_VETIME]) ? gmstr2time($_POST[LIB_VETIME]) : '';
   $data[LIB_VIFM] = isset($_POST[LIB_VIFM]) ? $_POST[LIB_VIFM] : '';
   $data['v_count'] = 0;
-  $sql = $db->autoExecute("cms_vote",$data,"INSERT");
-  if ($db->query($sql)) {
+  if ($db->autoExecute("cms_vote",$data,"INSERT")) {
     admin_log('投票新增',$_COOKIE['admin_id']);
     alert_href('新增成功!','cms_vote.php');
   } else {
@@ -50,7 +49,7 @@ if (isset($_POST['submit'])) {
             <table class="am-table am-table-striped admin-content-table">
               <thead>
               <tr>
-                <th>投票主题</th><th>选项</th><th>状态</th><th>操作</th>
+                <th>投票主题</th><th class="am-hide-sm-down">选项</th><th class="am-hide-sm-down">状态</th><th>操作</th>
               </tr>
               </thead>
               <tbody>
@@ -61,7 +60,7 @@ if (isset($_POST['submit'])) {
                   foreach ($res as $row) {
                     $opiton_count = $db->getOne("SELECT COUNT(id) FROM cms_vote_option WHERE v_id = " . $row['id']);
                     $vote_status = gmtime()>=$row[LIB_VETIME] ? '已过期' : '进行中';
-                    echo '<tr><td>' . $row[LIB_VNAME] . '</td><td>' . $opiton_count . '</td><td>' . $vote_status . '</td><td><a href="cms_vote_edit.php?id=' . $row['id'] . '" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-pencil"></span></a> <a href="cms_option.php?id=' . $row['id'] . '" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-list-ul"></span></a> <a href="cms_vote.php?del=' . $row['id'] . '" onclick="return confirm(\'确认要删除吗？\')" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-times"></span></a></td></tr>';
+                    echo '<tr><td>' . $row[LIB_VNAME] . '</td><td class="am-hide-sm-down">' . $opiton_count . '</td><td class="am-hide-sm-down">' . $vote_status . '</td><td><a href="cms_vote_edit.php?id=' . $row['id'] . '" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-pencil"></span></a> <a href="cms_option.php?id=' . $row['id'] . '" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-list-ul"></span></a> <a href="cms_vote.php?del=' . $row['id'] . '" onclick="return confirm(\'确认要删除吗？\')" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-times"></span></a></td></tr>';
                   }
                 }
                 ?>

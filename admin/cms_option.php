@@ -17,12 +17,10 @@ if (isset($_POST['submit'])) {
   $data[LIB_ONAME] = isset($_POST[LIB_ONAME]) ? $_POST[LIB_ONAME] : '';
   $data['o_count'] = 0;
   $data[LIB_OORDER] = isset($_POST[LIB_OORDER]) ? $_POST[LIB_OORDER] : 100;
-  $arr = arr_insert($data);
 
-  $sql = "INSERT INTO cms_vote_option (" . $arr[0] . ") VALUES (" . $arr[1] . ")";
-  if ($db->query($sql)) {
+  if ($db->autoExecute("cms_vote_option",$data,"INSERT")) {
     admin_log('投票项目新增',$_COOKIE['admin_id']);
-    alert_back('新增成功!');
+    alert_href('新增成功!','cms_option.php?id='.$_POST['id']);
   } else {
     alert_back('新增失败!');
   }
@@ -54,17 +52,15 @@ if (isset($_POST['submit'])) {
               </thead>
               <tbody>
                 <?php
-                $pager = page_handle('page',20,$db->getOne("SELECT COUNT(*) FROM cms_vote_option WHERE v_id = ".$_GET['id']));
-                $res = $db->getAll("SELECT * FROM cms_vote_option WHERE v_id = " . $_GET['id'] . " ORDER BY o_order ASC, id DESC LIMIT " . $pager[0] . "," . $pager[1]);
+                $res = $db->getAll("SELECT * FROM cms_vote_option WHERE v_id = ".$_GET['id']." ORDER BY o_order ASC, id DESC");
                 if (check_array($res)) {
                   foreach($res as $row){
-                    echo '<tr><td>' . $row[LIB_ONAME] . '</td><td><a href="cms_option.php?del=' . $row['id'] . '" onclick="return confirm(\'确认要删除吗？\')" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-times"></span></a></td></tr>';
+                    echo '<tr><td>' . $row[LIB_ONAME] . '</td><td><a href="cms_option.php?id='.$_GET['id'].'&del=' . $row['id'] . '" onclick="return confirm(\'确认要删除吗？\')" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-times"></span></a></td></tr>';
                   }
                 }
                 ?>
               </tbody>
             </table>
-            <div data-am-page="{pages:<?php echo $pager[2];?>,first:'首页',last:'尾页',curr:<?php echo $pager[3];?>,jump:'?id=<?php echo $_GET['id'];?>&page=%page%'}"></div>
           </main>
         </section>
 
@@ -81,9 +77,9 @@ if (isset($_POST['submit'])) {
                  <input id="o_order" type="text" name="o_order" value="100">
               </div>
               <center>
-                <button type="submit" name="submit" id="save" class="am-btn am-btn-default">提交保存</button>
+                <button type="submit" name="submit" id="save" class="am-btn am-btn-default" value="提交保存">提交保存</button>
                 <button type="button" class="am-btn am-btn-default" onclick="javascript:window.location.href='cms_vote.php';">返回投票主题</button>
-                <input type="hidden" name="v_id" value="<?php echo $_GET['id'];?>">
+                <input type="hidden" name="id" value="<?php echo $_GET['id'];?>">
               </center>
             </main>
           </form>
