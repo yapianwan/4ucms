@@ -7,7 +7,7 @@ if (isset($_GET['del'])) {
   $sql = "DELETE FROM cms_slideshow WHERE id = " . $_GET['del'];
   if ($db->query($sql)) {
     admin_log('幻灯删除',$_COOKIE['admin_id']);
-    alert_href('删除成功!','cms_slideshow.php');
+    href('cms_slideshow.php');
   } else {
     alert_back('删除失败！');
   }

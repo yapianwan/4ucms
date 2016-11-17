@@ -7,7 +7,7 @@ if (isset($_GET['del'])) {
   $sql = "DELETE FROM cms_user WHERE id = " . $_GET['del'];
   if ($db->query($sql)) {
     admin_log('会员删除',$_COOKIE['admin_id']);
-    alert_href('删除成功!','cms_member.php');
+    href('cms_member.php');
   } else {
     alert_back('删除失败！');
   }  

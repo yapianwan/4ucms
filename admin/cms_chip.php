@@ -11,7 +11,7 @@ if (isset($_GET['del'])) {
   $sql = "DELETE FROM cms_chip WHERE id = " . $_GET['del'];
   if ($db->query($sql)) {
     admin_log('碎片删除',$_COOKIE['admin_id']);
-    alert_href('删除成功!','cms_chip.php');
+    href('cms_chip.php');
   } else {
     alert_back('删除失败！');
   }

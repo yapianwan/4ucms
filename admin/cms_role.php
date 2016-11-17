@@ -10,8 +10,8 @@ if (isset($_GET['del']) && $_GET['del'] == 1) {
     $sql = "DELETE FROM cms_role WHERE id = " . $_GET['del'];
     if ($db->query($sql)) {
       admin_log('角色删除',$_COOKIE['admin_id']);
-      alert_href('删除成功!','cms_role.php');
-    } else {
+      href('cms_role.php');
+    }else{
       alert_back('删除失败！');
     }
   }  

@@ -7,7 +7,7 @@ if (isset($_GET['del'])) {
   $sql = "DELETE FROM cms_template WHERE id = " . $_GET['del'];
   if ($db->query($sql)) {
     admin_log('模板删除',$_COOKIE['admin_id']);
-    alert_back('删除成功！');
+    href('cms_template.php');
   } else {
     alert_back('删除失败！');
   }

@@ -8,7 +8,7 @@ if (isset($_GET['del'])) {
   $sql = "DELETE FROM cms_vote WHERE id = " . $_GET['del'];
   if ($db->query($sql)) {
     admin_log('投票删除',$_COOKIE['admin_id']);
-    alert_href('删除成功!','cms_vote.php');
+    href('cms_vote.php');
   } else {
     alert_back('删除失败！');
   }
