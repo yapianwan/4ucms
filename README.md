@@ -5,7 +5,7 @@
 * MYSQL
 
 ####主程序部分
-1.73 M
+1.66 M
 
 ####系统预览
 [http://mcmswx.foru.net.cn/](http://mcmswx.foru.net.cn/view/)
