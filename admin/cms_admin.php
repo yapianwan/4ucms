@@ -26,8 +26,10 @@ if (isset($_POST['submit'])) {
   $a_tname = !empty($_POST['a_tname']) ? $_POST['a_tname'] : '';
   $a_password = $_POST['a_password'];
   $a_cpassword = $_POST['a_cassword'];
+
   null_back($a_name, '请填写登录帐号');
   null_back($a_password, '请填写登录密码');
+  
   $sql = "INSERT INTO cms_user (u_rid,u_enable,u_name,u_tname,u_psw,u_isadmin) VALUES ('" . $a_role . "',1,'" . $a_name . "','" . $a_tname . "','" . md5($a_password) . "',1)";
   if ($db->query($sql)) {
     admin_log('管理员新增', $_COOKIE['admin_id']);
@@ -58,7 +60,7 @@ if (isset($_POST['submit'])) {
         <table class="am-table am-table-striped admin-content-table">
           <thead>
           <tr>
-          <th>ID</th><th>帐号</th><th>昵称</th><th>管理</th>
+          <th class="am-hide-sm-down">ID</th><th>帐号</th><th class="am-hide">昵称</th><th>管理</th>
           </tr>
           </thead>
           <tbody>
@@ -66,9 +68,7 @@ if (isset($_POST['submit'])) {
             $res = $db->getAll("SELECT * FROM cms_user WHERE u_isadmin = 1");
             if (check_array($res)) {
               foreach($res as $row){
-                echo '<tr><td>'.$row['id'].'</td><td>'.$row['u_name'].'</td><td>'.$row['u_tname'].'</td>';
-                echo '<td><a href="cms_admin_edit.php?id='.$row['id'].'" class="am-btn am-btn-default"><span class="am-icon-pencil"></span></a> <a href="cms_admin.php?del='.$row['id'].'" onclick="return confirm(\'确认要删除吗？\')" class="am-btn am-btn-default"><span class="am-icon-times"></span></a></td>';
-                echo '</tr>';
+                echo '<tr><td class="am-hide-sm-down">' . $row['id'] . '</td><td>' . $row['u_name'] . '</td><td class="am-hide">' . $row['u_tname'] . '</td> <td><a href="cms_admin_edit.php?id=' . $row['id'] . '" class="am-btn am-btn-default"><span class="am-icon-pencil"></span></a> <a href="cms_admin.php?del=' . $row['id'] . '" onclick="return confirm(\'确认要删除吗？\')" class="am-btn am-btn-default"><span class="am-icon-times"></span></a></td></tr>';
               }
             }
             ?>
@@ -103,7 +103,7 @@ if (isset($_POST['submit'])) {
             <?php
             $res = $db->getAll("SELECT * FROM cms_role");
             foreach($res as $row) {
-              echo '<option value="'.$row['id'].'">'.$row['r_name'].'</option>';
+              echo '<option value="' . $row['id'] . '">' . $row['r_name'] . '</option>';
             }
             ?>
           </select>

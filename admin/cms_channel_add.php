@@ -5,8 +5,8 @@ include 'cms_check.php';
 
 if (isset($_POST['submit'])) {
   @($c_name = $_POST['c_name']);
-  @($c_ifpicture = !empty($c_picture) ? 1 : 0);
   @($c_picture = $_POST['c_picture']);
+  @($c_ifpicture = !empty($c_picture) ? 1 : 0);
   @($c_parent = $_POST['c_parent']);
   @($c_cmodel = $_POST['c_cmodel']);
   @($c_dmodel = $_POST['c_dmodel']);
@@ -22,10 +22,10 @@ if (isset($_POST['submit'])) {
   @($c_link = $_POST['c_link']);
   @($c_sname = $_POST['c_sname']);
   @($c_aname = $_POST['c_aname']);
-  @($c_ifcover = !empty($c_cover) ? 1 : 0);
   @($c_cover = $_POST['c_cover']);
-  @($c_ifslideshow = !empty($c_slideshow) ? 1 : 0);
+  @($c_ifcover = !empty($c_cover) ? 1 : 0);
   @($c_slideshow = $_POST['c_slideshow']);
+  @($c_ifslideshow = !empty($c_slideshow) ? 1 : 0);
   @($c_target = $_POST['c_target']);
   @($c_safe = $_POST['c_safe']);
   @($c_order = $_POST['c_order']);
@@ -287,8 +287,8 @@ $(function(){
   });
 });
 KindEditor.ready(function(K) {
-  K.create('#c_content',{allowFileManager : true});
-  K.create('#c_scontent',{allowFileManager : true});
+  K.create('#c_content',{allowFileManager : true, width:'100%'});
+  K.create('#c_scontent',{allowFileManager : true, width:'100%'});
   var editor = K.editor({allowFileManager : true});
   K('#c_picture_upload').click(function() {
     editor.loadPlugin('image', function() {

@@ -1,7 +1,6 @@
 <?php
 $c_main = 'search';
 include './library/inc.php';
-include './language/common.php';
 
 if (!empty($_GET[LIB_KEY])) {
   null_back($_GET[LIB_KEY], $_lang[LIB_KEY]);

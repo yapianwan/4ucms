@@ -11,12 +11,12 @@ if (isset($_POST['submit'])) {
   $d_rec = $_POST[LIB_DREC];
   $d_hot = $_POST[LIB_DHOT];
   $d_price = $_POST['d_price'];
-  $d_ifslideshow = !empty($d_slideshow) ? 1 : 0;
   $d_slideshow = $_POST['d_slideshow'];
-  $d_ifvideo = !empty($d_video) ? 1 : 0;
+  $d_ifslideshow = !empty($d_slideshow) ? 1 : 0;
   $d_video = $_POST['d_video'];
-  $d_ifattachment = !empty($d_attachment) ? 1 : 0;
+  $d_ifvideo = !empty($d_video) ? 1 : 0;
   $d_attachment = $_POST['d_attachment'];
+  $d_ifattachment = !empty($d_attachment) ? 1 : 0;
   $d_content = $_POST['d_content'];
   $d_scontent = $_POST['d_scontent'];
   $d_source = $_POST['d_source'];
@@ -45,7 +45,7 @@ if (isset($_POST['submit'])) {
 $res = $db->getRow("SELECT * FROM cms_detail WHERE id = ".$_GET['id']);
 // 权限限制
 $state = 0;
-if (isset($cids)) {
+if ($cids) {
   $arr = explode(',', $cids);
   foreach ($arr as $val) {
     if ($val == $res['d_parent']) {
@@ -264,8 +264,8 @@ $(function(){
   });
 });
 KindEditor.ready(function(K) {
-  K.create('#d_content',{allowFileManager : true});
-  K.create('#d_scontent',{allowFileManager : true});
+  K.create('#d_content',{allowFileManager : true, width:'100%'});
+  K.create('#d_scontent',{allowFileManager : true, width:'100%'});
   var editor = K.editor({allowFileManager : true});
   K('#d_picture_upload').click(function() {
     editor.loadPlugin('image', function() {

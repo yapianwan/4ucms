@@ -52,12 +52,12 @@ if (isset($_GET['path'])) {
             <table class="am-table am-table-striped admin-content-table">
               <thead>
               <tr>
-                <th>名称</th><th>路径</th><th>操作</th>
+                <th>名称</th><th class="am-hide-sm-down">路径</th><th>操作</th>
               </tr>
               </thead>
               <tbody>
                 <?php
-                $res = $db->getAll("select * from cms_template");
+                $res = $db->getAll("select * from cms_template ORDER BY id DESC");
                 if (check_array($res)) {
                   foreach ($res as $row) {
                     if ($cms['s_template'] == $row[LIB_TPATH]) {
@@ -65,7 +65,7 @@ if (isset($_GET['path'])) {
                     } else {
                       $temp_str = '<a href="cms_template.php?path=' . $row[LIB_TPATH] . '" class="am-btn am-btn-default am-btn-xs">应用</a> <a href="cms_template.php?del=' . $row['id'] . '" onclick="return confirm(\'确定要删除吗？\')" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-times"></span></a>';
                     }
-                    echo '<tr><td>' . $row['t_name'] . '</td><td>' . $row[LIB_TPATH] . '</td><td>' . $temp_str . '</td></tr>';
+                    echo '<tr><td>' . $row['t_name'] . '</td><td class="am-hide-sm-down">' . $row[LIB_TPATH] . '</td><td>' . $temp_str . '</td></tr>';
                   }
                 }
                 ?>

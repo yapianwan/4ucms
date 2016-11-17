@@ -49,7 +49,7 @@ if (isset($_POST['execute'])) {
             <table class="am-table am-table-striped admin-content-table">
               <thead>
               <tr>
-                <th>选择</th><th>状态</th><th>留言人</th><th class="am-hide">联系电话</th><th class="am-hide">公司名称</th><th class="am-hide">联系地址</th><th>留言日期</th><th>回复</th>
+                <th>选择</th><th>状态</th><th class="am-hide-sm-down">留言人</th><th class="am-hide-sm-down">联系电话</th><th class="am-hide">公司名称</th><th class="am-hide">联系地址</th><th class="am-hide-sm-down">留言日期</th><th>回复</th>
               </tr>
               </thead>
               <tbody>
@@ -63,7 +63,7 @@ if (isset($_POST['execute'])) {
                     } else {
                       $temp_str = '已审';
                     }
-                    echo '<tr><td><input class="form_checkbox" type="checkbox" name="id[]" value="' . $row['id'] . '" /></td><td>' . $temp_str . LIB_TDEB . $row['f_name'] . LIB_TDHEB . $row['f_tel'] . LIB_TDHEB . $row['f_cname'] . LIB_TDHEB . $row['f_address'] . LIB_TDEB . local_date('Y-m-d H:i:s',$row['f_date']) . '</td><td><a href="cms_feedback_answer.php?id=' . $row['id'] . '">回复</a></td></tr>';
+                    echo '<tr><td><input class="form_checkbox" type="checkbox" name="id[]" value="' . $row['id'] . '" /></td><td>' . $temp_str . '</td><td class="am-hide-sm-down">' . $row['f_name'] . '</td><td class="am-hide-sm-down">' . $row['f_tel'] . '</td><td class="am-hide">' . $row['f_cname'] . '</td><td class="am-hide">' . $row['f_address'] . '</td><td class="am-hide-sm-down">' . local_date('Y-m-d',$row['f_date']) . '</td><td><a href="cms_feedback_answer.php?id=' . $row['id'] . '">回复</a></td></tr>';
                   }
                 }
                 ?>

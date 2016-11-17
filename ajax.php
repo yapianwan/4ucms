@@ -1,6 +1,5 @@
 <?php
 include './library/inc.php';
-include './language/common.php';
 
 switch (PATH_SEPARATOR) {
   case ';':

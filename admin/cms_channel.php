@@ -10,7 +10,7 @@ if (isset($_GET['del'])) {
     // 频道相关清理
     $c_picture = $db->getOne("SELECT c_picture FROM cms_channel WHERE id = ".$_GET['del']);
     if (!empty($c_picture)) {
-      @unlink(substr(ROOT_PATH,0,strlen(ROOT_PATH)-1).$c_picture);
+      @unlink(ROOT_PATH . '..' . $c_picture);
     }
     $c_content = $db->getOne("SELECT c_content FROM cms_channel WHERE id = ".$_GET['del']);
     preg_match_all('/<[img|IMG].*?src=[\'|\"](.*?(?:[\.gif|\.jpg]))[\'|\"].*?[\/]?>/', $c_content, $tmparr);
@@ -45,13 +45,11 @@ if (isset($_GET['del'])) {
             <table class="am-table am-table-striped admin-content-table">
               <thead>
               <tr>
-              <th>ID</th><th>排序</th><th>频道名称</th><th>频道模型</th><th class="am-hide">内容模型</th><th class="am-hide">内容操作</th><th>频道操作</th>
+              <th>ID</th><th class="am-hide-sm-down">排序</th><th>频道名称</th><th class="am-hide-sm-down">频道模型</th><th class="am-hide-sm-down">内容模型</th><th class="am-hide-sm-down">内容操作</th><th>频道操作</th>
               </tr>
               </thead>
               <tbody>
-                 <?php
-                 echo channel_list(0,0);
-                 ?>
+                 <?php echo channel_list(0,0);?>
               </tbody>
             </table>
           </div>

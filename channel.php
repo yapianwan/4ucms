@@ -1,6 +1,5 @@
 <?php
 include './library/inc.php';
-include './language/common.php';
 
 non_numeric_back($id, $_lang['illegal']);
 if (get_channel($id,'id') === false) {

@@ -46,22 +46,5 @@ include '../library/inc.php';
 
 <?php include 'inc_footer.php';?>
 
-<!-- js -->
-<script type="text/javascript">
-$(function(){
-  $('#save').click(function(){
-    if ($('#l_name').val() == ''){
-      alert('请填写链接名称');
-      $('#l_name').focus();
-      return false;
-    }
-    if (isNaN($('#l_order').val()) || $('#l_order').val() == '') {
-      alert('排序必须是数字');
-      $('#l_order').focus();
-      return false;
-    }
-  });
-});
-</script>
 </body>
 </html>

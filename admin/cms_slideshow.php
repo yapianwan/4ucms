@@ -50,7 +50,7 @@ if (isset($_POST['submit'])) {
             <table class="am-table am-table-striped admin-content-table">
               <thead>
               <tr>
-                <th>排序</th><th>幻灯图片</th><th>幻灯名称</th><th>链接地址</th><th>操作</th>
+                <th class="am-hide-sm-down">排序</th><th class="am-hide-sm-down">幻灯图片</th><th>幻灯名称</th><th class="am-hide-sm-down">链接地址</th><th>操作</th>
               </tr>
               </thead>
               <tbody>
@@ -58,7 +58,7 @@ if (isset($_POST['submit'])) {
                 $res = $db->getAll("SELECT * FROM cms_slideshow ORDER BY id DESC");
                 if (check_array($res)) {
                   foreach ($res as $row) {
-                    echo '<tr><td>' . $row['s_order'] . '</td><td><a href="' . $row[LIB_SPIC] . '" target="_blank"><img src="' . $row[LIB_SPIC] . '" width="100" height="30" /></a></td><td>' . $row['s_name'] . '</td><td>' . $row[LIB_SURL] . '</td><td><a href="cms_slideshow_edit.php?id=' . $row['id'] . '" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-pencil"></span></a> <a href="cms_slideshow.php?del=' . $row['id'] . '" onclick="return confirm(\'确认要删除吗？\')" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-times"></span></a></td></tr>';
+                    echo '<tr><td class="am-hide-sm-down">' . $row['s_order'] . '</td><td class="am-hide-sm-down"><a href="' . $row[LIB_SPIC] . '" target="_blank"><img src="' . $row[LIB_SPIC] . '" width="100" height="30" /></a></td><td>' . $row['s_name'] . '</td><td class="am-hide-sm-down">' . $row[LIB_SURL] . '</td><td><a href="cms_slideshow_edit.php?id=' . $row['id'] . '" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-pencil"></span></a> <a href="cms_slideshow.php?del=' . $row['id'] . '" onclick="return confirm(\'确认要删除吗？\')" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-times"></span></a></td></tr>';
                   }
                 }
                 ?>

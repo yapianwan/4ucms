@@ -87,8 +87,8 @@ class Mysql {
     }
     $res = $this->query($sql);
     if ($res !== false) {
-      $row = !empty($res) ? mysql_fetch_row($res) : '';
-      return !empty($row) ? $row[0] : '';
+      $row = !empty($res) ? mysql_fetch_row($res) : false;
+      return $row!==false ? $row[0] : '';
     } else {
       return false;
     }
@@ -224,6 +224,15 @@ class Mysql {
       $this->_err = '没有输入SQL语句';
       return false;
     }
+  }
+  // 获取最大值
+  public function getMaxID($table, $field, $sql = '') {
+    if ($sql != '') {
+      $res = $this->getOne("SELECT MAX({$field}) FROM {$table} WHERE {$sql}");
+    } else {
+      $res = $this->getOne("SELECT MAX({$field}) FROM {$table}");
+    }
+    return !empty($res) ? $res : 0;
   }
   public function truncate($table) {
     return $this->query('TRUNCATE TABLE ' . $table);

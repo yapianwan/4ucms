@@ -49,7 +49,7 @@
           <li><a href="cms_rewrite.php"><span class="am-icon-exchange"></span> 伪静态 </a></li>
           <li><a href="javascript:if(confirm('是否进行sitemap文件生成?')) window.open('../sitemap.php?act=xml');"><span class="am-icon-cubes"></span> sitemap </a></li>
           <!--<li><a href="javascript:if(confirm('是否进行百度主动推送?')) window.location.href='index.php?act=baiduSend';"><span class="am-icon-exchange"></span> 百度主动推送 </a></li>-->
-          </ul>
+        </ul>
       </li>
       
       <li><a href="../" target="_blank"><span class="am-icon-desktop"></span> 预览 </a></li>

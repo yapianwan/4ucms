@@ -5,8 +5,8 @@ include 'cms_check.php';
 
 if (isset($_POST['submit'])) {
   @($c_name = $_POST['c_name']);
-  @($c_ifpicture = !empty($c_picture) ? 1 : 0);
   @($c_picture = $_POST['c_picture']);
+  @($c_ifpicture = !empty($c_picture) ? 1 : 0);
   @($c_parent = $_POST['c_parent']);
   @($c_cmodel = $_POST[LIB_CCMDL]);
   @($c_dmodel = $_POST[LIB_CDMDL]);
@@ -22,12 +22,12 @@ if (isset($_POST['submit'])) {
   @($c_link = $_POST['c_link']);
   @($c_sname = $_POST['c_sname']);
   @($c_aname = $_POST['c_aname']);
-  @($c_ifcover = !empty($c_cover) ? 1 : 0);
   @($c_cover = $_POST['c_cover']);
-  @($c_ifslideshow = !empty($c_ifslideshow) ? 1 : 0);
+  @($c_ifcover = !empty($c_cover) ? 1 : 0);
   @($c_slideshow = $_POST['c_slideshow']);
-  @($c_target = $_POST[LIB_CTARGET]);
-  @($c_safe = $_POST[LIB_CSAFE]);
+  @($c_ifslideshow = !empty($c_slideshow) ? 1 : 0);
+  @($c_target = $_POST['c_target']);
+  @($c_safe = $_POST['c_safe']);
   @($c_order = $_POST['c_order']);
 
   null_back($c_name, '请填写频道名称');
@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
   null_back($c_dmodel, '请选择或填写详情模型');
   non_numeric_back($c_page, '分页条数必须是数字');
   non_numeric_back($c_order, '排序必须是数字');
-  
+
   $sql = "UPDATE cms_channel SET c_name='" . $c_name . "',c_ifpicture='" . $c_ifpicture . "',c_picture = '" . $c_picture . "',c_parent='" . $c_parent . "',c_cmodel='" . $c_cmodel . "',c_dmodel='" . $c_dmodel . "',c_rec='" . $c_rec . "',c_content='" . $c_content . "',c_scontent='" . $c_scontent . "',c_page='" . $c_page . "',c_seoname='" . $c_seoname . "',c_keywords='" . $c_keywords . "',c_description='" . $c_description . "',c_navigation='" . $c_navigation . "',c_nname='" . $c_nname . "',c_link='" . $c_link . "',c_sname='" . $c_sname . "',c_aname='" . $c_aname . "',c_ifcover='" . $c_ifcover . "',c_cover='" . $c_cover . "',c_ifslideshow='" . $c_ifslideshow . "',c_slideshow='" . $c_slideshow . "',c_target='" . $c_target . "',c_safe='" . $c_safe . "',c_order='" . $c_order . "' WHERE id= '" . $_GET['id'] . "'";
   if ($db->query($sql)) {
     admin_log('频道编辑', $_COOKIE['admin_id']);
@@ -284,8 +284,8 @@ $(function(){
   });
 });
 KindEditor.ready(function(K) {
-  K.create('#c_content',{allowFileManager : true});
-  K.create('#c_scontent',{allowFileManager : true});
+  K.create('#c_content',{allowFileManager : true, width:'100%'});
+  K.create('#c_scontent',{allowFileManager : true, width:'100%'});
   var editor = K.editor({allowFileManager : true});
   K('#c_picture_upload').click(function() {
     editor.loadPlugin('image', function() {

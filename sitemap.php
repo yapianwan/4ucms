@@ -1,6 +1,6 @@
 <?php
 include './library/inc.php';
-header('Content-type: application/xml; charset="UTF-8"',true);
+
 /* changefreq可自行设置 "always", "hourly", "daily", "weekly", "monthly", "yearly" and "never"*/
 $changefreq = "weekly";
 $str = '<?xml version="1.0" encoding="UTF-8"?>';

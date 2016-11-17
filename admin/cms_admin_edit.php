@@ -22,6 +22,7 @@ if (isset($_POST['submit'])) {
   }
 
   null_back($a_name,'请填写登录帐号');
+
   $sql = "UPDATE cms_user SET u_rid=" . $a_role . ",u_name='" . $a_name . "',u_tname='" . $a_tname . "',u_psw='" . $password . "' WHERE id = " . $_GET['id'];
   if ($db->query($sql)) {
     admin_log('管理员编辑',$_COOKIE['admin_id']);
@@ -45,7 +46,7 @@ if (isset($_POST['submit'])) {
       <div class="am-u-sm-12 am-padding-top">
         <?php
         $res = $db->
-        getRow("SELECT * FROM cms_user WHERE id = ".$_GET['id']);
+        getRow("SELECT * FROM cms_user WHERE id = " . $_GET['id']);
         if ($row = $res) {
         ?>      
         <section class="am-panel am-panel-default">
@@ -54,7 +55,7 @@ if (isset($_POST['submit'])) {
           <main class="am-panel-bd am-panel-bordered am-collapse am-in" id="collapse-panel-2">
           <div class="am-form-group">
             <label for="a_name">登录帐号</label>
-            <input id="a_name" type="text" name="a_name" value="<?php echo $row['u_name']; ?>" <?php echo ($_GET['id']==1) ? 'readonly' : ''?>
+            <input id="a_name" type="text" name="a_name" value="<?php echo $row['u_name']; ?>" <?php echo ($_GET['id']==1) ? 'readonly' : '';?>
             >
           </div>
           <div class="am-form-group">

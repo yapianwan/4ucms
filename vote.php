@@ -1,7 +1,6 @@
 <?php
 $c_main = 'vote';
 include './library/inc.php';
-include './language/common.php';
 
 non_numeric_back(intval($_GET['id']), $_lang['illegal']);
 // 记入投票数据

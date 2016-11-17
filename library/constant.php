@@ -146,7 +146,7 @@ define('LIB_TARGET', '" target="');
 define('LIB_DESC', 'description');
 define('LIB_TITLE', 'title');
 define('LIB_TDEB', '</td><td>');
-define('LIB_TDHEB', '</td><td class="am-hide">');
+define('LIB_TDHEB', '</td><td class="am-hide-sm-down">');
 define('LIB_CLSACTIVE', 'class="am-active"');
 define('LIB_CLSACT', 'am-active');
 define('LIB_SELECTED', 'selected="selected"');

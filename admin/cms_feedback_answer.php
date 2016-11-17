@@ -7,6 +7,7 @@ if (isset($_POST['submit'])) {
   $_data[LIB_FBASR] = $_POST[LIB_FBASR];
   $_data['f_adate'] = gmtime();
   $_data['f_ok'] = 1;
+  
   $sql = "UPDATE cms_feedback SET " . arr_update($_data) . " WHERE id = " . $_GET['id'];
   if ($db->query($sql)) {
     alert_href('修改成功!','cms_feedback.php');
@@ -48,7 +49,7 @@ if (isset($_POST['submit'])) {
               </table>
                <div class="am-form-group">
                 <label for="f_answer">回复内容</label>
-                <textarea name="f_answer" id="f_answer"><?php echo htmlspecialchars(stripslashes($row[LIB_FBASR]))?></textarea>
+                <textarea name="f_answer" id="f_answer"><?php echo htmlspecialchars(stripslashes($row[LIB_FBASR]));?></textarea>
               </div>
               <center>
                 <button type="submit" name="submit" class="am-btn am-btn-default">提交保存</button>
@@ -69,7 +70,7 @@ if (isset($_POST['submit'])) {
 <!-- js -->
 <script type="text/javascript">
 KindEditor.ready(function(K) {
-  K.create('#f_answer',{allowFileManager : true});
+  K.create('#f_answer',{allowFileManager : true, width:'100%'});
 });
 </script>
 </body>

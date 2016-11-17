@@ -35,8 +35,8 @@ if (isset($_POST['submit'])) {
         <section class="am-panel am-panel-default">
           <header class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-2'}">编辑碎片<span class="am-icon-chevron-down am-fr"></span></header>
           <?php
-          $res = $db->getRow("SELECT * FROM cms_chip WHERE id = ".$_GET['id']);
-          if($row = $res){
+          $res = $db->getRow("SELECT * FROM cms_chip WHERE id = " . $_GET['id']);
+          if ($row = $res) {
           ?>
           <form action="" method="post" class="am-form">
             <main class="am-panel-bd am-panel-bordered am-collapse am-in" id="collapse-panel-2">
@@ -55,8 +55,8 @@ if (isset($_POST['submit'])) {
               <div class="am-form-group">
                 <label for="">安全保护</label>
                 <div>
-                  <label class="am-btn am-btn-default <?php echo $row[LIB_CSAFE] == 1 ? 'am-active':'';?>">
-                    <input type="radio" name="c_safe" value="1" <?php echo $row[LIB_CSAFE] == 1?'checked="checked"':'';?>/> 是
+                  <label class="am-btn am-btn-default <?php echo $row[LIB_CSAFE]?'am-active':'';?>">
+                    <input type="radio" name="c_safe" value="1" <?php echo $row[LIB_CSAFE]?'checked="checked"':'';?>/> 是
                   </label>
                   <label class="am-btn am-btn-default">
                     <input type="radio" name="c_safe" value="0" <?php echo $row[LIB_CSAFE] == 0?'checked="checked"':'';?>/> 否
@@ -91,7 +91,7 @@ if (isset($_POST['submit'])) {
     });
   });
   KindEditor.ready(function(K) {
-    K.create('#c_content',{allowFileManager : true});
+    K.create('#c_content',{allowFileManager : true, width:'100%'});
   });
 </script>
 </body>

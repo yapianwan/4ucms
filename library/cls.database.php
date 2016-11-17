@@ -4,11 +4,11 @@ class Database {
   private $file_path;
   public function __construct($db) {
     $this->db = $db;
-    $this->file_path = '../'.SQL_DIR.'/';
+    $this->file_path = '../' . SQL_DIR . '/';
   }
   public function tables() {
     $tbl = $this->db->getAll("SHOW TABLES");
-    return get_easy_array($tbl,'Tables_in_'.DATA_NAME);
+    return get_easy_array($tbl,'Tables_in_' . DATA_NAME);
   }
   public function backup() {
     //检查备份目录是否可写

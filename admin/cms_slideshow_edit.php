@@ -72,7 +72,7 @@ if (isset($_POST['submit'])) {
               </div>
               <div class="am-form-group">
                 <label for="s_order">排序</label>
-                 <input id="s_order" type="text" name="s_order" value="100" value="<?php echo $row['s_order']?>">
+                 <input id="s_order" type="text" name="s_order" value="100" value="<?php echo $row['s_order'];?>">
               </div>
               <center>
                 <button type="submit" name="submit" id="save" class="am-btn am-btn-default">提交保存</button>

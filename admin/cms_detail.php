@@ -70,7 +70,7 @@ if ( isset($_POST['shift']) ) {
                   <select onchange="location.href='cms_detail.php?cid='+this.options[this.selectedIndex].value;">
                     <option value="0">全部频道</option>
                     <?php
-                    echo isset($cids) ? channel_select_list($cids,0,$_GET['cid'],0) : channel_select_list(0,0,$_GET['cid'],0);
+                    echo channel_select_list($cids,0,$_GET['cid'],0);
                     if(isset($_GET['key'])){
                       echo '<option selected="selected" >搜索结果</option>';
                     }
@@ -90,17 +90,17 @@ if ( isset($_POST['shift']) ) {
             <table class="am-table am-table-striped admin-content-table">
               <thead>
               <tr>
-                <th>选择</th><th>排序</th><th>内容名称</th><th>所属频道</th><th class="am-hide">内容模型</th><th class="am-hide">内容操作</th><th>操作</th>
+                <th>选择</th><th class="am-hide-sm-down">排序</th><th>名称</th><th>所属频道</th><th class="am-hide-sm-down">模型</th><th class="am-hide-sm-down">日期</th><th>操作</th>
               </tr>
               </thead>
               <tbody>
                  <?php
                   if (isset($_GET['cid'])) {
                     if ($_GET['cid'] != 0){
-                      $pager = page_handle('page',20,mysql_num_rows(mysql_query("SELECT * FROM cms_detail WHERE d_parent IN (" . (isset($cids) ? $cids : get_channel($_GET['cid'],'c_sub')) . ")")));
-                      $res = $db->getAll("SELECT * FROM cms_detail WHERE d_parent IN (" . (isset($cids) ? $cids : get_channel($_GET['cid'],'c_sub')) . ") ORDER BY id DESC LIMIT " . $pager[0] . "," . $pager[1]);
+                      $pager = page_handle('page',20,mysql_num_rows(mysql_query("SELECT * FROM cms_detail WHERE d_parent IN (" . ($cids ? $cids : get_channel($_GET['cid'],'c_sub')) . ")")));
+                      $res = $db->getAll("SELECT * FROM cms_detail WHERE d_parent IN (" . ($cids ? $cids : get_channel($_GET['cid'],'c_sub')) . ") ORDER BY id DESC LIMIT " . $pager[0] . "," . $pager[1]);
                     }else{
-                      if (isset($cids)) {
+                      if ($cids) {
                         $pager = page_handle('page',20,mysql_num_rows(mysql_query("SELECT * FROM cms_detail WHERE d_parent IN (" . $cids . ")")));
                         $res = $db->getAll("SELECT * FROM cms_detail WHERE d_parent IN (" . $cids . ") ORDER BY id DESC LIMIT " . $pager[0] . "," . $pager[1]);
                       } else {
@@ -110,12 +110,12 @@ if ( isset($_POST['shift']) ) {
                     }
                   }
                   if (isset($_GET['search'])) {
-                    if (isset($cids)) {
+                    if ($cids) {
                       $pager = page_handle('page',20,mysql_num_rows(mysql_query("SELECT * FROM cms_detail WHERE d_name LIKE '%" . $_GET['key'] . "%' AND d_parent IN (" . $cids . ")")));
-                      $res = $db->getAll("SELECT * FROM cms_detail WHERE d_name LIKE '%" . $_GET['key'] . "%' AND d_parent IN (" . $cids . ") limit " . $pager[0] . "," . $pager[1]);
+                      $res = $db->getAll("SELECT * FROM cms_detail WHERE d_name LIKE '%" . $_GET['key'] . "%' AND d_parent IN (" . $cids . ") ORDER BY id DESC LIMIT " . $pager[0] . "," . $pager[1]);
                     } else {
                       $pager = page_handle('page',20,mysql_num_rows(mysql_query("SELECT * FROM cms_detail WHERE d_name LIKE '%" . $_GET['key'] . "%'")));
-                      $res = $db->getAll("SELECT * FROM cms_detail WHERE d_name LIKE '%" . $_GET['key'] . "%' limit " . $pager[0] . "," . $pager[1]);
+                      $res = $db->getAll("SELECT * FROM cms_detail WHERE d_name LIKE '%" . $_GET['key'] . "%' ORDER BY id DESC LIMIT " . $pager[0] . "," . $pager[1]);
                     }
                   }
                   if (!empty($res)) {
@@ -123,17 +123,17 @@ if ( isset($_POST['shift']) ) {
                   ?>
                   <tr>
                     <td><input type="checkbox" name="id[]" value="<?php echo $row['id'] ?>" /></td>
-                    <td><?php echo $row['d_order'] ?></td>
+                    <td class="am-hide-sm-down"><?php echo $row['d_order'] ?></td>
                     <td align="left"><?php echo '<a href="../detail.php?id=' . $row['id'] . '" target="_blank">' . $row['d_name'] . '</a>' ?></td>
                     <td><?php echo get_channel($row['d_parent'], 'c_name')?></td>
-                    <td class="am-hide">
+                    <td class="am-hide-sm-down">
                       <?php 
                         echo $row['d_rec'] == 1 ? '<span class="am-badge am-badge-success">推</span>':'';
                         echo $row['d_hot'] == 1 ? '<span class="am-badge am-badge-danger">热</span>':'';
                         echo $row['d_ifslideshow'] == 1 ? '<span class="am-badge am-badge-primary">图</span>':'';
                       ?>
                     </td>
-                    <td class="am-hide"><?php echo local_date('Y-m-d H:i:s', $row['d_date']) ?></td>
+                    <td class="am-hide-sm-down"><?php echo local_date('y-m-d', $row['d_date']) ?></td>
                     <td><a href="cms_detail_edit.php?id=<?php echo $row['id']?>" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-pencil"></span></a></td>
                   </tr>
                   <?php
@@ -143,24 +143,28 @@ if ( isset($_POST['shift']) ) {
               </tbody>
               <tfoot>
                 <tr>
-                  <td colspan="3"><input type="button" id="check_all" value="全选" />
-              <input type="button" class="form_button" id="check_none" value="不选" />
-              <input type="button" class="form_button" id="check_invert" value="反选" />
-                    <select id="execute_method" name="execute_method">
-                      <option value="">请选择操作</option>
-                      <option value="srec">设为推荐</option>
-                      <option value="crec">取消推荐</option>
-                      <option value="shot">设为热门</option>
-                      <option value="chot">取消热门</option>
-                      <option value="delete">删除选中</option>
-                    </select>
-                    <input type="submit" id="execute" name="execute" onclick="return confirm('确定要执行吗')" value="执行" /></td>
-                  <td colspan="2">
-                    <select id="shift_target" name="shift_target" style="width:150px;">
-                      <option value="">请选择目标频道</option>
-                      <?php echo channel_select_list(0,0,0,0);?>
-                    </select>
-                    <input type="submit" id="shift" name="shift" onclick="return confirm('确定要转移吗')" value="转移" />
+                  <td colspan="7">
+                    <div class="am-fl">
+                      <input type="button" id="check_all" value="全选" />
+                      <input type="button" class="form_button" id="check_none" value="不选" />
+                      <input type="button" class="form_button" id="check_invert" value="反选" />
+                      <select id="execute_method" name="execute_method">
+                        <option value="">请选择操作</option>
+                        <option value="srec">设为推荐</option>
+                        <option value="crec">取消推荐</option>
+                        <option value="shot">设为热门</option>
+                        <option value="chot">取消热门</option>
+                        <option value="delete">删除选中</option>
+                      </select>
+                      <input type="submit" id="execute" name="execute" onclick="return confirm('确定要执行吗')" value="执行" />
+                    </div>
+                    <div class="am-fr">
+                      <select id="shift_target" name="shift_target" style="width:150px;">
+                        <option value="">请选择目标频道</option>
+                        <?php echo channel_select_list(0,0,0,0);?>
+                      </select>
+                      <input type="submit" id="shift" name="shift" onclick="return confirm('确定要转移吗')" value="转移" />
+                    </div>
                   </td>
                 </tr>
               </tfoot>

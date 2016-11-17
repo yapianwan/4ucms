@@ -5,20 +5,22 @@ header('Content-type: text/html;charset=UTF-8');
 define('ROOT_PATH', strtr(__DIR__.'/',array('\\'=>'/')));
 // 引入文件
 include_once ROOT_PATH . './constant.php';
+include_once ROOT_PATH . '../language/common.php';
+
 include_once ROOT_PATH . '../config/config.php';
 include_once ROOT_PATH . '../config/data.php';
 include ROOT_PATH . '../config/smtp.php';
+
 include_once ROOT_PATH . './cls.mysql.php';
 include_once ROOT_PATH . './cls.smtp.php';
+include_once ROOT_PATH . './lib.time.php';
+include_once ROOT_PATH . './lib.smtp.php';
 
 include_once ROOT_PATH . './lib.base.php';
 include_once ROOT_PATH . './lib.url.php';
 include_once ROOT_PATH . './lib.file.php';
 include_once ROOT_PATH . './lib.admin.php';
 include_once ROOT_PATH . './library.php';
-
-include_once ROOT_PATH . './lib.time.php';
-include_once ROOT_PATH . './lib.smtp.php';
 
 $GLOBALS['db'] = $db = new Mysql(DATA_HOST, DATA_USERNAME, DATA_PASSWORD, DATA_NAME);
 

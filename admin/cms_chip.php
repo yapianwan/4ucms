@@ -51,7 +51,7 @@ if (isset($_POST['submit'])) {
             <table class="am-table am-table-striped admin-content-table">
               <thead>
               <tr>
-                <th>碎片名称</th><th>调用代码</th><th width="100">操作</th>
+                <th>碎片名称</th><th class="am-hide-sm-down">调用代码</th><th>操作</th>
               </tr>
               </thead>
               <tbody>
@@ -59,7 +59,7 @@ if (isset($_POST['submit'])) {
                 $res = $db->getAll("SELECT * FROM cms_chip ORDER BY id DESC");
                 if (check_array($res)) {
                   foreach ($res as $row) {
-                    echo '<tr><td>'.$row['c_name'].'</td><td>'.$row['c_code'].'</td><td><a href="cms_chip_edit.php?id='.$row['id'].'" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-pencil"></span></a> <a href="cms_chip.php?del='.$row['id'].'" onclick="return confirm(\'确认要删除吗？\')" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-times"></a></td></tr>';
+                    echo '<tr><td>'.$row['c_name'].'</td><td class="am-hide-sm-down">'.$row['c_code'].'</td><td><a href="cms_chip_edit.php?id='.$row['id'].'" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-pencil"></span></a> <a href="cms_chip.php?del='.$row['id'].'" onclick="return confirm(\'确认要删除吗？\')" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-times"></a></td></tr>';
                   }
                 }
                 ?>
@@ -123,7 +123,7 @@ if (isset($_POST['submit'])) {
     });
   });
   KindEditor.ready(function(K) {
-    K.create('#c_content',{allowFileManager : true});
+    K.create('#c_content',{allowFileManager:true, width:'100%'});
   });
 </script>
 </body>

@@ -43,7 +43,7 @@ if (isset($_GET['del'])) {
             <table class="am-table am-table-striped admin-content-table">
               <thead>
               <tr>
-                <th>帐号</th><th>邮箱</th><th>手机</th><th>操作</th>
+                <th>帐号</th><th class="am-hide-sm-down">邮箱</th><th class="am-hide-sm-down">手机</th><th>操作</th>
               </tr>
               </thead>
               <tbody>
@@ -52,7 +52,7 @@ if (isset($_GET['del'])) {
                 $res = $db->getAll("SELECT * FROM cms_user WHERE u_isadmin = 0 ORDER BY id DESC LIMIT " . $pager[0] . "," . $pager[1]);
                 if (check_array($res)) {
                   foreach($res as $row){
-                    echo '<tr><td>' . $row['u_name'] . '</td><td>' . $row['u_email'] . '</td><td>' . $row['u_mobile'] . '</td><td><a href="cms_member_edit.php?id=' . $row['id'] . '" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-pencil"></span></a> <a href="cms_member.php?del=' . $row['id'] . '" onclick="return confirm(\'确认要删除吗？\')" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-times"></span></a></td></tr>';
+                    echo '<tr><td>' . $row['u_name'] . '</td><td class="am-hide-sm-down">' . $row['u_email'] . '</td><td class="am-hide-sm-down">' . $row['u_mobile'] . '</td><td><a href="cms_member_edit.php?id=' . $row['id'] . '" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-pencil"></span></a> <a href="cms_member.php?del=' . $row['id'] . '" onclick="return confirm(\'确认要删除吗？\')" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-times"></span></a></td></tr>';
                   }
                 }
                 ?>

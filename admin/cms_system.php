@@ -145,7 +145,7 @@ $(function(){
   });
 });
 KindEditor.ready(function(K) {
-  K.create('#s_copyright',{allowFileManager : true});
+  K.create('#s_copyright',{allowFileManager : true, width:'100%'});
 });
 </script>
 </body>
