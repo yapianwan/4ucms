@@ -68,7 +68,7 @@ if ( isset($_POST['shift']) ) {
               <div class="am-g">
                 <div class="am-u-sm-4">
                   <select onchange="location.href='cms_detail.php?cid='+this.options[this.selectedIndex].value;">
-                    <option value="0">全部频道</option>
+                    <option value="0">全部</option>
                     <?php
                     echo channel_select_list($cids,0,$_GET['cid'],0);
                     if(isset($_GET['key'])){
