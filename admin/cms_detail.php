@@ -90,7 +90,7 @@ if ( isset($_POST['shift']) ) {
             <table class="am-table am-table-striped admin-content-table">
               <thead>
               <tr>
-                <th>选择</th><th class="am-hide-sm-down">排序</th><th>名称</th><th>频道</th><th class="am-hide-sm-down">模型</th><th class="am-hide-sm-down">日期</th><th>操作</th>
+                <th>&nbsp;</th><th class="am-hide-sm-down">排序</th><th>名称</th><th>频道</th><th class="am-hide-sm-down">模型</th><th class="am-hide-sm-down">日期</th><th>操作</th>
               </tr>
               </thead>
               <tbody>

@@ -49,7 +49,7 @@ if (isset($_POST['execute'])) {
             <table class="am-table am-table-striped admin-content-table">
               <thead>
               <tr>
-                <th>选择</th><th>状态</th><th class="am-hide-sm-down">留言人</th><th class="am-hide-sm-down">联系电话</th><th class="am-hide">公司名称</th><th class="am-hide">联系地址</th><th class="am-hide-sm-down">留言日期</th><th>回复</th>
+                <th>&nbsp;</th><th>状态</th><th class="am-hide-sm-down">留言人</th><th class="am-hide-sm-down">联系电话</th><th class="am-hide">公司名称</th><th class="am-hide">联系地址</th><th class="am-hide-sm-down">留言日期</th><th>回复</th>
               </tr>
               </thead>
               <tbody>
