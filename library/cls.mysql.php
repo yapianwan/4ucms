@@ -60,7 +60,10 @@ class Mysql {
     }
   }
   public function query($sql) {
-    $this->checkSql($sql);
+    if (empty($sql) || $sql == NULL) {
+      $this->_err = '没有输入SQL语句';
+      return false;
+    }
     $query = @mysql_query($sql, $this->_conn);
     if (!$query) {
       $this->_err = '请合查数据表前缀是否有误！';
@@ -216,12 +219,6 @@ class Mysql {
     if ($sql) {
       return $this->query($sql, $querymode);
     } else {
-      return false;
-    }
-  }
-  public function checkSql($sql) {
-    if (empty($sql) || $sql == NULL) {
-      $this->_err = '没有输入SQL语句';
       return false;
     }
   }

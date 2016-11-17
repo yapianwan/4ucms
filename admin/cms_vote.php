@@ -4,6 +4,7 @@ include '../library/inc.php';
 include 'cms_check.php';
 
 if (isset($_GET['del'])) {
+  $sql = "DELETE FROM cms_vote_option WHERE v_id = " . $_GET['del'];
   $sql = "DELETE FROM cms_vote WHERE id = " . $_GET['del'];
   if ($db->query($sql)) {
     admin_log('投票删除',$_COOKIE['admin_id']);
