@@ -58,7 +58,7 @@ if (isset($_GET['del'])) {
                 ?>
               </tbody>
             </table>
-            <ul class="am-pagination am-pagination-centered"><?php echo page_show($pager[2],$pager[3],'page',2);?></ul>
+            <div data-am-page="{pages:<?php echo $pager[2];?>,first:'首页',last:'尾页',curr:<?php echo $pager[3];?>}"></div>
           </main>
         </section>
 

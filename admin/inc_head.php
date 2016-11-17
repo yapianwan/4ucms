@@ -26,8 +26,9 @@
 <![endif]-->
 
 <!--[if (gte IE 9)|!(IE)]><!-->
-<script src="<?php echo SITE_DIR;?>js/jquery-2.1.4.min.js"></script>
+<script src="../js/jquery-2.1.4.min.js"></script>
 <!--<![endif]-->
 <script src="//cdn.amazeui.org/amazeui/2.7.2/js/amazeui.min.js"></script>
+<script src="../js/page/amazeui.page.js"></script>
 <script charset="utf-8" type="text/javascript" src="../editor/kindeditor.js"></script>
 <script src="../editor/lang/zh_CN.js"></script>
