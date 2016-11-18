@@ -64,9 +64,9 @@ if ( isset($_POST['shift']) ) {
         <section class="am-panel am-panel-default">
           <header class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-1'}">内容管理<span class="am-icon-chevron-down am-fr"></span></header>
           <main class="am-panel-bd am-collapse am-in" id="collapse-panel-1">
-            <form method="get" class="am-form am-show-sm-up">
+            <form method="get" class="am-form">
               <div class="am-g">
-                <div class="am-u-sm-4">
+                <div class="am-u-md-4">
                   <select onchange="location.href='cms_detail.php?cid='+this.options[this.selectedIndex].value;">
                     <option value="0">全部</option>
                     <?php
@@ -77,7 +77,7 @@ if ( isset($_POST['shift']) ) {
                     ?>
                   </select>
                 </div>
-                <div class="am-u-sm-8">
+                <div class="am-u-md-8">
                   <div class="am-input-group">
                     <input id="key" class="am-form-field" type="text" name="key" placeholder="名称查找" />
                     <span class="am-input-group-btn"><button type="submit" id="search" class="am-btn" name="search">检索</button></span>
