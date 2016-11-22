@@ -31,6 +31,7 @@
           <div class="input-with-icon">
             <i class="icon-Magnifi-Glass2 icon icon--sm"></i>
             <input type="search" name="keyword" placeholder="请输入关键词并点击回车键进行检索" />
+            <input type="hidden" name="token" value="<?php echo cms_token();?>">
           </div>
         </form>
       </div>

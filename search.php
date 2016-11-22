@@ -1,6 +1,9 @@
 <?php
 $c_main = 'search';
 include './library/inc.php';
+if (!check_token($_GET['token'])) {
+  alert_back($_lang['illegal']);
+}
 
 if (!empty($_GET[LIB_KEY])) {
   null_back($_GET[LIB_KEY], $_lang[LIB_KEY]);
