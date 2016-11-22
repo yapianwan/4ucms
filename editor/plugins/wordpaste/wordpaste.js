@@ -25,6 +25,13 @@ KindEditor.plugin('wordpaste', function(K) {
 					click : function(e) {
 						var str = doc.body.innerHTML;
 						str = K.clearMsWord(str, self.filterMode ? self.htmlTags : K.options.htmlTags);
+						//TODO:替换word文档中的class,style,width属性,空span元素
+						str = str.replace(/\ width=\"[0-9]+\"/ig, '')
+							.replace(/\ style=\"[a-z0-9\.\&\ \_\-\#\:\;\,\%\u4e00-\u9fa5]+\"/ig, '')
+							.replace(/\ class=\"[a-z0-9\ \_\-]+\"/ig, '')
+							.replace(/<span>&nbsp;<\/span>/ig, '')
+							.replace(/<span><\/span>/ig, '');
+						//TODO END
 						self.insertHtml(str).hideDialog().focus();
 					}
 				}

@@ -906,13 +906,6 @@ function _clearMsWord(html, htmlTags) {
 		.replace(/<(?:table|td)[^>]*>/ig, function(full) {
 			return full.replace(/border-bottom:([#\w\s]+)/ig, 'border:$1');
 		});
-	//TODO:替换word文档中的class,style,width属性,空span元素
-	html = html.replace(/\ width=\"[0-9]+\"/ig, '')
-		.replace(/style=\"[a-z0-9\.\&\ \_\-\#\:\;\,\u4e00-\u9fa5]+\"/ig, '')
-		.replace(/class=\"[a-z0-9 \_\-]+\"/ig, '')
-		.replace(/<span>&nbsp;<\/span>/ig, '')
-		.replace(/<span><\/span>/ig, '');
-	//TODO END
 	return _formatHtml(html, htmlTags);
 }
 function _mediaType(src) {
