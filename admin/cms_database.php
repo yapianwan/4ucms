@@ -3,7 +3,7 @@ $privilege = 'database';
 include '../library/inc.php';
 include_once '../library/cls.database.php';
 
-$dbc = new Database($db);
+$dbc = new Database();
 switch ($act) {
   case 'backup':
     $dbc->backup();

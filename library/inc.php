@@ -48,9 +48,9 @@ $act = !empty($_POST['act']) ? str_safe($_POST['act']) : (!empty($_GET['act']) ?
 if (is_detail()) {
   include_once ROOT_PATH . './cls.detail.php';
   include_once ROOT_PATH . './cls.channel.php';
-  $objDetail = new Detail($db);
+  $objDetail = new Detail();
   $detail = $objDetail->getDetail($id);
-  $objChannel = new Channel($db);
+  $objChannel = new Channel();
   $channel = $objChannel->getChannel($detail['d_parent']);
 
   $title = $detail['d_name'] . '-' . $channel[LIB_CNAME] . '-' . $cms[LIB_SNAME];
@@ -59,7 +59,7 @@ if (is_detail()) {
 }
 elseif(is_channel()) {
   include_once ROOT_PATH . './cls.channel.php';
-  $objChannel = new Channel($db);
+  $objChannel = new Channel();
   $channel = $objChannel->getChannel($id);
 
   $title = $channel[LIB_CNAME] . '-' . $cms[LIB_SNAME];
