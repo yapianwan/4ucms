@@ -1,6 +1,7 @@
 <?php
 $privilege = 'database';
 include '../library/inc.php';
+include 'cms_check.php';
 include_once '../library/cls.database.php';
 
 $dbc = new Database();
