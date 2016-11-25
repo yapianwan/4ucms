@@ -23,12 +23,47 @@ function channel_select_list($t0, $t1, $t2, $t3) {
   return $tmp;
 }
 
+//获取所有频道的ID
+function get_channel_sub($t0, $t1) {
+  $tmp = '';
+  $s = ',';
+  $sql = LIB_CSELECTF . $t0 . " ORDER BY c_order ASC , id ASC";
+  $res = $GLOBALS['db']->getAll($sql);
+  if (is_array($res)) {
+    foreach ($res as $row) {
+      $tmp .= $s . $row['id'] . get_channel_sub($row['id'], '');
+    }
+  }
+  return $t1 . $tmp;
+}
+
+//获取指定频道的最上级频道
+function get_channel_main($parent) {
+  $sql = "SELECT * FROM cms_channel WHERE id =" . $parent;
+  $res = $GLOBALS['db']->getRow($sql);
+  if ($res['c_parent'] == 0) {
+    return $res['id'];
+  } else {
+    return get_channel_main($res['c_parent']);
+  }
+}
+
+//获取指定频道是否有子频道
+function get_channel_ifsub($id) {
+  $res = $GLOBALS['db']->getOne("SELECT id FROM cms_channel WHERE c_parent = " . $id);
+  if ($res) {
+    return 1;
+  } else {
+    return 0;
+  }
+}
+
 //更新所有频道
 function update_channel() {
-  $sql = 'SELECT * FROM cms_channel ORDER BY id ASC';
+  $sql = "SELECT * FROM cms_channel ORDER BY id ASC";
   $res = $GLOBALS['db']->getAll($sql);
   foreach ($res as $row) {
-    $sql2 = 'update cms_channel set c_sub="' . get_channel($row['id'], 'c_sub') . '",c_ifsub=' . get_channel($row['id'], 'c_ifsub') . ',c_main=' . get_channel($row['id'], 'c_main') . ' WHERE id = ' . $row['id'] . ' ';
+    $sql2 = "UPDATE cms_channel SET c_sub='" . get_channel_sub($row['id'], $row['id']) . "',c_ifsub='" . get_channel_ifsub($row['id']) . "',c_main='" . get_channel_main($row['id']) . "' WHERE id = " . $row['id'];
     $GLOBALS['db']->query($sql2);
   }
 }
