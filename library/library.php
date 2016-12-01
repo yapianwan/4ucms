@@ -557,6 +557,17 @@ function url_back($t0 = '') {
 function href($t0) {
   die('<script type="text/javascript">window.location.href="' . $t0 . '"</script>');
 }
+function admin_href($t='') {
+  $str = substr($_SERVER['PHP_SELF'], strrpos($_SERVER['PHP_SELF'], '/')+1);
+  if (substr_count($str, '_') > 1) {
+    list($pre, $main, $suf) = explode('_', $str);
+    $url = $pre . '_' . $main . '.php' . (isset($_GET['cid']) ? '?cid='.$_GET['cid'] : '');
+    $t ? alert_href($t, $url) : href($url);
+  } else {
+    $url = $str . (isset($_GET['cid']) ? '?cid='.$_GET['cid'] : '');
+    $t ? alert_href($t, $url) :  href($url);
+  }
+}
 //空值返回
 function null_back($t0, $t1) {
   if ($t0 == '' || $t0 === 0 || $t0 === '0' || $t0 === null) {
