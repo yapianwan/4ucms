@@ -1,8 +1,8 @@
 <?php
 class Channel {
   private $db;
-  public function __construct($db) {
-    $this->db = $db;
+  public function __construct() {
+    $this->db = $GLOBALS['db'];
   }
   // 获取频道数据
   public function getChannel($id) {

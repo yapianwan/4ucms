@@ -2,8 +2,8 @@
 class Database {
   private $db;
   private $file_path;
-  public function __construct($db) {
-    $this->db = $db;
+  public function __construct() {
+    $this->db = $GLOBALS['db'];
     $this->file_path = '../' . SQL_DIR . '/';
   }
   public function tables() {

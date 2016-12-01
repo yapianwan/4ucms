@@ -1,8 +1,8 @@
 <?php
 class Detail{
   private $db;
-  public function __construct($db) {
-    $this->db = $db;
+  public function __construct() {
+    $this->db = $GLOBALS['db'];
   }
   // 获取详情
   public function getDetail($id) {

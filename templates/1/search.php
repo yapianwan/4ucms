@@ -18,9 +18,9 @@
             <span>
               <?php
               if (!empty($_GET['tag'])) 
-                $res_count = $db->getOne("SELECT COUNT(*) FROM cms_detail WHERE d_tag LIKE '%$key%'");
+                $res_count = $db->getOne("SELECT COUNT(*) FROM cms_detail WHERE d_tag LIKE '%$keyword%'");
               else
-                $res_count = $db->getOne("SELECT COUNT(*) FROM cms_detail WHERE d_name LIKE '%$key%'");
+                $res_count = $db->getOne("SELECT COUNT(*) FROM cms_detail WHERE d_name LIKE '%$keyword%'");
               echo '<em>检索得到 '.$res_count.' 个结果</em>';
               ?>
             </span>
@@ -36,9 +36,9 @@
             <div class="masonry__container">
               <?php
               if (!empty($_GET['tag'])) 
-                $res = $db->getAll("SELECT * FROM cms_detail WHERE d_tag LIKE '%$key%' ORDER BY d_order ASC,id DESC LIMIT 0,50");
+                $res = $db->getAll("SELECT * FROM cms_detail WHERE d_tag LIKE '%$keyword%' ORDER BY d_order ASC,id DESC LIMIT 0,50");
               else
-                $res = $db->getAll("SELECT * FROM cms_detail WHERE d_name LIKE '%$key%' ORDER BY d_order ASC,id DESC LIMIT 0,50");
+                $res = $db->getAll("SELECT * FROM cms_detail WHERE d_name LIKE '%$keyword%' ORDER BY d_order ASC,id DESC LIMIT 0,50");
               foreach($res as $val){
                 echo '<div class="col-md-4 col-sm-6 masonry__item" data-masonry-filter="'.get_channel($val['d_parent'],'c_name').'"><a href="'.d_url($val['id'],$val['d_link']).'"><div class="boxed bg--white box-shadow"><span>'.get_channel($val['d_parent'],'c_name').'</span><h5>'.$val['d_name'].'</h5><hr><p>'.str_cut(str_text($val['d_content']),50).'</p></div></a></div>'; }
               ?>
