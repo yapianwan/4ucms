@@ -45,6 +45,8 @@ if ( isset($_POST['shift']) ) {
   admin_log('信息转移',$_COOKIE['admin_id']);
   alert_href('转移成功!','cms_detail.php?cid=0');
 }
+
+$cid = isset($_GET['cid']) ? $_GET['cid'] : 0;
 ?>
 <!DOCTYPE html>
 <html class="no-js fixed-layout">
@@ -70,7 +72,7 @@ if ( isset($_POST['shift']) ) {
                   <select onchange="location.href='cms_detail.php?cid='+this.options[this.selectedIndex].value;">
                     <option value="0">全部</option>
                     <?php
-                    echo channel_select_list($cids,0,$_GET['cid'],0);
+                    echo channel_select_list($cids,0,$cid,0);
                     if(isset($_GET['key'])){
                       echo '<option selected="selected" >搜索结果</option>';
                     }
@@ -80,7 +82,8 @@ if ( isset($_POST['shift']) ) {
                 <div class="am-u-md-8">
                   <div class="am-input-group">
                     <input id="key" class="am-form-field" type="text" name="key" placeholder="名称查找" />
-                    <span class="am-input-group-btn"><button type="submit" id="search" class="am-btn" name="search">检索</button></span>
+                    <input type="hidden" name="cid" value="<?php echo $cid;?>">
+                    <span class="am-input-group-btn"><button type="submit" id="search" class="am-btn">检索</button></span></span>
                   </div>
                 </div>
               </div>
@@ -95,29 +98,14 @@ if ( isset($_POST['shift']) ) {
               </thead>
               <tbody>
                  <?php
-                  if (isset($_GET['cid'])) {
-                    if ($_GET['cid'] != 0){
-                      $pager = page_handle('page',20,mysql_num_rows(mysql_query("SELECT * FROM cms_detail WHERE d_parent IN (" . ($cids ? $cids : get_channel($_GET['cid'],'c_sub')) . ")")));
-                      $res = $db->getAll("SELECT * FROM cms_detail WHERE d_parent IN (" . ($cids ? $cids : get_channel($_GET['cid'],'c_sub')) . ") ORDER BY id DESC LIMIT " . $pager[0] . "," . $pager[1]);
-                    }else{
-                      if ($cids) {
-                        $pager = page_handle('page',20,mysql_num_rows(mysql_query("SELECT * FROM cms_detail WHERE d_parent IN (" . $cids . ")")));
-                        $res = $db->getAll("SELECT * FROM cms_detail WHERE d_parent IN (" . $cids . ") ORDER BY id DESC LIMIT " . $pager[0] . "," . $pager[1]);
-                      } else {
-                        $pager = page_handle('page',20,mysql_num_rows(mysql_query("SELECT * FROM cms_detail")));
-                        $res = $db->getAll("SELECT * FROM cms_detail ORDER BY id DESC LIMIT " . $pager[0] . "," . $pager[1]);
-                      }
-                    }
+                  $where = "WHERE id>0".(!empty($_GET['key'])?" AND d_name LIKE '%".$_GET['key']."%'":"");
+                  if ($cid!=0) {
+                    $where .= " AND d_parent IN (".get_channel($cid, 'c_sub').")";
+                  } else {
+                    if ($cids) $where .= " AND d_parent IN ($cids)";
                   }
-                  if (isset($_GET['search'])) {
-                    if ($cids) {
-                      $pager = page_handle('page',20,mysql_num_rows(mysql_query("SELECT * FROM cms_detail WHERE d_name LIKE '%" . $_GET['key'] . "%' AND d_parent IN (" . $cids . ")")));
-                      $res = $db->getAll("SELECT * FROM cms_detail WHERE d_name LIKE '%" . $_GET['key'] . "%' AND d_parent IN (" . $cids . ") ORDER BY id DESC LIMIT " . $pager[0] . "," . $pager[1]);
-                    } else {
-                      $pager = page_handle('page',20,mysql_num_rows(mysql_query("SELECT * FROM cms_detail WHERE d_name LIKE '%" . $_GET['key'] . "%'")));
-                      $res = $db->getAll("SELECT * FROM cms_detail WHERE d_name LIKE '%" . $_GET['key'] . "%' ORDER BY id DESC LIMIT " . $pager[0] . "," . $pager[1]);
-                    }
-                  }
+                  $pager = page_handle('page', 20, $db->getOne("SELECT COUNT(*) FROM cms_detail $where"));
+                  $res = $db->getAll("SELECT * FROM cms_detail $where ORDER BY id DESC LIMIT " . $pager[0] . "," . $pager[1]);
                   if (!empty($res)) {
                   foreach($res as $row){
                   ?>
@@ -170,7 +158,7 @@ if ( isset($_POST['shift']) ) {
               </tfoot>
             </table>
             </form>
-            <div data-am-page="{pages:<?php echo $pager[2];?>,first:'首页',last:'尾页',curr:<?php echo $pager[3];?>,jump:'?cid=<?php echo $_GET['cid'];?>&page=%page%'}"></div>
+            <div data-am-page="{pages:<?php echo $pager[2];?>,first:'首页',last:'尾页',curr:<?php echo $pager[3];?>,jump:'?cid=<?php echo $cid;?>&page=%page%'}"></div>
           </main>
         </section>
 

@@ -33,7 +33,7 @@ $priv = $db->getOne("SELECT COUNT(id) FROM cms_role WHERE id>0");
 
     <ul class="am-avg-sm-1 am-avg-md-4 am-margin am-padding am-text-center admin-content-list ">
       <li><a href="cms_channel.php"><span class="am-icon-btn am-icon-th-large"></span><br>站点频道: <?php echo $chn;?></a></li>
-      <li><a href="cms_detail.php?cid=0"><span class="am-icon-btn am-icon-file-text"></span><br/>频道详情: <?php echo $dtl;?></a></li>
+      <li><a href="cms_detail.php"><span class="am-icon-btn am-icon-file-text"></span><br/>频道详情: <?php echo $dtl;?></a></li>
       <li><a href="cms_slideshow.php"><span class="am-icon-btn am-icon-archive"></span><br/>幻灯片: <?php echo $sld;?></a></li>
       <li><a href="cms_chip.php"><span class="am-icon-btn am-icon-file-code-o"></span><br/>代码碎片: <?php echo $chip;?></a></li>
     </ul>

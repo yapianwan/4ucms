@@ -16,6 +16,7 @@ if (!empty($privilege)) {
       $cids = rtrim(preg_replace('([a-z]+,?)', '', $res), ',');
     }
   }
+  unset($res);
   if ($priv_obj != 'all' && in_array($privilege, $priv_obj) === false) {
     alert_back('无操作权限');
   }

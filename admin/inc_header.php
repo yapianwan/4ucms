@@ -15,7 +15,7 @@
         </a>
         <ul class="am-dropdown-content">
           <li><a href="cms_detail_add.php"><span class="am-icon-plus-square"></span> 添加详情 </a></li>
-          <li><a href="cms_detail.php?cid=0"><span class="am-icon-edit"></span> 管理详情 </a></li>
+          <li><a href="cms_detail.php"><span class="am-icon-edit"></span> 管理详情 </a></li>
           <li><a href="cms_channel_add.php"><span class="am-icon-plus-square"></span> 添加频道 </a></li>
           <li><a href="cms_channel.php"><span class="am-icon-edit"></span> 管理频道 </a></li>
           <li><a href="cms_slideshow.php"><span class="am-icon-archive"></span> 管理幻灯 </a></li>
