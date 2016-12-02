@@ -11,12 +11,12 @@ if (isset($_POST['submit'])) {
   $d_rec = $_POST['d_rec'];
   $d_hot = $_POST['d_hot'];
   $d_price = !empty($_POST['d_price']) ? $_POST['d_price'] : 0;
-  $d_ifslideshow = !empty($d_slideshow) ? 1 : 0;
   $d_slideshow = $_POST['d_slideshow'];
-  $d_ifvideo = !empty($d_video) ? 1 : 0;
+  $d_ifslideshow = !empty($d_slideshow) ? 1 : 0;
   $d_video = $_POST['d_video'];
-  $d_ifattachment = !empty($d_attachment) ? 1 : 0;
+  $d_ifvideo = !empty($d_video) ? 1 : 0;
   $d_attachment = $_POST['d_attachment'];
+  $d_ifattachment = !empty($d_attachment) ? 1 : 0;
   $d_content = $_POST['d_content'];
   $d_scontent = $_POST['d_scontent'];
   $d_source = $_POST['d_source'];
