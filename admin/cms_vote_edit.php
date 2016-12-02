@@ -14,7 +14,7 @@ if (isset($_POST['submit'])) {
   $str = arr_update($data);
   $sql = "UPDATE cms_vote SET " . $str . " WHERE id = " . $_POST['id'];
   if ($db->query($sql)) {
-    admin_log('投票新增',$_COOKIE['admin_id']);
+    admin_log('投票编辑',$_COOKIE['admin_id']);
     alert_href('编辑成功!','cms_vote.php');
   } else {
     alert_back('编辑失败!');

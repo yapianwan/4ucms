@@ -3,7 +3,7 @@ CREATE TABLE `cms_admin_log` (
   `log_id` int(11) NOT NULL AUTO_INCREMENT,
   `admin_id` int(11) NOT NULL,
   `admin_name` varchar(255) NOT NULL,
-  `log_code` varchar(255) NOT NULL,
+  `log_code` varchar(500) NOT NULL,
   `log_time` datetime NOT NULL,
   `log_ip` varchar(255) NOT NULL,
   PRIMARY KEY (`log_id`)
