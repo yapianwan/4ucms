@@ -10,7 +10,7 @@ if (!empty($_GET[LIB_KEY])) {
   $keyword = str_safe($_GET[LIB_KEY]);
 } elseif (!empty($_GET['tag'])) {
   null_back($_GET['tag'], $_lang[LIB_KEY]);
-  $key = str_safe($_GET['tag']);
+  $keyword = str_safe($_GET['tag']);
 } else {
   alert_back($_lang[LIB_KEY]);
 }

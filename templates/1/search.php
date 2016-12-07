@@ -13,7 +13,7 @@
         <div class="row">
           <div class="col-sm-12 text-center">
             <h3>关键词:
-              <span>&ldquo;<?php echo $key;?>&rdquo;</span>
+              <span>&ldquo;<?php echo $keyword;?>&rdquo;</span>
             </h3>
             <span>
               <?php
