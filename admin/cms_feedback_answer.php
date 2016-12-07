@@ -20,7 +20,6 @@ if (isset($_POST['submit'])) {
 <html class="no-js fixed-layout">
 <head>
 <?php include 'inc_head.php';?>
-<link rel="stylesheet" href="<?php echo SITE_DIR;?>ui/css/amazeui.datetimepicker.css">
 </head>
 
 <body>
