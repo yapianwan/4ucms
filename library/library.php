@@ -371,6 +371,14 @@ function get_field($t0, $t1, $t2, $t3 = 'id') {
     return '';
   }
 }
+function list_detail($c_sub, $limit, $order=''){
+  $order = $order?:'ORDER BY d_order ASC,id DESC';
+  return $GLOBALS['db']->getAll("SELECT * FROM cms_detail WHERE d_parent IN ($c_sub) $order LIMIT $limit");
+}
+function list_channel($c_id, $c_sub, $order=''){
+  $order = $order?:'ORDER BY c_order ASC,id ASC';
+  return $GLOBALS['db']->getAll("SELECT * FROM cms_channel WHERE id IN ($c_sub) AND id <> $c_id $order");
+}
 // 获取碎片内容
 function get_chip($t0) {
   if (is_numeric($t0)) {

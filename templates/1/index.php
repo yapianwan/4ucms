@@ -28,7 +28,7 @@
       <div class="masonry__filters text-center" data-filter-all-text="Show All"></div>
       <div class="masonry__container">
         <?php
-        $res = $db->getAll("SELECT * FROM cms_detail WHERE d_parent IN ($csub) ORDER BY d_order ASC,id DESC LIMIT 0,6");
+        $res = list_detail($csub, '0,6');
         if (!empty($res)) {
           foreach ($res as $val) {
             echo '<div class="col-md-4 col-sm-6 masonry__item" data-masonry-filter="'.get_channel($val['d_parent'],'c_name').'"><a href="'.d_url($val['id'],$val['d_link']).'"><div class="hover-element hover-element-1" data-title-position="top,right"><div class="hover-element__initial"><img alt="Pic" src="'.img_always($val['d_picture']).'" /></div><div class="hover-element__reveal" data-overlay="9"><div class="boxed"><h5>'.$val['d_name'].'</h5><span><em>'.$val['d_scontent'].'</em></span></div></div></div></a></div>';
@@ -83,7 +83,7 @@
       <div class="container">
         <div class="row">
           <?php
-          $res = $db->getAll("SELECT * FROM cms_detail WHERE d_parent IN ($csub) ORDER BY d_order ASC,id DESC LIMIT 0,3");
+          $res = list_detail($csub, '0,3');
           if (!empty($res)) {
             foreach ($res as $val) {
               echo '<div class="col-md-4 col-sm-6"><a href="'.d_url($val['id'],$val['d_link']).'"><div class="card card-4"><div class="card__image"><img alt="Pic" src="'.img_always($val['d_picture']).'" /></div><div class="card__body boxed boxed--sm bg--white"><h6>'.$val['d_name'].'</h6><div class="card__title"><h5>'.str_cut(str_text($val['d_content']),40).'</h5></div><hr><div class="card__lower"><span>'.local_date('Y-m-d',$val['d_date']).'</span></div></div></div></a></div>';

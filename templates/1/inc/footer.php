@@ -14,7 +14,7 @@
             <?php
             $cid=2;
             $csub=get_channel($cid,'c_sub');
-            $res = $db->getAll("SELECT * FROM cms_detail WHERE d_parent IN ($csub) ORDER BY d_order ASC,id DESC LIMIT 0,5");
+            $res = list_detail($csub, '0,5');
             foreach ($res as $val) {
               $durl = !empty($val['d_link']) ? $val['d_link'] : d_url($val['id']);
               echo '<li><a href="'.$durl.'">'.$val['d_name'].'</a>&nbsp; &nbsp; '.local_date('Y-m-d',$val['d_date']).'</li>';

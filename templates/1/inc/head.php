@@ -13,4 +13,3 @@
 <link href="<?php echo $t_path;?>css/lightbox.min.css" rel="stylesheet" type="text/css" media="all" />
 <link href="<?php echo $t_path;?>css/theme.css" rel="stylesheet" type="text/css" media="all" />
 <?php unset($title);unset($keywords);unset($description);?>
-<?php define('PAGE_DISABLED','am-disabled'); define('PAGE_ACTIVE', 'am-active'); ?>
