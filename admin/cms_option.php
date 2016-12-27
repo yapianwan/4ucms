@@ -53,7 +53,7 @@ if (isset($_POST['submit'])) {
               <tbody>
                 <?php
                 $res = $db->getAll("SELECT * FROM cms_vote_option WHERE v_id = ".$_GET['id']." ORDER BY o_order ASC, id DESC");
-                if (check_array($res)) {
+                if (!empty($res)) {
                   foreach($res as $row){
                     echo '<tr><td>' . $row[LIB_ONAME] . '</td><td><a href="cms_option.php?id='.$_GET['id'].'&del=' . $row['id'] . '" onclick="return confirm(\'确认要删除吗？\')" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-times"></span></a></td></tr>';
                   }

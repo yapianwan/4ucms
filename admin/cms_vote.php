@@ -55,7 +55,7 @@ if (isset($_POST['submit'])) {
                 <?php
                 $pager = page_handle('page',20,$db->getOne("SELECT COUNT(*) FROM cms_vote"));
                 $res = $db->getAll("SELECT * FROM cms_vote ORDER BY id DESC LIMIT ".$pager[0].",".$pager[1]);
-                if (check_array($res)) {
+                if (!empty($res)) {
                   foreach ($res as $row) {
                     $opiton_count = $db->getOne("SELECT COUNT(id) FROM cms_vote_option WHERE v_id = " . $row['id']);
                     $vote_status = gmtime()>=$row[LIB_VETIME] ? '已过期' : '进行中';

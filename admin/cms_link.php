@@ -55,7 +55,7 @@ if (isset($_POST['submit'])) {
                 <?php
                 $pager = page_handle('page',20,$db->getOne("SELECT COUNT(*) FROM cms_link"));
                 $res = $db->getAll("SELECT * FROM cms_link ORDER BY id DESC LIMIT " . $pager[0] . "," . $pager[1]);
-                if (check_array($res)) {
+                if (!empty($res)) {
                   foreach ($res as $row) {
                     echo '<tr><td class="am-hide-sm-down">' . $row[LIB_LORDER] . '</td><td class="am-hide-sm-down"><a href="' . $row[LIB_LPICTURE] . '" target="_blank"><img src="' . $row[LIB_LPICTURE] . '" width="100" height="30" /></a></td><td>' . $row[LIB_LNAME] . '</td><td class="am-hide-sm-down">' . $row[LIB_LURL] . '</td><td><a href="cms_link_edit.php?id=' . $row['id'] . '" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-pencil"></span></a> <a href="cms_link.php?del=' . $row['id'] . '" onclick="return confirm(\'确认要删除吗？\')" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-times"></span></a></td></tr>';
                   }

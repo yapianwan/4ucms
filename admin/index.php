@@ -33,7 +33,7 @@ switch ($act) {
 
 function getDetailBaiduSend($s,$e) {
   $res = $GLOBALS['db']->getAll("SELECT id FROM cms_detail WHERE d_date<" . $e . " AND d_date>=" . $s);
-  if (check_array($res)) {
+  if (!empty($res)) {
     $urls = array();
     foreach ($res as $val) {
       $urls[] = $GLOBALS['cms']['s_domain'] . '/' . d_url($val['id']) . ',';

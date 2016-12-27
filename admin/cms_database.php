@@ -63,7 +63,7 @@ switch ($act) {
                 <tr>
                 <?php
                 $res = $dbc->tables();
-                if (check_array($res)) {
+                if (!empty($res)) {
                   $count = count($res);
                   for ($i=0;$i<$count;$i++) {
                     echo '<td class="am-u-sm-12 am-u-md-4 am-u-lg-3">'.$res[$i].'</td>';

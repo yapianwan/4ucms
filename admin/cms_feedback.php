@@ -56,7 +56,7 @@ if (isset($_POST['execute'])) {
                 <?php
                 $pager = page_handle('page',10,$db->getOne("SELECT COUNT(*) FROM cms_feedback"));
                 $res = $db->getAll("SELECT * FROM cms_feedback ORDER BY id DESC LIMIT " . $pager[0] . "," . $pager[1]);
-                if (check_array($res)) {
+                if (!empty($res)) {
                   foreach ($res as $row) {
                     if ($row['f_ok'] == 0) {
                       $temp_str = '<span style="color:red">未审</span>';

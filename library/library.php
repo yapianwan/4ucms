@@ -394,14 +394,6 @@ function get_chip($t0) {
  * check
  * -------------------------
 */
-//判断非空数组
-function check_array($arr) {
-  if ($arr!==false) {
-    return count($arr) ? count($arr) : 0;
-  } else {
-    return false;
-  }
-}
 // 判断电子邮箱
 function check_email($str) {
   if (!empty($str)) {

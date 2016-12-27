@@ -66,9 +66,9 @@ if (isset($_POST['submit'])) {
           <tbody>
             <?php
             $res = $db->getAll("SELECT * FROM cms_user WHERE u_isadmin = 1");
-            if (check_array($res)) {
+            if (!empty($res)) {
               foreach($res as $row){
-                echo '<tr><td class="am-hide-sm-down">' . $row['id'] . '</td><td>' . $row['u_name'] . '</td><td class="am-hide">' . $row['u_tname'] . '</td> <td><a href="cms_admin_edit.php?id=' . $row['id'] . '" class="am-btn am-btn-default"><span class="am-icon-pencil"></span></a> <a href="cms_admin.php?del=' . $row['id'] . '" onclick="return confirm(\'确认要删除吗？\')" class="am-btn am-btn-default"><span class="am-icon-times"></span></a></td></tr>';
+                echo '<tr><td class="am-hide-sm-down">' . $row['id'] . '</td><td>' . $row['u_name'] . '</td><td class="am-hide">' . $row['u_tname'] . '</td> <td><a href="cms_admin_edit.php?id=' . $row['id'] . '" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-pencil"></span></a> <a href="cms_admin.php?del=' . $row['id'] . '" onclick="return confirm(\'确认要删除吗？\')" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-times"></span></a></td></tr>';
               }
             }
             ?>

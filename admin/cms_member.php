@@ -50,7 +50,7 @@ if (isset($_GET['del'])) {
                 <?php
                 $pager = page_handle('page',20,$db->getOne("SELECT COUNT(*) FROM cms_user WHERE u_isadmin = 0"));
                 $res = $db->getAll("SELECT * FROM cms_user WHERE u_isadmin = 0 ORDER BY id DESC LIMIT " . $pager[0] . "," . $pager[1]);
-                if (check_array($res)) {
+                if (!empty($res)) {
                   foreach($res as $row){
                     echo '<tr><td>' . $row['u_name'] . '</td><td class="am-hide-sm-down">' . $row['u_email'] . '</td><td class="am-hide-sm-down">' . $row['u_mobile'] . '</td><td><a href="cms_member_edit.php?id=' . $row['id'] . '" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-pencil"></span></a> <a href="cms_member.php?del=' . $row['id'] . '" onclick="return confirm(\'确认要删除吗？\')" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-times"></span></a></td></tr>';
                   }

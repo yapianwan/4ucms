@@ -58,7 +58,7 @@ if (isset($_GET['path'])) {
               <tbody>
                 <?php
                 $res = $db->getAll("select * from cms_template ORDER BY id DESC");
-                if (check_array($res)) {
+                if (!empty($res)) {
                   foreach ($res as $row) {
                     if ($cms['s_template'] == $row[LIB_TPATH]) {
                       $temp_str = '<span class="color_red">当前模板</span>';

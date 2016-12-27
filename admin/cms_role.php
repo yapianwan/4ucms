@@ -59,7 +59,7 @@ if (isset($_POST['submit'])) {
               <tbody>
                 <?php
                 $res = $db->getAll("SELECT * FROM cms_role ORDER BY id ASC");
-                if (check_array($res)) {
+                if (!empty($res)) {
                   foreach ($res as $row) {
                     echo '<tr><td>' . $row['r_name'] . '</td><td>' . ($row['id']!=1 ? '<a href="cms_priv.php?id=' . $row['id'] . '" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-pencil"></span></a> <a href="cms_role.php?del=' . $row['id'] . '" onclick="return confirm(\'确认要删除吗？\')" class="am-btn am-btn-default am-btn-xs"><span class="am-icon-times"></a>' : '') . '</td></tr>';
                   }

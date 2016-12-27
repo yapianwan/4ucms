@@ -162,7 +162,7 @@ function getDateDiff($sday, $eday, $unit = 'd') {
 function getEndDate($sday, $days, $case = 0) {
   $stime = date('Y-m-d H:i:s', $sday);
   $sarr = explode(' ', $stime);
-  if (check_array($sarr)) {
+  if (!empty($sarr)) {
     $symd = explode('-', $sarr[0]);
     $shis = explode(':', $sarr[1]);
     switch ($case) {
