@@ -2,7 +2,7 @@
 // error_reporting(E_ALL ^ E_WARNING ^ E_NOTICE);
 @session_start();
 header('Content-type: text/html;charset=UTF-8');
-define('ROOT_PATH', strtr(__DIR__.'/',array('\\'=>'/')));
+define('ROOT_PATH', strtr(dirname(__FILE__).'/',array('\\'=>'/')));
 // 引入文件
 include_once ROOT_PATH . './constant.php';
 include_once ROOT_PATH . '../language/common.php';

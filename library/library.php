@@ -75,7 +75,7 @@ function page_ajax($t0, $t1, $t2) {
 function page_show($t0, $t1, $t2, $t3, $t4='') {
   $page_sum = $t0;
   $page_current = $t1;
-  $page_parameter = $t2?:'page';
+  $page_parameter = $t2?$t2:'page';
   $page_len = !empty($t3) ? $t3 : 1;
   $page_start = '';
   $page_end = '';
@@ -372,11 +372,11 @@ function get_field($t0, $t1, $t2, $t3 = 'id') {
   }
 }
 function list_detail($c_sub, $limit, $order=''){
-  $order = $order?:'ORDER BY d_order ASC,id DESC';
+  $order = $order?$order:'ORDER BY d_order ASC,id DESC';
   return $GLOBALS['db']->getAll("SELECT * FROM cms_detail WHERE d_parent IN ($c_sub) $order LIMIT $limit");
 }
 function list_channel($c_id, $c_sub, $order=''){
-  $order = $order?:'ORDER BY c_order ASC,id ASC';
+  $order = $order?$order:'ORDER BY c_order ASC,id ASC';
   return $GLOBALS['db']->getAll("SELECT * FROM cms_channel WHERE id IN ($c_sub) AND id <> $c_id $order");
 }
 // 获取碎片内容
