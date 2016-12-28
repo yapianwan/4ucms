@@ -16,6 +16,12 @@ $current_channel_location = current_channel_location($channel['id'], $channel['i
 $channel_parent = $objChannel->getParent($channel['id']);
 $channel_main = $objChannel->getMain($channel['id']);
 
+// 分页&列表
+if (strpos($channel['c_cmodel'], '_list')) {
+  $pager = page_handle('page', $channel['c_page'], $db->getOne("SELECT COUNT(id) FROM cms_detail WHERE d_parent IN (".$channel['c_sub'].")"));
+  $list_pager = $db->getAll("SELECT * FROM cms_detail WHERE d_parent IN (".$channel['c_sub'].") ORDER BY d_order ASC,id DESC LIMIT ".$pager[0].",".$pager[1]);
+}
+
 include $t_path . $channel['c_cmodel'];
 
 // 释放资源
