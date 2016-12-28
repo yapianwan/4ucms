@@ -14,6 +14,9 @@
 * [https://github.com/zhaodifangsi/4ucms](https://github.com/zhaodifangsi/4ucms)
 * [http://git.oschina.net/sw1981/FORU-CMS](http://git.oschina.net/sw1981/FORU-CMS)
 
+####协议
+MIT Lisence
+
 ####开发者邮箱
 shadowwing@163.com
 
