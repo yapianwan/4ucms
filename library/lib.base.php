@@ -173,7 +173,6 @@ function get_sprt() {
   return $spt;
 }
 
-
 // 替换默认图片
 function img_always($str) {
   if (!empty($str)) {
