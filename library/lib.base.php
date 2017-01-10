@@ -157,6 +157,23 @@ function unset_str($str) {
   }
 }
 
+// 路径分隔符
+function get_sprt() {
+  switch (PATH_SEPARATOR) {
+    case ';':
+      $spt = "\r\n";
+      break;
+    case ':':
+      $spt = "\n";
+      break;
+    default:
+      $spt = "\r";
+      break;
+  }
+  return $spt;
+}
+
+
 // 替换默认图片
 function img_always($str) {
   if (!empty($str)) {
