@@ -180,15 +180,6 @@ if (isset($_POST['submit'])) {
                         </span>
                       </div>
                     </div>
-                    <!-- <div class="am-form-group">
-                      <label>视频</label>
-                      <div class="am-input-group">
-                        <input name="d_video" type="text" id="d_video" class="am-form-field" value="">
-                        <span class="am-input-group-btn">
-                          <button class="am-btn am-btn-default" id="d_video_upload" type="button">选择图片</button>
-                        </span>
-                      </div>
-                    </div> -->
                     <div class="am-form-group">
                       <label for="d_link">外部链接</label>
                        <input id="d_link" type="text" name="d_link">
