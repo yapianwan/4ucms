@@ -13,7 +13,7 @@ if (isset($_POST['submit'])) {
   $d_price = !empty($_POST['d_price']) ? $_POST['d_price'] : 0;
   $d_slideshow = $_POST['d_slideshow'];
   $d_ifslideshow = !empty($d_slideshow) ? 1 : 0;
-  $d_video = $_POST['d_video'];
+  $d_video = !empty($_POST['d_video']) ? $_POST['d_video'] : '';
   $d_ifvideo = !empty($d_video) ? 1 : 0;
   $d_attachment = $_POST['d_attachment'];
   $d_ifattachment = !empty($d_attachment) ? 1 : 0;
@@ -180,7 +180,7 @@ if (isset($_POST['submit'])) {
                         </span>
                       </div>
                     </div>
-                    <div class="am-form-group">
+                    <!-- <div class="am-form-group">
                       <label>视频</label>
                       <div class="am-input-group">
                         <input name="d_video" type="text" id="d_video" class="am-form-field" value="">
@@ -188,7 +188,7 @@ if (isset($_POST['submit'])) {
                           <button class="am-btn am-btn-default" id="d_video_upload" type="button">选择图片</button>
                         </span>
                       </div>
-                    </div>
+                    </div> -->
                     <div class="am-form-group">
                       <label for="d_link">外部链接</label>
                        <input id="d_link" type="text" name="d_link">
