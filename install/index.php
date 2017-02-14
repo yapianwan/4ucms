@@ -1,28 +1,54 @@
 <?php
-include '../library/inc.php';
+header('Content-type: text/html;charset=UTF-8');
 if (isset($_POST['save'])) {
   $db_name = $_POST['db_name'];
-  $file_name = '../'.INSTALL_DIR.'/data.sql';
+  $file_name = 'data.sql';
+
+  $str = '';
+  $str .= '<?php';
+  $str .= "\n";
+  $str .= '//Mysql数据库信息';
+  $str .= "\n";
+  $str .= 'define(\'DATA_HOST\', \''.$_POST['db_host'].'\');';
+  $str .= "\n";
+  $str .= 'define(\'DATA_USERNAME\', \''.$_POST['db_username'].'\');';
+  $str .= "\n";
+  $str .= 'define(\'DATA_PASSWORD\', \''.$_POST['db_password'].'\');';
+  $str .= "\n";
+  $str .= 'define(\'DATA_NAME\', \''.$_POST['db_name'].'\');';
+  $str .= "\n";
+  $str .= '?>';
+  $files = '../config/data.php';
+  $ff = fopen($files,'w+');
+  fwrite($ff,$str);
+
+  include '../config/data.php';
+  include '../library/library.php';
   set_time_limit(0);
   $fp = @fopen($file_name, "r");
   if ($fp === false) {
     die("不能打开SQL文件");
   }
 
-  if ($db->query('use '.DATA_NAME) === NULL) {
+  $conn = mysql_connect(DATA_HOST, DATA_USERNAME, DATA_PASSWORD)
+  mysql_select_db(DATA_NAME, $conn);
+  mysql_query('set names utf8');
+  
+  if (mysql_query('use '.DATA_NAME) === NULL) {
     die('无法使用数据库,请检查后重试!');
   }
-  $tbl = $db->getAll("SHOW TABLES");
+  $tbl = mysql_fetch_assoc(mysql_query("SHOW TABLES"));
   if (!empty($tbl)) {
     $arr_tbl = get_easy_array($tbl,'Tables_in_'.DATA_NAME);
     if ($arr_tbl) {
       echo "正在清空数据库,请稍等....<br>"; 
       foreach ($arr_tbl as $val) {
-        $db->query("DROP TABLE IF EXISTS $val"); 
+        mysql_query("DROP TABLE IF EXISTS $val"); 
       }
       echo "数据库清理成功<br>";
     }
   }
+  unset($tbl);
 
   echo "正在执行导入数据库操作<br>";
   // 导入数据库的MySQL命令
@@ -30,8 +56,12 @@ if (isset($_POST['save'])) {
   fclose($fp);
   $sql=explode("-- ----------",$sql);
   foreach($sql as $val){
-    $db->query($val);
+    mysql_query($val);
   }
+  unset($sql);
+
+  mysql_close($conn);
+  unset($conn);
   echo "数据库文件导入完成！";
 
   alert_href('安装成功,为了确保安全，请尽量删除install目录','../index.php');
