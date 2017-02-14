@@ -30,7 +30,7 @@ if (isset($_POST['save'])) {
     die("不能打开SQL文件");
   }
 
-  $conn = mysql_connect(DATA_HOST, DATA_USERNAME, DATA_PASSWORD)
+  $conn = mysql_connect(DATA_HOST, DATA_USERNAME, DATA_PASSWORD);
   mysql_select_db(DATA_NAME, $conn);
   mysql_query('set names utf8');
   
