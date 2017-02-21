@@ -30,13 +30,14 @@ if (isset($_POST['save'])) {
     die("不能打开SQL文件");
   }
 
-  $conn = mysql_connect(DATA_HOST, DATA_USERNAME, DATA_PASSWORD);
-  mysql_select_db(DATA_NAME, $conn);
-  mysql_query('set names utf8');
+  $conn = @mysql_connect(DATA_HOST, DATA_USERNAME, DATA_PASSWORD);
+  @mysql_select_db(DATA_NAME, $conn);
+  @mysql_query('set names utf8');
   
-  if (mysql_query('use '.DATA_NAME) === NULL) {
-    die('无法使用数据库,请检查后重试!');
+  if (@mysql_query('use '.DATA_NAME) === NULL || mysql_errno()) {
+    die('无法连接数据库,请检查信息后重试!');
   }
+  
   $tbl = mysql_fetch_assoc(mysql_query("SHOW TABLES"));
   if (!empty($tbl)) {
     $arr_tbl = get_easy_array($tbl,'Tables_in_'.DATA_NAME);
